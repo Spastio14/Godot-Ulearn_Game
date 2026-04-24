@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d4fs2m7pbdn2w"]
 
-[ext_resource type="Script" uid="uid://x77v5ri6klh4" path="res://not_gate.gd" id="1_ftoy6"]
+[ext_resource type="Script" uid="uid://x77v5ri6klh4" path="res://Circuito_Log_Compu/not_gate.gd" id="1_ftoy6"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u2ugy"]
 load_path = "res://.godot/imported/lock_red.png-13ea23fa1a180220aa17fc804b415775.ctex"

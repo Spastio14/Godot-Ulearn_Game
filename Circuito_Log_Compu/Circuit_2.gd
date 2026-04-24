@@ -30,15 +30,6 @@ func _ready():
 
 	# victoria
 	computadora.nivel_completado.connect(_on_win)
-	
-	#inicializar_circuito()
-
-#func inicializar_circuito():
-
-	# re-enviar estado actual de las fuentes
-#	b1.forzar_propagar()
-#	b2.forzar_propagar()
-#	b3.forzar_propagar()
 
 func _on_win():
 	print("Nivel completado")
