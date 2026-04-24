@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://djmjqxaqyrxcj"]
+
+[ext_resource type="Texture2D" uid="uid://drd1cw8p8o8rf" path="res://asstes/Mapa_fondos/Sprites/Tiles/Default/lock_yellow.png" id="1_1p71y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66vsf"]
+size = Vector2(64, 64)
+
+[node name="BloqueCerrado" type="Area2D" unique_id=1011691147]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=266673030]
+texture = ExtResource("1_1p71y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1559083535]
+shape = SubResource("RectangleShape2D_66vsf")

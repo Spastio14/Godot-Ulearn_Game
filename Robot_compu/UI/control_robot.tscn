@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bg3eur1wxmbfo"]
+
+[ext_resource type="FontFile" uid="uid://bcrsqn6n8lwwn" path="res://Fonts/pixeldown.ttf" id="1_mo8hd"]
+[ext_resource type="Script" uid="uid://261ke5a0cq20" path="res://Robot_compu/UI/Control_robot.gd" id="1_ytbu0"]
+
+[node name="Control_robot" type="Control" unique_id=1075889460]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ytbu0")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1163807606]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -355.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.5917294, 0.4062202, 0.81560874, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1597077524]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -336.0
+offset_top = 22.0
+offset_right = 19.0
+offset_bottom = 204.0
+grow_horizontal = 0
+scale = Vector2(0.9, 0.9)
+theme_override_constants/separation = 2
+
+[node name="Button_Der" type="Button" parent="VBoxContainer" unique_id=1072266080]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mo8hd")
+theme_override_font_sizes/font_size = 15
+text = "derecha"
+
+[node name="Button_Izq" type="Button" parent="VBoxContainer" unique_id=1870988078]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mo8hd")
+theme_override_font_sizes/font_size = 15
+text = "izquierda"
+
+[node name="Button_Salt" type="Button" parent="VBoxContainer" unique_id=1219111992]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mo8hd")
+theme_override_font_sizes/font_size = 15
+text = "Saltar"
+
+[node name="Button_Eject" type="Button" parent="VBoxContainer" unique_id=1288259401]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mo8hd")
+theme_override_font_sizes/font_size = 15
+text = "Ejecutar"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=144778477]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -277.0
+offset_top = 219.0
+offset_right = -20.0
+offset_bottom = 435.0
+grow_horizontal = 0
+scroll_horizontal_custom_step = 1.0
+scroll_vertical_custom_step = 1.0
+
+[node name="ListaInstrucciones" type="VBoxContainer" parent="ScrollContainer" unique_id=45136249]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 2
+
+[connection signal="pressed" from="VBoxContainer/Button_Der" to="." method="_on_button_der_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button_Izq" to="." method="_on_button_izq_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button_Salt" to="." method="_on_button_salt_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button_Eject" to="." method="_on_button_eject_pressed"]

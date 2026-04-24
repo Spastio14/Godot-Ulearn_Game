@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bm7n1mpcbdqss"]
+
+[ext_resource type="Script" uid="uid://br65eiiqw61hn" path="res://Robot_compu/Meta.gd" id="1_2bud5"]
+[ext_resource type="Texture2D" uid="uid://dunw52byg0u1r" path="res://asstes/Mapa_fondos/Sprites/Tiles/Default/flag_green_a.png" id="1_gnl06"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bud5"]
+size = Vector2(31, 31)
+
+[node name="Meta" type="Area2D" unique_id=1243134596]
+script = ExtResource("1_2bud5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2036478547]
+texture = ExtResource("1_gnl06")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=73506985]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_2bud5")

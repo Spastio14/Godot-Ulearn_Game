@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://rertqakm7eyh"]
+
+[ext_resource type="Texture2D" uid="uid://bq4gs01yvj803" path="res://asstes/PNG/Side view/robot_blueDrive1.png" id="1_es24y"]
+[ext_resource type="Script" uid="uid://b4rpn3wvwcruc" path="res://Robot_compu/robot_player.gd" id="1_i8hgm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8hgm"]
+size = Vector2(157, 148)
+
+[node name="Robot_player" type="CharacterBody2D" unique_id=986478275]
+scale = Vector2(0.405, 0.405)
+script = ExtResource("1_i8hgm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=934069690]
+texture = ExtResource("1_es24y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=881997325]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_i8hgm")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1671949854]
+zoom = Vector2(1.7, 1.7)

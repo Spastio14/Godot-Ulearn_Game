@@ -1,0 +1,17 @@
+extends Control
+
+func _ready():
+
+	GameManager.cargar_progreso()
+
+func empezar_juego():
+
+	var nivel = GameManager.nivel_actual
+	
+	var ruta = "res://Robot_compu/Compu_nv_" + str(nivel) + ".tscn"
+	
+	get_tree().change_scene_to_file(ruta)
+
+
+func _on_button_pressed():
+	empezar_juego()
