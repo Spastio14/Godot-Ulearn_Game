@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d4fs2m7pbdn2w"]
+
+[ext_resource type="Script" uid="uid://x77v5ri6klh4" path="res://not_gate.gd" id="1_ftoy6"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u2ugy"]
+load_path = "res://.godot/imported/lock_red.png-13ea23fa1a180220aa17fc804b415775.ctex"
+
+[node name="NOT_Gate" type="Node2D" unique_id=477579369]
+script = ExtResource("1_ftoy6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=865421753]
+texture = SubResource("CompressedTexture2D_u2ugy")
+
+[node name="Label" type="Label" parent="." unique_id=1781978323]
+offset_top = 31.0
+offset_right = 40.0
+offset_bottom = 54.0
+text = "NOT"

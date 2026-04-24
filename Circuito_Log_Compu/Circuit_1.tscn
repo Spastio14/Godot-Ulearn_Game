@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://rtofs7upqsby"]
+
+[ext_resource type="Script" uid="uid://b62tjfxdsfim2" path="res://Circuito_Log_Compu/Circuit_1.gd" id="1_b8v8t"]
+[ext_resource type="PackedScene" uid="uid://b40lhmi2hvnic" path="res://Circuito_Log_Compu/Fuente.tscn" id="1_qv5wf"]
+[ext_resource type="PackedScene" uid="uid://da6kw1c5o05cp" path="res://Circuito_Log_Compu/AND_Gate.tscn" id="3_mkaon"]
+[ext_resource type="PackedScene" uid="uid://btnfip2f4dt25" path="res://Circuito_Log_Compu/PC.tscn" id="4_44n8i"]
+
+[node name="Circuit_1" type="Node2D" unique_id=999806603]
+script = ExtResource("1_b8v8t")
+
+[node name="AND_Gate" parent="." unique_id=1068000118 instance=ExtResource("3_mkaon")]
+position = Vector2(377, 161)
+
+[node name="PC" parent="." unique_id=68756433 instance=ExtResource("4_44n8i")]
+position = Vector2(689, 154)
+
+[node name="Fuent1" parent="." unique_id=1270691299 instance=ExtResource("1_qv5wf")]
+position = Vector2(140, 96)
+
+[node name="Fuent2" parent="." unique_id=2090469770 instance=ExtResource("1_qv5wf")]
+position = Vector2(138, 235)
+
+[node name="Fuent3" parent="." unique_id=414070414 instance=ExtResource("1_qv5wf")]
+position = Vector2(138, 235)

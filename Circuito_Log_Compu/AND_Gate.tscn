@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://da6kw1c5o05cp"]
+
+[ext_resource type="Script" uid="uid://dhr2023pixfuf" path="res://Circuito_Log_Compu/AND_Gate.gd" id="1_pfc7r"]
+[ext_resource type="Texture2D" uid="uid://yerei4xsk6gu" path="res://asstes/Mapa_fondos/Sprites/Tiles/Default/block_coin_active.png" id="1_rmrkf"]
+
+[node name="AND_Gate" type="Node2D" unique_id=1068000118]
+script = ExtResource("1_pfc7r")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=104827153]
+texture = ExtResource("1_rmrkf")
+
+[node name="Label" type="Label" parent="." unique_id=809506450]
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 55.0
+text = "AND"

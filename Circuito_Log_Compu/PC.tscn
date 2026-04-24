@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://btnfip2f4dt25"]
+
+[ext_resource type="Script" uid="uid://r1gd7lnp2acx" path="res://Circuito_Log_Compu/PC.gd" id="1_6telw"]
+[ext_resource type="Texture2D" uid="uid://dtes0gh7ssi6n" path="res://asstes/Mapa_fondos/Sprites/Tiles/Default/block_strong_exclamation.png" id="1_xos73"]
+
+[node name="PC" type="Node2D" unique_id=68756433]
+script = ExtResource("1_6telw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1367006118]
+texture = ExtResource("1_xos73")

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cfymp8knnqsl2"]
+
+[ext_resource type="Script" uid="uid://4wcokx6d2s48" path="res://Circuito_Log_Compu/or_gate.gd" id="1_rdjf6"]
+[ext_resource type="Texture2D" uid="uid://egx5rvh5hkbc" path="res://asstes/Mapa_fondos/Sprites/Tiles/Default/lock_green.png" id="2_7omgv"]
+
+[node name="OR_Gate" type="Node2D" unique_id=22197103]
+script = ExtResource("1_rdjf6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=382003822]
+texture = ExtResource("2_7omgv")
+
+[node name="Label" type="Label" parent="." unique_id=469742619]
+offset_top = 28.0
+offset_right = 40.0
+offset_bottom = 51.0
+text = "OR"

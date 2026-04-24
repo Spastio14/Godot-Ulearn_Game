@@ -18,9 +18,9 @@ func cargar_siguiente_nivel():
 func _cambiar_nivel():
 	get_tree().change_scene_to_file("res://Robot_compu/Compu_nv_2.tscn")
 
-func agregar_instruccion(inst):
+func _agregar_instruccion(inst):
 	instrucciones.append(inst)
 
-func ejecutar():
+func _ejecutar():
 	robot.ejecutar_instrucciones(instrucciones)
 	instrucciones.clear()

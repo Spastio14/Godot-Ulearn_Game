@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b40lhmi2hvnic"]
+
+[ext_resource type="Script" uid="uid://bhwovdwj3re7" path="res://Circuito_Log_Compu/Fuent.gd" id="1_m8gyc"]
+[ext_resource type="Texture2D" uid="uid://5xbj2dm6shmq" path="res://asstes/Mapa_fondos/Sprites/Tiles/Default/lever_left.png" id="1_yanma"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8gyc"]
+size = Vector2(53, 54)
+
+[node name="Fuent" type="Area2D" unique_id=1270691299]
+script = ExtResource("1_m8gyc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=865373167]
+texture = ExtResource("1_yanma")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91484440]
+position = Vector2(-3.5, 5)
+shape = SubResource("RectangleShape2D_m8gyc")
