@@ -37,4 +37,4 @@ func _on_win():
 
 
 func _next():
-	get_tree().change_scene_to_file("res://Circuit/nivel_2_3.tscn")
+	get_tree().change_scene_to_file("res://Circuito_Log_Compu/circuit_nv_6.tscn")

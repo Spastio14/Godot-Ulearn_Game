@@ -5,10 +5,14 @@ func _ready():
 	GameManager.cargar_progreso()
 
 func empezar_juego():
-
+	var ruta
 	var nivel = GameManager.nivel_actual
 	
-	var ruta = "res://Robot_compu/Compu_nv_" + str(nivel) + ".tscn"
+	if nivel <= 3:
+		ruta = "res://Robot_compu/Compu_nv_" + str(nivel) + ".tscn"
+	else:
+		ruta = "res://Circuito_Log_Compu/Circuit_nv_" + str(nivel) + ".tscn"
+		
 	
 	get_tree().change_scene_to_file(ruta)
 

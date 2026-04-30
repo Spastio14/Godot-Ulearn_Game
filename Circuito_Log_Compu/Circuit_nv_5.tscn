@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bs7xfpwlnewow"]
+
+[ext_resource type="Script" uid="uid://w7spqjln13yo" path="res://Circuito_Log_Compu/Circuit_2.gd" id="1_v6gbv"]
+[ext_resource type="PackedScene" uid="uid://da6kw1c5o05cp" path="res://Circuito_Log_Compu/AND_Gate.tscn" id="2_md8uo"]
+[ext_resource type="PackedScene" uid="uid://btnfip2f4dt25" path="res://Circuito_Log_Compu/PC.tscn" id="3_ptga4"]
+[ext_resource type="PackedScene" uid="uid://b40lhmi2hvnic" path="res://Circuito_Log_Compu/Fuente.tscn" id="4_km7c2"]
+[ext_resource type="PackedScene" uid="uid://d4fs2m7pbdn2w" path="res://Circuito_Log_Compu/NOT_Gate.tscn" id="5_67cne"]
+[ext_resource type="PackedScene" uid="uid://cfymp8knnqsl2" path="res://Circuito_Log_Compu/OR_Gate.tscn" id="6_wcejf"]
+
+[node name="Circuit_2" type="Node2D" unique_id=204807163]
+script = ExtResource("1_v6gbv")
+
+[node name="AND_Gate" parent="." unique_id=1068000118 instance=ExtResource("2_md8uo")]
+position = Vector2(499, 337)
+
+[node name="PC" parent="." unique_id=68756433 instance=ExtResource("3_ptga4")]
+position = Vector2(755, 290)
+
+[node name="Fuent1" parent="." unique_id=1270691299 instance=ExtResource("4_km7c2")]
+position = Vector2(142, 163)
+
+[node name="Fuent2" parent="." unique_id=135941653 instance=ExtResource("4_km7c2")]
+position = Vector2(140, 302)
+
+[node name="Fuent3" parent="." unique_id=870710292 instance=ExtResource("4_km7c2")]
+position = Vector2(154, 433)
+
+[node name="NOT_Gate" parent="." unique_id=477579369 instance=ExtResource("5_67cne")]
+position = Vector2(277, 469)
+
+[node name="OR_Gate" parent="." unique_id=22197103 instance=ExtResource("6_wcejf")]
+position = Vector2(257, 224)

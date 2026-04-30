@@ -25,4 +25,4 @@ func _on_win():
 
 
 func _cargar_siguiente():
-	get_tree().change_scene_to_file("res://Circuito_Log_Compu/Circuit_2.tscn")
+	get_tree().change_scene_to_file("res://Circuito_Log_Compu/Circuit_nv_5.tscn")

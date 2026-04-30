@@ -1,8 +1,8 @@
+Line2D
 Label
 Sprite2D
 CollisionShape2D
 Area2D
-Line2D
 TextureRect
 Button
 VBoxContainer

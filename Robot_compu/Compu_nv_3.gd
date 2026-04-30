@@ -38,5 +38,5 @@ func ejecutar():
 	robot.ejecutar_instrucciones(instrucciones)
 	instrucciones.clear()
 
-#func _cambiar_nivel():
-	#get_tree().change_scene_to_file("res://niveles/Nivel_4.tscn")
+func _cambiar_nivel():
+	get_tree().change_scene_to_file("res://Circuito_Log_Compu/Circuit_nv_5.tscn")
