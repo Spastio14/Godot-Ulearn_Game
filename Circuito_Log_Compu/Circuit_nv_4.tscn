@@ -8,17 +8,32 @@
 [node name="Circuit_1" type="Node2D" unique_id=999806603]
 script = ExtResource("1_b8v8t")
 
+[node name="Line2D10" type="Line2D" parent="." unique_id=1213209220]
+position = Vector2(411, 225)
+points = PackedVector2Array(120, 111, 390, 107)
+default_color = Color(0.98062104, 0.7641532, 0.10441796, 1)
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1452569266]
+position = Vector2(175, 201)
+points = PackedVector2Array(106, 91, 168, 89, 240, 114, 308, 116)
+default_color = Color(0.5342931, 0.9162826, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="." unique_id=2025942840]
+position = Vector2(179, 340)
+points = PackedVector2Array(106, 91, 174, 65, 224, 42, 308, 10)
+default_color = Color(0.5342931, 0.9162826, 0, 1)
+
 [node name="AND_Gate" parent="." unique_id=1068000118 instance=ExtResource("3_mkaon")]
-position = Vector2(377, 161)
+position = Vector2(510, 332)
 
 [node name="PC" parent="." unique_id=68756433 instance=ExtResource("4_44n8i")]
-position = Vector2(689, 154)
+position = Vector2(822, 325)
 
 [node name="Fuent1" parent="." unique_id=1270691299 instance=ExtResource("1_qv5wf")]
-position = Vector2(140, 96)
+position = Vector2(273, 267)
 
 [node name="Fuent2" parent="." unique_id=2090469770 instance=ExtResource("1_qv5wf")]
-position = Vector2(138, 235)
+position = Vector2(271, 406)
 
 [node name="Fuent3" parent="." unique_id=414070414 instance=ExtResource("1_qv5wf")]
-position = Vector2(138, 235)
+position = Vector2(271, 406)

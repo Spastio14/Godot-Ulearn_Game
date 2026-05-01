@@ -10,23 +10,53 @@
 [node name="Circuit_2" type="Node2D" unique_id=204807163]
 script = ExtResource("1_v6gbv")
 
+[node name="Line2D9" type="Line2D" parent="." unique_id=470417002]
+position = Vector2(534, 263)
+points = PackedVector2Array(120, 111, 177, 98, 260, 97, 348, 90)
+default_color = Color(0.98062104, 0.7641532, 0.10441796, 1)
+
+[node name="Line2D8" type="Line2D" parent="." unique_id=162356974]
+position = Vector2(304, 151)
+points = PackedVector2Array(120, 111, 153, 157, 188, 179, 232, 195, 305, 202)
+default_color = Color(0.44015872, 0.91315514, 0.583875, 1)
+
+[node name="Line2D5" type="Line2D" parent="." unique_id=343356595]
+position = Vector2(316, 370)
+points = PackedVector2Array(109, 99, 163, 72, 221, 22, 300, 9)
+default_color = Color(1, 0.47058824, 0.30980393, 1)
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1577102570]
+position = Vector2(175, 392)
+points = PackedVector2Array(106, 91, 129, 91, 156, 92, 198, 88)
+default_color = Color(0.5342931, 0.9162826, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="." unique_id=607900864]
+position = Vector2(181, 264)
+points = PackedVector2Array(106, 91, 127, 70, 146, 32, 188, 12)
+default_color = Color(0.5342931, 0.9162826, 0, 1)
+
+[node name="Line2D3" type="Line2D" parent="." unique_id=629103713]
+position = Vector2(181, 126)
+points = PackedVector2Array(106, 91, 124, 104, 155, 116, 196, 123)
+default_color = Color(0.5342931, 0.9162826, 0, 1)
+
 [node name="AND_Gate" parent="." unique_id=1068000118 instance=ExtResource("2_md8uo")]
-position = Vector2(499, 337)
+position = Vector2(631, 363)
 
 [node name="PC" parent="." unique_id=68756433 instance=ExtResource("3_ptga4")]
-position = Vector2(755, 290)
+position = Vector2(899, 357)
 
 [node name="Fuent1" parent="." unique_id=1270691299 instance=ExtResource("4_km7c2")]
-position = Vector2(142, 163)
+position = Vector2(274, 189)
 
 [node name="Fuent2" parent="." unique_id=135941653 instance=ExtResource("4_km7c2")]
-position = Vector2(140, 302)
+position = Vector2(272, 328)
 
 [node name="Fuent3" parent="." unique_id=870710292 instance=ExtResource("4_km7c2")]
-position = Vector2(154, 433)
+position = Vector2(270, 457)
 
 [node name="NOT_Gate" parent="." unique_id=477579369 instance=ExtResource("5_67cne")]
-position = Vector2(277, 469)
+position = Vector2(397, 465)
 
 [node name="OR_Gate" parent="." unique_id=22197103 instance=ExtResource("6_wcejf")]
-position = Vector2(257, 224)
+position = Vector2(397, 262)

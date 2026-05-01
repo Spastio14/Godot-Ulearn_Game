@@ -33,6 +33,7 @@ func _ready():
 
 func _on_win():
 	print("Nivel completado")
+	await get_tree().create_timer(0.5).timeout
 	call_deferred("_next")
 
 

@@ -11,83 +11,84 @@
 script = ExtResource("1_ftf01")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=255383090]
+position = Vector2(51, 56)
 points = PackedVector2Array(116, 94, 260, 92)
 default_color = Color(0.5342931, 0.9162826, 0, 1)
 
 [node name="Line2D2" type="Line2D" parent="." unique_id=1952462862]
-position = Vector2(0, 232)
+position = Vector2(51, 288)
 points = PackedVector2Array(120, 111, 260, 92)
 default_color = Color(0.53333336, 0.91764706, 0, 1)
 
 [node name="Line2D8" type="Line2D" parent="." unique_id=1157024710]
-position = Vector2(445, 69)
+position = Vector2(496, 125)
 points = PackedVector2Array(120, 111, 152, 148, 177.5957, 168.47652, 191.76294, 194.56947, 245, 210)
 default_color = Color(0.44015872, 0.91315514, 0.583875, 1)
 
 [node name="Line2D9" type="Line2D" parent="." unique_id=996108440]
-position = Vector2(423, 296)
+position = Vector2(474, 352)
 points = PackedVector2Array(120, 111, 182, 90, 208, 41, 268, 6)
 default_color = Color(0.98062104, 0.7641532, 0.10441796, 1)
 
 [node name="Line2D10" type="Line2D" parent="." unique_id=1048517257]
-position = Vector2(607, 185)
+position = Vector2(658, 241)
 points = PackedVector2Array(120, 111, 387, 124)
 default_color = Color(0.98062104, 0.7641532, 0.10441796, 1)
 
 [node name="Line2D6" type="Line2D" parent="." unique_id=599767163]
-position = Vector2(187, 204)
+position = Vector2(238, 260)
 points = PackedVector2Array(120, 111, 156, 89, 217.58658, 54.868164, 241.7103, 8.431595, 274.56845, -3.1828613, 332, -8)
 default_color = Color(1, 0.46960443, 0.30813485, 1)
 
 [node name="Line2D7" type="Line2D" parent="." unique_id=11431219]
-position = Vector2(207, -13)
+position = Vector2(258, 43)
 points = PackedVector2Array(120, 111, 162, 121, 200, 140, 244, 169, 276, 178, 309, 188)
 default_color = Color(1, 0.46960443, 0.30813485, 1)
 
 [node name="Line2D3" type="Line2D" parent="." unique_id=247501039]
-position = Vector2(0, 374)
+position = Vector2(51, 430)
 points = PackedVector2Array(109, 99, 260, 92)
 default_color = Color(0.53333336, 0.91764706, 0, 1)
 
 [node name="Line2D5" type="Line2D" parent="." unique_id=509790534]
-position = Vector2(198, 365)
+position = Vector2(249, 421)
 points = PackedVector2Array(109, 99, 207.00433, 94.45676, 235, 58, 306, 44)
 default_color = Color(1, 0.47058824, 0.30980393, 1)
 
 [node name="Line2D4" type="Line2D" parent="." unique_id=1044913305]
-position = Vector2(18, 105)
+position = Vector2(69, 161)
 points = PackedVector2Array(109, 99, 222.23581, 93.75065, 324.49826, 132.88376, 394.80466, 223.51935, 428.52585, 256.85925, 484, 284)
 default_color = Color(0.53333336, 0.91764706, 0, 1)
 
 [node name="Fuent1" parent="." unique_id=1270691299 instance=ExtResource("2_tt1vk")]
-position = Vector2(101, 80)
+position = Vector2(152, 136)
 
 [node name="Fuent2" parent="." unique_id=312681722 instance=ExtResource("2_tt1vk")]
-position = Vector2(103, 195)
+position = Vector2(154, 251)
 
 [node name="Fuent3" parent="." unique_id=1093924940 instance=ExtResource("2_tt1vk")]
-position = Vector2(103, 321)
+position = Vector2(154, 377)
 
 [node name="Fuent4" parent="." unique_id=1718967644 instance=ExtResource("2_tt1vk")]
-position = Vector2(94, 450)
+position = Vector2(145, 506)
 
 [node name="NOT_Gate1" parent="." unique_id=477579369 instance=ExtResource("3_cmvfp")]
-position = Vector2(294, 92)
+position = Vector2(345, 148)
 
 [node name="NOT_Gate2" parent="." unique_id=1491256265 instance=ExtResource("3_cmvfp")]
-position = Vector2(284, 313)
+position = Vector2(335, 369)
 
 [node name="NOT_Gate3" parent="." unique_id=1635860009 instance=ExtResource("3_cmvfp")]
-position = Vector2(284, 456)
+position = Vector2(335, 512)
 
 [node name="OR_Gate1" parent="." unique_id=22197103 instance=ExtResource("4_q6bx3")]
-position = Vector2(536, 175)
+position = Vector2(587, 231)
 
 [node name="AND_Gate1" parent="." unique_id=1068000118 instance=ExtResource("5_o63dc")]
-position = Vector2(705, 292)
+position = Vector2(756, 348)
 
 [node name="AND_Gate2" parent="." unique_id=944669239 instance=ExtResource("5_o63dc")]
-position = Vector2(523, 399)
+position = Vector2(574, 455)
 
 [node name="PC" parent="." unique_id=68756433 instance=ExtResource("6_54rxe")]
-position = Vector2(1017, 304)
+position = Vector2(1068, 360)

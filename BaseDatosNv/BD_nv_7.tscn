@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bj2kpvoykbtn1"]
+
+[ext_resource type="Script" uid="uid://bdovd7gb3c0oa" path="res://BaseDatosNv/bd_nv_7.gd" id="1_msx14"]
+[ext_resource type="PackedScene" uid="uid://cjreierj6d7hk" path="res://BaseDatosNv/tabla.tscn" id="2_msx14"]
+
+[node name="BD_nv_7" type="Control" unique_id=1016286874]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_msx14")
+
+[node name="ContenedorDatos" type="HFlowContainer" parent="." unique_id=1655679914]
+modulate = Color(2.2140146e-06, 0.7134019, 0.38716733, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.98300004
+anchor_top = 0.071
+anchor_right = 0.98300004
+anchor_bottom = 0.083000004
+offset_left = -591.24
+offset_top = -37.120003
+offset_right = -0.23999023
+offset_bottom = 214.23999
+grow_horizontal = 2
+alignment = 1
+
+[node name="ContenedorTablas" type="HBoxContainer" parent="." unique_id=1062649348]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 31.0
+offset_top = 24.0
+offset_right = -845.0
+offset_bottom = 324.0
+grow_horizontal = 2
+
+[node name="TablaUsuarios" parent="ContenedorTablas" unique_id=1602952372 instance=ExtResource("2_msx14")]
+layout_mode = 2
+nombre_tabla = "Usuarios"
+tipos_validos = Array[String](["nombre", "edad"])
+
+[node name="TablaContacto" parent="ContenedorTablas" unique_id=2002892357 instance=ExtResource("2_msx14")]
+layout_mode = 2
+nombre_tabla = "Contacto"
+tipos_validos = Array[String](["correo", "direccion"])
