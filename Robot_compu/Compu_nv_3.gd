@@ -1,12 +1,16 @@
 extends Node2D
 var instrucciones = []
 
+@export var dialogo_intro: Resource
+@export var titulo_dialogo_intro: String = "robot_nivel_3"
+
 @onready var robot = $Robot_player
 @onready var meta = $Meta
 @onready var llave = $Llave
 @onready var bloque = $BloqueCerrado
 
 func _ready():
+	LevelDialogueIntro.mostrar(self, dialogo_intro, titulo_dialogo_intro)
 	meta.visible = false
 	meta.monitoring = false
 	

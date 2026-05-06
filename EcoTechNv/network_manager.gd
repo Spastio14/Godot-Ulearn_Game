@@ -12,16 +12,15 @@ var seleccion_actual: Area2D = null
 @onready var btn_reiniciar = $UI/BtnReiniciar
 
 # --- PLANTILLA DE DIÁLOGOS ---
-@export var dialogo_intro: DialogueResource
-@export var titulo_dialogo: String = "inicio"
+@export var dialogo_intro: Resource
+@export var titulo_dialogo_intro: String = "redes_nivel_4_1"
 
 var cable_fantasma: Line2D
 
 func _ready():
 	actualizar_ui()
 	
-	if dialogo_intro != null:
-		DialogueManager.show_example_dialogue_balloon(dialogo_intro, titulo_dialogo)
+	LevelDialogueIntro.mostrar(self, dialogo_intro, titulo_dialogo_intro)
 		
 	if btn_reiniciar:
 		btn_reiniciar.pressed.connect(_on_btn_reiniciar_pressed)

@@ -1,5 +1,8 @@
 extends Node2D
 
+@export var dialogo_intro: Resource
+@export var titulo_dialogo_intro: String = "circuito_nivel_5"
+
 @onready var b1 = $Fuent1
 @onready var b2 = $Fuent2
 @onready var b3 = $Fuent3
@@ -11,6 +14,7 @@ extends Node2D
 @onready var computadora = $PC
 
 func _ready():
+	LevelDialogueIntro.mostrar(self, dialogo_intro, titulo_dialogo_intro)
 
 	# B1 y B2 → OR
 	b1.salidas.append(Callable(or_gate, "recibir_energia_1"))
