@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c0r66i4eijdhr"]
+
+[ext_resource type="Script" uid="uid://d3pxnru7c7wot" path="res://EcoTechNv/cable.gd" id="1_75rtb"]
+
+[node name="Cable" type="Node2D" unique_id=427902421]
+script = ExtResource("1_75rtb")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1479000300]

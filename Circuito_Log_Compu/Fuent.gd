@@ -1,5 +1,8 @@
 extends Area2D
 
+@export var textura_encendido: Texture2D
+@export var textura_apagado: Texture2D
+
 var energizado: bool = false
 var salidas: Array[Callable] = []
 
@@ -27,6 +30,14 @@ func propagar():
 
 func actualizar_visual():
 	if energizado:
-		$Sprite2D.modulate = Color.GREEN
+		if textura_encendido:
+			$Sprite2D.texture = textura_encendido
+			$Sprite2D.modulate = Color.WHITE # Restaurar color original si usa sprite
+		else:
+			$Sprite2D.modulate = Color.GREEN # Fallback al color si no hay sprite
 	else:
-		$Sprite2D.modulate = Color.RED
+		if textura_apagado:
+			$Sprite2D.texture = textura_apagado
+			$Sprite2D.modulate = Color.WHITE # Restaurar color original si usa sprite
+		else:
+			$Sprite2D.modulate = Color.RED # Fallback al color si no hay sprite

@@ -21,6 +21,8 @@ func _ready():
 func _on_win():
 	print("Nivel completado")
 	await get_tree().create_timer(0.5).timeout
+	GameManager.nivel_actual += 1
+	GameManager.guardar_progreso()
 	call_deferred("_cargar_siguiente")
 
 

@@ -1,0 +1,71 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://BaseDatosNv/bd_nv_8.gd" id="1_bd8"]
+[ext_resource type="PackedScene" uid="uid://cjreierj6d7hk" path="res://BaseDatosNv/tabla.tscn" id="2_msx14"]
+[ext_resource type="Texture2D" uid="uid://keqy5t3ican2" path="res://asstes/img/eaf222655ffde7147a826c7b4dd081a6.jpg" id="2_sp1ro"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wsta0"]
+texture = ExtResource("2_sp1ro")
+texture_margin_left = 30.0
+texture_margin_top = 36.0
+texture_margin_right = 30.0
+texture_margin_bottom = 36.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[node name="BD_nv_8" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bd8")
+
+[node name="FondoDatos" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 37.0
+offset_right = 1257.0
+offset_bottom = 330.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_wsta0")
+
+[node name="ScrollDatos" type="ScrollContainer" parent="FondoDatos"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ContenedorDatos" type="HFlowContainer" parent="FondoDatos/ScrollDatos"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ContenedorTablas" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 31.0
+offset_top = 24.0
+offset_right = -845.0
+offset_bottom = 324.0
+grow_horizontal = 2
+
+[node name="TablaDBA" parent="ContenedorTablas" instance=ExtResource("2_msx14")]
+layout_mode = 2
+nombre_tabla = "DBA (Admin)"
+tipos_validos = Array[String](["dba"])
+
+[node name="TablaUsuario" parent="ContenedorTablas" instance=ExtResource("2_msx14")]
+layout_mode = 2
+nombre_tabla = "Usuario Básico"
+tipos_validos = Array[String](["usuario"])
+
+[node name="BtnValidar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 355.0
+offset_right = 376.0
+offset_bottom = 469.0
+text = "VALIDAR"
+
+[connection signal="pressed" from="BtnValidar" to="." method="_on_btn_validar_pressed"]

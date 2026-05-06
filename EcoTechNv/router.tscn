@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://fx4j7omvgrxh"]
+
+[ext_resource type="Script" uid="uid://kl8pho2kb0cu" path="res://EcoTechNv/network_node.gd" id="1_routernode"]
+[ext_resource type="Texture2D" uid="uid://c6lk0b70op8ce" path="res://asstes/Mapa_fondos/Sprites/Tiles/Default/hud_player_helmet_pink.png" id="2_odr22"]
+[ext_resource type="PackedScene" uid="uid://bam8l07i2xtbi" path="res://EcoTechNv/port.tscn" id="2_port"]
+
+[node name="Router" type="Node2D" unique_id=925253807]
+script = ExtResource("1_routernode")
+tipo = "router"
+max_conexiones_nodo = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=248319996]
+texture = ExtResource("2_odr22")
+
+[node name="Port1" parent="." unique_id=1088112426 node_paths=PackedStringArray("node_owner") instance=ExtResource("2_port")]
+node_owner = NodePath("..")

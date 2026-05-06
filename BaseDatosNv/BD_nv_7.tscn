@@ -2,6 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bdovd7gb3c0oa" path="res://BaseDatosNv/bd_nv_7.gd" id="1_msx14"]
 [ext_resource type="PackedScene" uid="uid://cjreierj6d7hk" path="res://BaseDatosNv/tabla.tscn" id="2_msx14"]
+[ext_resource type="Texture2D" uid="uid://keqy5t3ican2" path="res://asstes/img/eaf222655ffde7147a826c7b4dd081a6.jpg" id="2_sp1ro"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wsta0"]
+texture = ExtResource("2_sp1ro")
+texture_margin_left = 30.0
+texture_margin_top = 36.0
+texture_margin_right = 30.0
+texture_margin_bottom = 36.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
 
 [node name="BD_nv_7" type="Control" unique_id=1016286874]
 layout_mode = 3
@@ -12,19 +22,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_msx14")
 
-[node name="ContenedorDatos" type="HFlowContainer" parent="." unique_id=1655679914]
-modulate = Color(2.2140146e-06, 0.7134019, 0.38716733, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.98300004
-anchor_top = 0.071
-anchor_right = 0.98300004
-anchor_bottom = 0.083000004
-offset_left = -591.24
-offset_top = -37.120003
-offset_right = -0.23999023
-offset_bottom = 214.23999
-grow_horizontal = 2
+[node name="FondoDatos" type="PanelContainer" parent="." unique_id=250060497]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 37.0
+offset_right = 1257.0
+offset_bottom = 330.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_wsta0")
+
+[node name="ScrollDatos" type="ScrollContainer" parent="FondoDatos" unique_id=987654321]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ContenedorDatos" type="HFlowContainer" parent="FondoDatos/ScrollDatos" unique_id=1655679914]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 alignment = 1
 
 [node name="ContenedorTablas" type="HBoxContainer" parent="." unique_id=1062649348]
@@ -46,3 +59,13 @@ tipos_validos = Array[String](["nombre", "edad"])
 layout_mode = 2
 nombre_tabla = "Contacto"
 tipos_validos = Array[String](["correo", "direccion"])
+
+[node name="BtnValidar" type="Button" parent="." unique_id=1865607952]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 355.0
+offset_right = 376.0
+offset_bottom = 469.0
+text = "VALIDAR"
+
+[connection signal="pressed" from="BtnValidar" to="." method="_on_btn_validar_pressed"]

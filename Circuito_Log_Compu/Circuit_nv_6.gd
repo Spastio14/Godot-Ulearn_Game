@@ -42,8 +42,11 @@ func _ready():
 
 func _on_win():
 	print("Nivel completado")
+	await get_tree().create_timer(0.5).timeout
+	GameManager.nivel_actual += 1
+	GameManager.guardar_progreso()
 	call_deferred("_next")
 
 
 func _next():
-	get_tree().change_scene_to_file("res://Circuito_Log_Compu/circuit_nv_7.tscn")
+	get_tree().change_scene_to_file("res://BaseDatosNv/BD_nv_7.tscn")

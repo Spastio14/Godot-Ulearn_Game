@@ -1,7 +1,7 @@
 extends Node
 
 var usuario: String = "nose"
-var nivel_actual: int = 4
+var nivel_actual: int = 6
 var servidor: String = "http://10.239.148.115:8000/backend/"
 
 func guardar_progreso() -> void:

@@ -1,16 +1,21 @@
 [gd_scene format=3 uid="uid://bbe8a8argbc1v"]
 
-[ext_resource type="Script" uid="uid://dwta6mwkm3ogi" path="res://item_dato.gd" id="1_4oj6p"]
+[ext_resource type="Script" uid="uid://dwta6mwkm3ogi" path="res://BaseDatosNv/item_dato.gd" id="1_4oj6p"]
+[ext_resource type="Texture2D" uid="uid://b44seocrmgegh" path="res://asstes/img/5e86d66f597fa7972c8897c80122d1b3.jpg" id="1_46ljl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3islm"]
+texture = ExtResource("1_46ljl")
 
 [node name="ItemDato" type="Panel" unique_id=1523673460]
 custom_minimum_size = Vector2(150, 50)
 anchors_preset = -1
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 498.0
-offset_bottom = 516.0
+offset_right = 820.0
+offset_bottom = 712.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxTexture_3islm")
 script = ExtResource("1_4oj6p")
 
 [node name="Label" type="Label" parent="." unique_id=972218627]
@@ -20,5 +25,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.3329954, 0.6548606, 3.85046e-07, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
 horizontal_alignment = 1
 vertical_alignment = 1

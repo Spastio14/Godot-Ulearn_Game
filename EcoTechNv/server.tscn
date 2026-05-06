@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bx3sw6fe66plo"]
+
+[ext_resource type="Script" uid="uid://kl8pho2kb0cu" path="res://EcoTechNv/network_node.gd" id="1_servernode"]
+[ext_resource type="PackedScene" uid="uid://bam8l07i2xtbi" path="res://EcoTechNv/port.tscn" id="2_port"]
+[ext_resource type="Texture2D" uid="uid://ifkbdie8p5x0" path="res://asstes/Mapa_fondos/Sprites/Tiles/Default/hud_player_green.png" id="2_t71ff"]
+
+[node name="Server" type="Node2D" unique_id=215711251]
+script = ExtResource("1_servernode")
+tipo = "server"
+max_conexiones_nodo = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1085486859]
+texture = ExtResource("2_t71ff")
+
+[node name="Port" parent="." unique_id=1272295624 node_paths=PackedStringArray("node_owner") instance=ExtResource("2_port")]
+node_owner = NodePath("..")

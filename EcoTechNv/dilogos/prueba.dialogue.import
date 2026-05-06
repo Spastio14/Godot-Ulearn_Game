@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dgxasqyurk207"
+path="res://.godot/imported/prueba.dialogue-38eb71101cdb5d95d47d954800f12d7c.tres"
+
+[deps]
+
+source_file="res://EcoTechNv/dilogos/prueba.dialogue"
+dest_files=["res://.godot/imported/prueba.dialogue-38eb71101cdb5d95d47d954800f12d7c.tres"]
+
+[params]
+
+defaults=true

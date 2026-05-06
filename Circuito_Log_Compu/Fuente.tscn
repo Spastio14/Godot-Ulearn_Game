@@ -1,17 +1,19 @@
 [gd_scene format=3 uid="uid://b40lhmi2hvnic"]
 
 [ext_resource type="Script" uid="uid://bhwovdwj3re7" path="res://Circuito_Log_Compu/Fuent.gd" id="1_m8gyc"]
-[ext_resource type="Texture2D" uid="uid://5xbj2dm6shmq" path="res://asstes/Mapa_fondos/Sprites/Tiles/Default/lever_left.png" id="1_yanma"]
+[ext_resource type="Texture2D" uid="uid://cxvxppyxl4hsd" path="res://asstes/Mapa_fondos/Sprites/Tiles/Default/switch_green.png" id="2_7sy62"]
+[ext_resource type="Texture2D" uid="uid://cueruqved5fcu" path="res://asstes/Mapa_fondos/Sprites/Tiles/Default/switch_red.png" id="2_h2v8t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m8gyc"]
-size = Vector2(53, 54)
+size = Vector2(64, 46)
 
 [node name="Fuent" type="Area2D" unique_id=1270691299]
 script = ExtResource("1_m8gyc")
+textura_encendido = ExtResource("2_7sy62")
+textura_apagado = ExtResource("2_h2v8t")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=865373167]
-texture = ExtResource("1_yanma")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91484440]
-position = Vector2(-3.5, 5)
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_m8gyc")

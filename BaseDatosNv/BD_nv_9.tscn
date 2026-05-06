@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://v2y0gopdqtrw"]
+
+[ext_resource type="Script" uid="uid://8l8f1n324r8" path="res://BaseDatosNv/bd_nv_9.gd" id="1_bd9"]
+[ext_resource type="PackedScene" uid="uid://cjreierj6d7hk" path="res://BaseDatosNv/tabla.tscn" id="2_msx14"]
+[ext_resource type="Texture2D" uid="uid://keqy5t3ican2" path="res://asstes/img/eaf222655ffde7147a826c7b4dd081a6.jpg" id="2_sp1ro"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wsta0"]
+texture = ExtResource("2_sp1ro")
+texture_margin_left = 30.0
+texture_margin_top = 35.0
+texture_margin_right = 30.0
+texture_margin_bottom = 35.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Usuarios"]
+bg_color = Color(0.3, 0.6, 1, 0.2)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.3, 0.6, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Empleados"]
+bg_color = Color(1, 0.6, 0.3, 0.2)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.6, 0.3, 1)
+
+[node name="BD_nv_9" type="Control" unique_id=213404278]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bd9")
+
+[node name="FondoDatos" type="PanelContainer" parent="." unique_id=1379957195]
+layout_mode = 0
+offset_left = 6.999999
+offset_top = 451.0
+offset_right = 1224.0
+offset_bottom = 612.0
+scale = Vector2(1.0400002, 1)
+theme_override_styles/panel = SubResource("StyleBoxTexture_wsta0")
+
+[node name="ScrollDatos" type="ScrollContainer" parent="FondoDatos" unique_id=1655634589]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ContenedorDatos" type="HFlowContainer" parent="FondoDatos/ScrollDatos" unique_id=1844391385]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ContenedorTablas" type="HBoxContainer" parent="." unique_id=1213461129]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 2.0
+offset_top = 5.0
+offset_right = -2.0
+offset_bottom = 431.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+
+[node name="TablaUsuariosContenedor" type="PanelContainer" parent="ContenedorTablas" unique_id=897794292]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_Usuarios")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContenedorTablas/TablaUsuariosContenedor" unique_id=1237324850]
+layout_mode = 2
+
+[node name="LabelTitulo" type="Label" parent="ContenedorTablas/TablaUsuariosContenedor/VBoxContainer" unique_id=1636051763]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.6, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "Tabla Usuarios"
+horizontal_alignment = 1
+
+[node name="Columnas" type="HBoxContainer" parent="ContenedorTablas/TablaUsuariosContenedor/VBoxContainer" unique_id=245738802]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="TablaNombreUsr" parent="ContenedorTablas/TablaUsuariosContenedor/VBoxContainer/Columnas" unique_id=350694206 instance=ExtResource("2_msx14")]
+layout_mode = 2
+size_flags_horizontal = 3
+nombre_tabla = "Nombre"
+tipos_validos = Array[String](["usr_nombre"])
+
+[node name="TablaEdadUsr" parent="ContenedorTablas/TablaUsuariosContenedor/VBoxContainer/Columnas" unique_id=1862978549 instance=ExtResource("2_msx14")]
+layout_mode = 2
+size_flags_horizontal = 3
+nombre_tabla = "Edad"
+tipos_validos = Array[String](["usr_edad"])
+
+[node name="TablaAlturaUsr" parent="ContenedorTablas/TablaUsuariosContenedor/VBoxContainer/Columnas" unique_id=1493015023 instance=ExtResource("2_msx14")]
+layout_mode = 2
+size_flags_horizontal = 3
+nombre_tabla = "Altura"
+tipos_validos = Array[String](["usr_altura"])
+
+[node name="TablaEmpleadosContenedor" type="PanelContainer" parent="ContenedorTablas" unique_id=2082745902]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_Empleados")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContenedorTablas/TablaEmpleadosContenedor" unique_id=300001495]
+layout_mode = 2
+
+[node name="LabelTitulo" type="Label" parent="ContenedorTablas/TablaEmpleadosContenedor/VBoxContainer" unique_id=732530465]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6, 0.3, 1)
+theme_override_font_sizes/font_size = 28
+text = "Tabla Empleados"
+horizontal_alignment = 1
+
+[node name="Columnas" type="HBoxContainer" parent="ContenedorTablas/TablaEmpleadosContenedor/VBoxContainer" unique_id=1483960997]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="TablaNombreEmp" parent="ContenedorTablas/TablaEmpleadosContenedor/VBoxContainer/Columnas" unique_id=1577784441 instance=ExtResource("2_msx14")]
+layout_mode = 2
+size_flags_horizontal = 3
+nombre_tabla = "Nombre"
+tipos_validos = Array[String](["emp_nombre"])
+
+[node name="TablaCargoEmp" parent="ContenedorTablas/TablaEmpleadosContenedor/VBoxContainer/Columnas" unique_id=551968445 instance=ExtResource("2_msx14")]
+layout_mode = 2
+size_flags_horizontal = 3
+nombre_tabla = "Cargo"
+tipos_validos = Array[String](["emp_cargo"])
+
+[node name="TablaSalarioEmp" parent="ContenedorTablas/TablaEmpleadosContenedor/VBoxContainer/Columnas" unique_id=729223559 instance=ExtResource("2_msx14")]
+layout_mode = 2
+size_flags_horizontal = 3
+nombre_tabla = "Salario"
+tipos_validos = Array[String](["emp_salario"])
+
+[node name="BtnValidar" type="Button" parent="." unique_id=832623485]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 645.0
+offset_right = 800.0
+offset_bottom = 713.0
+text = "VALIDAR"
+
+[connection signal="pressed" from="BtnValidar" to="." method="_on_btn_validar_pressed"]
