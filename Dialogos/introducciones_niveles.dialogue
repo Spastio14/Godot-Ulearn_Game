@@ -1,0 +1,65 @@
+~ plantilla
+Sistema: Este diálogo es una plantilla reutilizable para cualquier nivel.
+Sistema: Cambia el título del diálogo en el script del nivel o crea una nueva sección con ~ nombre_del_nivel.
+Sistema: Explica aquí el objetivo, las reglas principales y la condición de victoria antes de que el jugador empiece.
+=> END
+
+~ robot_nivel_1
+Sistema: ¡Bienvenido al primer reto de programación del robot!
+Sistema: Objetivo: arma una secuencia de instrucciones para mover al robot hasta la meta.
+Sistema: Meta del nivel: llegar al punto final usando los controles en el orden correcto.
+=> END
+
+~ robot_nivel_2
+Sistema: En este nivel el camino del robot es más largo.
+Sistema: Objetivo: planifica la secuencia completa antes de ejecutar las instrucciones.
+Sistema: Meta del nivel: alcanzar la meta sin perder el orden de los movimientos.
+=> END
+
+~ robot_nivel_3
+Sistema: Ahora el robot necesita una llave antes de poder terminar.
+Sistema: Objetivo: guía al robot hasta la llave para desbloquear la meta.
+Sistema: Meta del nivel: recoge la llave, abre el paso y llega al destino final.
+=> END
+
+~ circuito_nivel_4
+Sistema: ¡Bienvenido a los circuitos lógicos!
+Sistema: Objetivo: activa correctamente las fuentes para que la compu reciba energía por una compuerta AND.
+Sistema: Meta del nivel: entender que AND solo enciende la salida cuando todas sus entradas están activas.
+=> END
+
+~ circuito_nivel_5
+Sistema: Este circuito combina compuertas OR, NOT y AND.
+Sistema: Objetivo: observa cómo cada fuente cambia la señal antes de llegar a la computadora.
+Sistema: Meta del nivel: lograr que la señal final sea verdadera para completar el circuito.
+=> END
+
+~ circuito_nivel_6
+Sistema: Este reto usa varias negaciones y combinaciones lógicas.
+Sistema: Objetivo: analiza el recorrido de la energía desde las fuentes hasta la PC.
+Sistema: Meta del nivel: encontrar la combinación que hace verdadera la salida final.
+=> END
+
+~ bd_nivel_7
+Sistema: ¡Bienvenido al módulo de bases de datos!
+Sistema: Objetivo: clasifica cada dato en la tabla correcta.
+Sistema: Meta del nivel: separar datos de usuarios y datos de contacto sin dejar elementos sueltos.
+=> END
+
+~ bd_nivel_8
+Sistema: Ahora debes distinguir permisos y responsabilidades.
+Sistema: Objetivo: arrastra cada acción al rol que corresponde: DBA o usuario.
+Sistema: Meta del nivel: ordenar todos los permisos sin mezclar responsabilidades.
+=> END
+
+~ bd_nivel_9
+Sistema: Este nivel trabaja con tablas y columnas.
+Sistema: Objetivo: ubica cada dato en la columna adecuada de Usuarios o Empleados.
+Sistema: Meta del nivel: completar todas las columnas sin errores y sin datos pendientes.
+=> END
+
+~ redes_nivel_4_1
+Sistema: ¡Bienvenido al nivel de redes!
+Sistema: Objetivo: conecta todas las PCs con el servidor principal.
+Sistema: Meta del nivel: usar routers cuando convenga para ahorrar cables y mantener toda la red comunicada.
+=> END

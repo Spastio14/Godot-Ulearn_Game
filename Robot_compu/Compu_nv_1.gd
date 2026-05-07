@@ -1,10 +1,14 @@
 extends Node2D
 var instrucciones = []
 
+@export var dialogo_intro: Resource
+@export var titulo_dialogo_intro: String = "robot_nivel_1"
+
 @onready var robot = $Robot_player
 @onready var meta = $Meta
 
 func _ready():
+	LevelDialogueIntro.mostrar(self, dialogo_intro, titulo_dialogo_intro)
 	meta.nivel_completado.connect(cargar_siguiente_nivel)
 
 func cargar_siguiente_nivel():

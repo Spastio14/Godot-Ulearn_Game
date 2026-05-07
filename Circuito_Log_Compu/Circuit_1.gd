@@ -1,11 +1,15 @@
 extends Node2D
 
+@export var dialogo_intro: Resource
+@export var titulo_dialogo_intro: String = "circuito_nivel_4"
+
 @onready var fuente1 = $Fuent1
 @onready var fuente2 = $Fuent2
 @onready var and_gate = $AND_Gate
 @onready var computadora = $PC
 
 func _ready():
+	LevelDialogueIntro.mostrar(self, dialogo_intro, titulo_dialogo_intro)
 
 	# conectar entradas del AND
 	fuente1.salidas.append(Callable(and_gate, "recibir_energia_1"))

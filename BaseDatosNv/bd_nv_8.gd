@@ -1,10 +1,14 @@
 extends Control
 
+@export var dialogo_intro: Resource
+@export var titulo_dialogo_intro: String = "bd_nivel_8"
+
 @onready var tabla_dba = $ContenedorTablas/TablaDBA
 @onready var tabla_usuario = $ContenedorTablas/TablaUsuario
 @onready var contenedor_datos = $FondoDatos/ScrollDatos/ContenedorDatos
 
 func _ready():
+	LevelDialogueIntro.mostrar(self, dialogo_intro, titulo_dialogo_intro)
 	# Hacemos que el contenedor principal también pueda recibir los items de vuelta
 	var drop_script = GDScript.new()
 	drop_script.source_code = """
