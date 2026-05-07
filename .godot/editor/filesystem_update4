@@ -13,3 +13,10 @@ res://EcoTechNv/router.tscn
 res://EcoTechNv/pc.tscn
 res://EcoTechNv/nivel_4_1.tscn
 res://EcoTechNv/dilogos/prueba.tres
+res://BaseDatosNv/bd_nv_7.gd
+res://BaseDatosNv/bd_nv_8.gd
+res://BaseDatosNv/bd_nv_9.gd
+res://Circuito_Log_Compu/Circuit_1.gd
+res://Circuito_Log_Compu/Circuit_2.gd
+res://Circuito_Log_Compu/Circuit_nv_6.gd
+res://Scripts/GameManager.gd

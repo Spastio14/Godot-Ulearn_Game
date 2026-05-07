@@ -98,8 +98,8 @@ func validar():
 			print("Incorrecto - Faltan datos por clasificar")
 
 func _cargar_siguiente():
-	# Puedes redirigir a un menú de victoria o al siguiente nivel si lo creas
-	# get_tree().change_scene_to_file("res://Menu_UI/Victoria.tscn")
+	#Puedes redirigir a un menú de victoria o al siguiente nivel si lo creas
+	get_tree().change_scene_to_file("res://EcoTechNv/nivel_4_1.tscn")
 	pass
 
 func _on_btn_validar_pressed() -> void:

@@ -1,0 +1,516 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3]
+
+[ext_resource type="Script" uid="uid://dbs4435dsf3ry" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_3am10"]
+
+[resource]
+script = ExtResource("1_3am10")
+using_states = PackedStringArray()
+titles = {
+"bd_nivel_7": "43",
+"bd_nivel_8": "49",
+"bd_nivel_9": "55",
+"circuito_nivel_4": "25",
+"circuito_nivel_5": "31",
+"circuito_nivel_6": "37",
+"plantilla": "1",
+"redes_nivel_4_1": "61",
+"robot_nivel_1": "7",
+"robot_nivel_2": "13",
+"robot_nivel_3": "19"
+}
+character_names = PackedStringArray("Sistema", "pene")
+first_title = "0"
+lines = {
+"0": {
+&"id": "0",
+&"next_id": "1",
+&"type": "title"
+},
+"1": {
+&"character": "Sistema",
+&"id": "1",
+&"next_id": "2",
+&"text": "Este diálogo es una plantilla reutilizable para cualquier nivel.",
+&"type": "dialogue"
+},
+"10": {
+&"id": "10",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"11": {
+&"id": "11",
+&"next_id": "12",
+&"type": ""
+},
+"12": {
+&"id": "12",
+&"next_id": "13",
+&"type": "title"
+},
+"13": {
+&"character": "Sistema",
+&"id": "13",
+&"next_id": "14",
+&"text": "En este nivel el camino del robot es más largo.",
+&"type": "dialogue"
+},
+"14": {
+&"character": "Sistema",
+&"id": "14",
+&"next_id": "15",
+&"text": "Objetivo: planifica la secuencia completa antes de ejecutar las instrucciones.",
+&"type": "dialogue"
+},
+"15": {
+&"character": "Sistema",
+&"id": "15",
+&"next_id": "16",
+&"text": "Meta del nivel: alcanzar la meta sin perder el orden de los movimientos.",
+&"type": "dialogue"
+},
+"16": {
+&"id": "16",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"17": {
+&"id": "17",
+&"next_id": "18",
+&"type": ""
+},
+"18": {
+&"id": "18",
+&"next_id": "19",
+&"type": "title"
+},
+"19": {
+&"character": "Sistema",
+&"id": "19",
+&"next_id": "20",
+&"text": "Ahora el robot necesita una llave antes de poder terminar.",
+&"type": "dialogue"
+},
+"2": {
+&"character": "Sistema",
+&"id": "2",
+&"next_id": "3",
+&"text": "Cambia el título del diálogo en el script del nivel o crea una nueva sección con ~ nombre_del_nivel.",
+&"type": "dialogue"
+},
+"20": {
+&"character": "Sistema",
+&"id": "20",
+&"next_id": "21",
+&"text": "Objetivo: guía al robot hasta la llave para desbloquear la meta.",
+&"type": "dialogue"
+},
+"21": {
+&"character": "Sistema",
+&"id": "21",
+&"next_id": "22",
+&"text": "Meta del nivel: recoge la llave, abre el paso y llega al destino final.",
+&"type": "dialogue"
+},
+"22": {
+&"id": "22",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"23": {
+&"id": "23",
+&"next_id": "24",
+&"type": ""
+},
+"24": {
+&"id": "24",
+&"next_id": "25",
+&"type": "title"
+},
+"25": {
+&"character": "Sistema",
+&"id": "25",
+&"next_id": "26",
+&"text": "¡Bienvenido a los circuitos lógicos!",
+&"type": "dialogue"
+},
+"26": {
+&"character": "Sistema",
+&"id": "26",
+&"next_id": "27",
+&"text": "Objetivo: activa correctamente las fuentes para que la compu reciba energía por una compuerta AND.",
+&"type": "dialogue"
+},
+"27": {
+&"character": "Sistema",
+&"id": "27",
+&"next_id": "28",
+&"text": "Meta del nivel: entender que AND solo enciende la salida cuando todas sus entradas están activas.",
+&"type": "dialogue"
+},
+"28": {
+&"id": "28",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"29": {
+&"id": "29",
+&"next_id": "30",
+&"type": ""
+},
+"3": {
+&"character": "Sistema",
+&"id": "3",
+&"next_id": "4",
+&"text": "Explica aquí el objetivo, las reglas principales y la condición de victoria antes de que el jugador empiece.",
+&"type": "dialogue"
+},
+"30": {
+&"id": "30",
+&"next_id": "31",
+&"type": "title"
+},
+"31": {
+&"character": "Sistema",
+&"id": "31",
+&"next_id": "32",
+&"text": "Este circuito combina compuertas OR, NOT y AND.",
+&"type": "dialogue"
+},
+"32": {
+&"character": "Sistema",
+&"id": "32",
+&"next_id": "33",
+&"text": "Objetivo: observa cómo cada fuente cambia la señal antes de llegar a la computadora.",
+&"type": "dialogue"
+},
+"33": {
+&"character": "Sistema",
+&"id": "33",
+&"next_id": "34",
+&"text": "Meta del nivel: lograr que la señal final sea verdadera para completar el circuito.",
+&"type": "dialogue"
+},
+"34": {
+&"id": "34",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"35": {
+&"id": "35",
+&"next_id": "36",
+&"type": ""
+},
+"36": {
+&"id": "36",
+&"next_id": "37",
+&"type": "title"
+},
+"37": {
+&"character": "Sistema",
+&"id": "37",
+&"next_id": "38",
+&"text": "Este reto usa varias negaciones y combinaciones lógicas.",
+&"type": "dialogue"
+},
+"38": {
+&"character": "Sistema",
+&"id": "38",
+&"next_id": "39",
+&"text": "Objetivo: analiza el recorrido de la energía desde las fuentes hasta la PC.",
+&"type": "dialogue"
+},
+"39": {
+&"character": "Sistema",
+&"id": "39",
+&"next_id": "40",
+&"text": "Meta del nivel: encontrar la combinación que hace verdadera la salida final.",
+&"type": "dialogue"
+},
+"4": {
+&"id": "4",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"40": {
+&"id": "40",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"41": {
+&"id": "41",
+&"next_id": "42",
+&"type": ""
+},
+"42": {
+&"id": "42",
+&"next_id": "43",
+&"type": "title"
+},
+"43": {
+&"character": "Sistema",
+&"id": "43",
+&"next_id": "44",
+&"text": "¡Bienvenido al módulo de bases de datos!",
+&"type": "dialogue"
+},
+"44": {
+&"character": "Sistema",
+&"id": "44",
+&"next_id": "45",
+&"text": "Objetivo: clasifica cada dato en la tabla correcta.",
+&"type": "dialogue"
+},
+"45": {
+&"character": "Sistema",
+&"id": "45",
+&"next_id": "46",
+&"text": "Meta del nivel: separar datos de usuarios y datos de contacto sin dejar elementos sueltos.",
+&"type": "dialogue"
+},
+"46": {
+&"id": "46",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"47": {
+&"id": "47",
+&"next_id": "48",
+&"type": ""
+},
+"48": {
+&"id": "48",
+&"next_id": "49",
+&"type": "title"
+},
+"49": {
+&"character": "Sistema",
+&"id": "49",
+&"next_id": "50",
+&"text": "Ahora debes distinguir permisos y responsabilidades.",
+&"type": "dialogue"
+},
+"5": {
+&"id": "5",
+&"next_id": "6",
+&"type": ""
+},
+"50": {
+&"character": "Sistema",
+&"id": "50",
+&"next_id": "51",
+&"text": "Objetivo: arrastra cada acción al rol que corresponde: DBA o usuario.",
+&"type": "dialogue"
+},
+"51": {
+&"character": "Sistema",
+&"id": "51",
+&"next_id": "52",
+&"text": "Meta del nivel: ordenar todos los permisos sin mezclar responsabilidades.",
+&"type": "dialogue"
+},
+"52": {
+&"id": "52",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"53": {
+&"id": "53",
+&"next_id": "54",
+&"type": ""
+},
+"54": {
+&"id": "54",
+&"next_id": "55",
+&"type": "title"
+},
+"55": {
+&"character": "Sistema",
+&"id": "55",
+&"next_id": "56",
+&"text": "Este nivel trabaja con tablas y columnas.",
+&"type": "dialogue"
+},
+"56": {
+&"character": "Sistema",
+&"id": "56",
+&"next_id": "57",
+&"text": "Objetivo: ubica cada dato en la columna adecuada de Usuarios o Empleados.",
+&"type": "dialogue"
+},
+"57": {
+&"character": "Sistema",
+&"id": "57",
+&"next_id": "58",
+&"text": "Meta del nivel: completar todas las columnas sin errores y sin datos pendientes.",
+&"type": "dialogue"
+},
+"58": {
+&"id": "58",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"59": {
+&"id": "59",
+&"next_id": "60",
+&"type": ""
+},
+"6": {
+&"id": "6",
+&"next_id": "7",
+&"type": "title"
+},
+"60": {
+&"id": "60",
+&"next_id": "61",
+&"type": "title"
+},
+"61": {
+&"character": "pene",
+&"id": "61",
+&"next_id": "62",
+&"text": "¡Bienvenido al nivel de redes!",
+&"type": "dialogue"
+},
+"62": {
+&"character": "Sistema",
+&"id": "62",
+&"next_id": "63",
+&"text": "Objetivo: conecta todas las PCs con el servidor principal.",
+&"type": "dialogue"
+},
+"63": {
+&"character": "Sistema",
+&"id": "63",
+&"next_id": "64",
+&"text": "Meta del nivel: usar routers cuando convenga para ahorrar cables y mantener toda la red comunicada.",
+&"type": "dialogue"
+},
+"64": {
+&"id": "64",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"65": {
+&"id": "65",
+&"next_id": "66",
+&"type": ""
+},
+"66": {
+&"id": "66",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"7": {
+&"character": "Sistema",
+&"id": "7",
+&"next_id": "8",
+&"text": "¡Bienvenido al primer reto de programación del robot!",
+&"type": "dialogue"
+},
+"8": {
+&"character": "Sistema",
+&"id": "8",
+&"next_id": "9",
+&"text": "Objetivo: arma una secuencia de instrucciones para mover al robot hasta la meta.",
+&"type": "dialogue"
+},
+"9": {
+&"character": "Sistema",
+&"id": "9",
+&"next_id": "10",
+&"text": "Meta del nivel: llegar al punto final usando los controles en el orden correcto.",
+&"type": "dialogue"
+}
+}
+raw_text = "~ plantilla
+Sistema: Este diálogo es una plantilla reutilizable para cualquier nivel.
+Sistema: Cambia el título del diálogo en el script del nivel o crea una nueva sección con ~ nombre_del_nivel.
+Sistema: Explica aquí el objetivo, las reglas principales y la condición de victoria antes de que el jugador empiece.
+=> END
+
+~ robot_nivel_1
+Sistema: ¡Bienvenido al primer reto de programación del robot!
+Sistema: Objetivo: arma una secuencia de instrucciones para mover al robot hasta la meta.
+Sistema: Meta del nivel: llegar al punto final usando los controles en el orden correcto.
+=> END
+
+~ robot_nivel_2
+Sistema: En este nivel el camino del robot es más largo.
+Sistema: Objetivo: planifica la secuencia completa antes de ejecutar las instrucciones.
+Sistema: Meta del nivel: alcanzar la meta sin perder el orden de los movimientos.
+=> END
+
+~ robot_nivel_3
+Sistema: Ahora el robot necesita una llave antes de poder terminar.
+Sistema: Objetivo: guía al robot hasta la llave para desbloquear la meta.
+Sistema: Meta del nivel: recoge la llave, abre el paso y llega al destino final.
+=> END
+
+~ circuito_nivel_4
+Sistema: ¡Bienvenido a los circuitos lógicos!
+Sistema: Objetivo: activa correctamente las fuentes para que la compu reciba energía por una compuerta AND.
+Sistema: Meta del nivel: entender que AND solo enciende la salida cuando todas sus entradas están activas.
+=> END
+
+~ circuito_nivel_5
+Sistema: Este circuito combina compuertas OR, NOT y AND.
+Sistema: Objetivo: observa cómo cada fuente cambia la señal antes de llegar a la computadora.
+Sistema: Meta del nivel: lograr que la señal final sea verdadera para completar el circuito.
+=> END
+
+~ circuito_nivel_6
+Sistema: Este reto usa varias negaciones y combinaciones lógicas.
+Sistema: Objetivo: analiza el recorrido de la energía desde las fuentes hasta la PC.
+Sistema: Meta del nivel: encontrar la combinación que hace verdadera la salida final.
+=> END
+
+~ bd_nivel_7
+Sistema: ¡Bienvenido al módulo de bases de datos!
+Sistema: Objetivo: clasifica cada dato en la tabla correcta.
+Sistema: Meta del nivel: separar datos de usuarios y datos de contacto sin dejar elementos sueltos.
+=> END
+
+~ bd_nivel_8
+Sistema: Ahora debes distinguir permisos y responsabilidades.
+Sistema: Objetivo: arrastra cada acción al rol que corresponde: DBA o usuario.
+Sistema: Meta del nivel: ordenar todos los permisos sin mezclar responsabilidades.
+=> END
+
+~ bd_nivel_9
+Sistema: Este nivel trabaja con tablas y columnas.
+Sistema: Objetivo: ubica cada dato en la columna adecuada de Usuarios o Empleados.
+Sistema: Meta del nivel: completar todas las columnas sin errores y sin datos pendientes.
+=> END
+
+~ redes_nivel_4_1
+pene: ¡Bienvenido al nivel de redes!
+Sistema: Objetivo: conecta todas las PCs con el servidor principal.
+Sistema: Meta del nivel: usar routers cuando convenga para ahorrar cables y mantener toda la red comunicada.
+=> END
+"
+metadata/dialogue_manager_version = "3.10.3"
