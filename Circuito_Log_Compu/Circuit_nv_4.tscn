@@ -2,38 +2,51 @@
 
 [ext_resource type="Script" uid="uid://b62tjfxdsfim2" path="res://Circuito_Log_Compu/Circuit_1.gd" id="1_b8v8t"]
 [ext_resource type="PackedScene" uid="uid://b40lhmi2hvnic" path="res://Circuito_Log_Compu/Fuente.tscn" id="1_qv5wf"]
+[ext_resource type="Texture2D" uid="uid://bq5sdnk0nqm0n" path="res://asstes/img/nose/fondo.png" id="2_ta3sj"]
 [ext_resource type="PackedScene" uid="uid://da6kw1c5o05cp" path="res://Circuito_Log_Compu/AND_Gate.tscn" id="3_mkaon"]
 [ext_resource type="PackedScene" uid="uid://btnfip2f4dt25" path="res://Circuito_Log_Compu/PC.tscn" id="4_44n8i"]
 
 [node name="Circuit_1" type="Node2D" unique_id=999806603]
 script = ExtResource("1_b8v8t")
 
+[node name="Fondo" type="Sprite2D" parent="." unique_id=1029173003]
+position = Vector2(640, 355)
+scale = Vector2(0.69739586, 0.6999999)
+texture = ExtResource("2_ta3sj")
+
 [node name="Line2D10" type="Line2D" parent="." unique_id=1213209220]
-position = Vector2(411, 225)
-points = PackedVector2Array(120, 111, 390, 107)
+position = Vector2(473, 160)
+scale = Vector2(1.5, 1.5)
+points = PackedVector2Array(172, 107, 381, 108)
+width = 8.0
 default_color = Color(0.98062104, 0.7641532, 0.10441796, 1)
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1452569266]
-position = Vector2(175, 201)
-points = PackedVector2Array(106, 91, 168, 89, 240, 114, 308, 116)
+position = Vector2(118, 127)
+scale = Vector2(1.5, 1.5)
+points = PackedVector2Array(106, 91, 168, 89, 224, 109, 237.22661, 109.3226, 265, 110)
+width = 8.0
 default_color = Color(0.5342931, 0.9162826, 0, 1)
 
 [node name="Line2D2" type="Line2D" parent="." unique_id=2025942840]
-position = Vector2(179, 340)
-points = PackedVector2Array(106, 91, 174, 65, 224, 42, 308, 10)
+position = Vector2(119, 334)
+scale = Vector2(1.5, 1.5)
+points = PackedVector2Array(106, 91, 131.33334, 73.33333, 182, 23.333328, 264, 13.333328)
+width = 8.0
 default_color = Color(0.5342931, 0.9162826, 0, 1)
 
 [node name="AND_Gate" parent="." unique_id=1068000118 instance=ExtResource("3_mkaon")]
-position = Vector2(510, 332)
+position = Vector2(622, 322)
+scale = Vector2(1.5, 1.5)
 
 [node name="PC" parent="." unique_id=68756433 instance=ExtResource("4_44n8i")]
-position = Vector2(822, 325)
+position = Vector2(1073, 329)
+scale = Vector2(1.5, 1.5)
 
 [node name="Fuent1" parent="." unique_id=1270691299 instance=ExtResource("1_qv5wf")]
-position = Vector2(273, 267)
+position = Vector2(254, 224)
+scale = Vector2(1.5, 1.5)
 
 [node name="Fuent2" parent="." unique_id=2090469770 instance=ExtResource("1_qv5wf")]
-position = Vector2(271, 406)
-
-[node name="Fuent3" parent="." unique_id=414070414 instance=ExtResource("1_qv5wf")]
-position = Vector2(271, 406)
+position = Vector2(242, 429.00003)
+scale = Vector2(1.5, 1.5)

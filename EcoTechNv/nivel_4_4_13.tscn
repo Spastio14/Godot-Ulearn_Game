@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://vrlv25sgwmx3"]
+
+[ext_resource type="Texture2D" uid="uid://bq5sdnk0nqm0n" path="res://asstes/img/nose/fondo.png" id="1_kgk44"]
+[ext_resource type="Script" uid="uid://cy48stwy0tcow" path="res://EcoTechNv/network_manager.gd" id="1_manager"]
+[ext_resource type="PackedScene" uid="uid://ng6qijxnppb1" path="res://EcoTechNv/pc.tscn" id="2_pc"]
+[ext_resource type="PackedScene" uid="uid://fx4j7omvgrxh" path="res://EcoTechNv/router.tscn" id="3_router"]
+[ext_resource type="PackedScene" uid="uid://bx3sw6fe66plo" path="res://EcoTechNv/server.tscn" id="4_server"]
+
+[node name="Nivel_4_4" type="Node2D" unique_id=1937637017]
+
+[node name="Fondo" type="Sprite2D" parent="." unique_id=1927215007]
+position = Vector2(640, 355)
+scale = Vector2(0.69739586, 0.6999999)
+texture = ExtResource("1_kgk44")
+
+[node name="NetworkManager" type="Node2D" parent="." unique_id=622701002 groups=["network_manager"]]
+script = ExtResource("1_manager")
+level_mode = 6
+titulo_dialogo_intro = "redes_nivel_4_4"
+
+[node name="PC1" parent="NetworkManager" unique_id=1832609570 instance=ExtResource("2_pc")]
+position = Vector2(200, 200)
+
+[node name="PC2" parent="NetworkManager" unique_id=1397283632 instance=ExtResource("2_pc")]
+position = Vector2(200, 500)
+network_id = "B"
+authorized = false
+
+[node name="Firewall" parent="NetworkManager" unique_id=249296783 instance=ExtResource("3_router")]
+position = Vector2(500, 200)
+tipo = "firewall"
+max_conexiones_nodo = 2
+network_id = "FW"
+
+[node name="Router" parent="NetworkManager" unique_id=1799349645 instance=ExtResource("3_router")]
+position = Vector2(500, 500)
+max_conexiones_nodo = 2
+
+[node name="Server" parent="NetworkManager" unique_id=734999207 instance=ExtResource("4_server")]
+position = Vector2(800, 350)
+max_conexiones_nodo = 2
+network_id = "C"

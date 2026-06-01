@@ -33,15 +33,15 @@ func _drop_data(_at_position, data):
 
 func inicializar_datos():
 	# Datos de DBA (Administrador de Base de Datos)
-	crear_item("Crear Base de Datos", "dba")
-	crear_item("Eliminar Tablas", "dba")
-	crear_item("Asignar Permisos", "dba")
-	crear_item("Hacer Backups", "dba")
+	crear_item("Crear Base\n de Datos", "dba")
+	crear_item("Eliminar \nTablas", "dba")
+	crear_item("Asignar \nPermisos", "dba")
+	crear_item("Hacer \nBackups", "dba")
 	
 	# Datos de Usuario Básico / Aplicación
-	crear_item("Leer Datos", "usuario")
-	crear_item("Actualizar Perfil", "usuario")
-	crear_item("Insertar Registro", "usuario")
+	crear_item("Leer \nDatos", "usuario")
+	crear_item("Actualizar \nPerfil", "usuario")
+	crear_item("Insertar \nRegistro", "usuario")
 
 
 func crear_item(texto, tipo):

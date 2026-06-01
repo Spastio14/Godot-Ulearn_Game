@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bofxudsb7abkl" path="res://EcoTechNv/network_port.gd" id="1_rqgju"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rqgju"]
-radius = 30.149628
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ev0di"]
+size = Vector2(92, 104)
 
 [node name="Port" type="Area2D" unique_id=1849738961]
 script = ExtResource("1_rqgju")
@@ -11,4 +11,4 @@ script = ExtResource("1_rqgju")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=658204071]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=129029735]
-shape = SubResource("CircleShape2D_rqgju")
+shape = SubResource("RectangleShape2D_ev0di")

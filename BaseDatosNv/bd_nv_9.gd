@@ -3,7 +3,13 @@ extends Control
 @export var dialogo_intro: Resource
 @export var titulo_dialogo_intro: String = "bd_nivel_9"
 
+@export_category("Imágenes de Tablas")
+@export var imagen_tabla_usuarios: Texture2D
+@export var imagen_tabla_empleados: Texture2D
+
 @onready var contenedor_datos = $FondoDatos/ScrollDatos/ContenedorDatos
+@onready var tabla_usuarios_contenedor = $ContenedorTablas/TablaUsuariosContenedor
+@onready var tabla_empleados_contenedor = $ContenedorTablas/TablaEmpleadosContenedor
 
 # Columnas Tabla Usuarios
 @onready var usr_nombre = $ContenedorTablas/TablaUsuariosContenedor/VBoxContainer/Columnas/TablaNombreUsr
@@ -21,6 +27,26 @@ var color_empleados = Color(1.0, 0.6, 0.3, 1.0) # Naranja
 
 func _ready():
 	LevelDialogueIntro.mostrar(self, dialogo_intro, titulo_dialogo_intro)
+	
+	# Aplicar imágenes personalizadas de fondo a las tablas si están seleccionadas
+	if imagen_tabla_usuarios != null:
+		var style_box = StyleBoxTexture.new()
+		style_box.texture = imagen_tabla_usuarios
+		style_box.texture_margin_left = 10
+		style_box.texture_margin_top = 10
+		style_box.texture_margin_right = 10
+		style_box.texture_margin_bottom = 10
+		tabla_usuarios_contenedor.add_theme_stylebox_override("panel", style_box)
+		
+	if imagen_tabla_empleados != null:
+		var style_box = StyleBoxTexture.new()
+		style_box.texture = imagen_tabla_empleados
+		style_box.texture_margin_left = 10
+		style_box.texture_margin_top = 10
+		style_box.texture_margin_right = 10
+		style_box.texture_margin_bottom = 10
+		tabla_empleados_contenedor.add_theme_stylebox_override("panel", style_box)
+
 	# Hacemos que el contenedor principal también pueda recibir los items de vuelta
 	var drop_script = GDScript.new()
 	drop_script.source_code = """
@@ -99,7 +125,7 @@ func validar():
 
 func _cargar_siguiente():
 	#Puedes redirigir a un menú de victoria o al siguiente nivel si lo creas
-	get_tree().change_scene_to_file("res://EcoTechNv/nivel_4_1.tscn")
+	get_tree().change_scene_to_file("res://EcoTechNv/nivel_4_1_10.tscn")
 	pass
 
 func _on_btn_validar_pressed() -> void:

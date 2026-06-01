@@ -1,18 +1,17 @@
 [gd_scene format=3 uid="uid://d4fs2m7pbdn2w"]
 
 [ext_resource type="Script" uid="uid://x77v5ri6klh4" path="res://Circuito_Log_Compu/not_gate.gd" id="1_ftoy6"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u2ugy"]
-load_path = "res://.godot/imported/lock_red.png-13ea23fa1a180220aa17fc804b415775.ctex"
+[ext_resource type="Texture2D" uid="uid://dqu70n6iwqv67" path="res://asstes/img/nose/Diseño sin título/6.png" id="2_u2ugy"]
 
 [node name="NOT_Gate" type="Node2D" unique_id=477579369]
 script = ExtResource("1_ftoy6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=865421753]
-texture = SubResource("CompressedTexture2D_u2ugy")
+texture = ExtResource("2_u2ugy")
 
 [node name="Label" type="Label" parent="." unique_id=1781978323]
-offset_top = 31.0
-offset_right = 40.0
-offset_bottom = 54.0
+offset_left = -30.0
+offset_top = 43.0
+offset_right = 10.0
+offset_bottom = 66.0
 text = "NOT"

@@ -25,6 +25,9 @@ GameManager="*uid://bndo0i87kvbsh"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+window/snap/snap_2d_vertices_to_pixel=false
+window/snap/snap_2d_transforms_to_pixel=false
+window/canvas_textures/default_texture_filter=2
 
 [editor_plugins]
 
@@ -36,7 +39,7 @@ robot=""
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://EcoTechNv/dilogos/prueba.dialogue", "res://Dialogos/introducciones_niveles.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Dialogos/introducciones_niveles.dialogue")
 
 [physics]
 
@@ -56,3 +59,5 @@ ai_assistant_hub/preferences/audio_hints=true
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

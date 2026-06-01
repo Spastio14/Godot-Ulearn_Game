@@ -2,16 +2,19 @@
 
 [ext_resource type="Script" uid="uid://bdovd7gb3c0oa" path="res://BaseDatosNv/bd_nv_7.gd" id="1_msx14"]
 [ext_resource type="PackedScene" uid="uid://cjreierj6d7hk" path="res://BaseDatosNv/tabla.tscn" id="2_msx14"]
-[ext_resource type="Texture2D" uid="uid://keqy5t3ican2" path="res://asstes/img/eaf222655ffde7147a826c7b4dd081a6.jpg" id="2_sp1ro"]
+[ext_resource type="Texture2D" uid="uid://psrojhr707mb" path="res://asstes/img/nose/tab.png" id="2_sp1ro"]
+[ext_resource type="Texture2D" uid="uid://bq5sdnk0nqm0n" path="res://asstes/img/nose/fondo.png" id="2_wsta0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wsta0"]
 texture = ExtResource("2_sp1ro")
-texture_margin_left = 30.0
-texture_margin_top = 36.0
-texture_margin_right = 30.0
-texture_margin_bottom = 36.0
-expand_margin_top = 5.0
-expand_margin_bottom = 5.0
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+expand_margin_left = 60.0
+expand_margin_top = 23.0
+expand_margin_right = 60.0
+expand_margin_bottom = 23.0
 
 [node name="BD_nv_7" type="Control" unique_id=1016286874]
 layout_mode = 3
@@ -22,12 +25,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_msx14")
 
+[node name="Fondo" type="Sprite2D" parent="." unique_id=1829901192]
+position = Vector2(640, 355)
+scale = Vector2(0.69739586, 0.6999999)
+texture = ExtResource("2_wsta0")
+
 [node name="FondoDatos" type="PanelContainer" parent="." unique_id=250060497]
 layout_mode = 0
-offset_left = 500.0
-offset_top = 37.0
-offset_right = 1257.0
-offset_bottom = 330.0
+offset_left = 402.0
+offset_top = 378.0
+offset_right = 1272.0
+offset_bottom = 712.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_wsta0")
 
 [node name="ScrollDatos" type="ScrollContainer" parent="FondoDatos" unique_id=987654321]
@@ -45,10 +53,11 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 31.0
-offset_top = 24.0
-offset_right = -845.0
-offset_bottom = 324.0
+offset_top = 26.0
+offset_right = -744.0
+offset_bottom = 326.0
 grow_horizontal = 2
+theme_override_constants/separation = 105
 
 [node name="TablaUsuarios" parent="ContenedorTablas" unique_id=1602952372 instance=ExtResource("2_msx14")]
 layout_mode = 2
@@ -62,10 +71,10 @@ tipos_validos = Array[String](["correo", "direccion"])
 
 [node name="BtnValidar" type="Button" parent="." unique_id=1865607952]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 355.0
-offset_right = 376.0
-offset_bottom = 469.0
+offset_left = 44.0
+offset_top = 553.0
+offset_right = 380.0
+offset_bottom = 667.0
 text = "VALIDAR"
 
 [connection signal="pressed" from="BtnValidar" to="." method="_on_btn_validar_pressed"]

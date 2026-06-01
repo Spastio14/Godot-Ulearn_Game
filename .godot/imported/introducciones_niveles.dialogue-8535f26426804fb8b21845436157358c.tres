@@ -14,11 +14,15 @@ titles = {
 "circuito_nivel_6": "37",
 "plantilla": "1",
 "redes_nivel_4_1": "61",
+"redes_nivel_4_2": "67",
+"redes_nivel_4_3": "74",
+"redes_nivel_4_4": "81",
+"redes_nivel_4_5": "88",
 "robot_nivel_1": "7",
 "robot_nivel_2": "13",
 "robot_nivel_3": "19"
 }
-character_names = PackedStringArray("Sistema", "pene")
+character_names = PackedStringArray("Sistema")
 first_title = "0"
 lines = {
 "0": {
@@ -386,7 +390,7 @@ lines = {
 &"type": "title"
 },
 "61": {
-&"character": "pene",
+&"character": "Sistema",
 &"id": "61",
 &"next_id": "62",
 &"text": "¡Bienvenido al nivel de redes!",
@@ -420,10 +424,29 @@ lines = {
 },
 "66": {
 &"id": "66",
-&"is_snippet": false,
-&"next_id": "end",
-&"next_id_after": "",
-&"type": "goto"
+&"next_id": "67",
+&"type": "title"
+},
+"67": {
+&"character": "Sistema",
+&"id": "67",
+&"next_id": "68",
+&"text": "¡Bienvenido al reto de Segmentación de Redes!",
+&"type": "dialogue"
+},
+"68": {
+&"character": "Sistema",
+&"id": "68",
+&"next_id": "69",
+&"text": "Objetivo: Habilita el servicio de red para todos los equipos.",
+&"type": "dialogue"
+},
+"69": {
+&"character": "Sistema",
+&"id": "69",
+&"next_id": "70",
+&"text": "Regla: Las PCs de diferentes subredes (A y B) no se pueden conectar directamente entre sí o al servidor de la otra subred.",
+&"type": "dialogue"
 },
 "7": {
 &"character": "Sistema",
@@ -432,11 +455,139 @@ lines = {
 &"text": "¡Bienvenido al primer reto de programación del robot!",
 &"type": "dialogue"
 },
+"70": {
+&"character": "Sistema",
+&"id": "70",
+&"next_id": "71",
+&"text": "Meta del nivel: Utiliza el Router para enrutar el tráfico de subredes distintas y mantener toda la red comunicada.",
+&"type": "dialogue"
+},
+"71": {
+&"id": "71",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"72": {
+&"id": "72",
+&"next_id": "73",
+&"type": ""
+},
+"73": {
+&"id": "73",
+&"next_id": "74",
+&"type": "title"
+},
+"74": {
+&"character": "Sistema",
+&"id": "74",
+&"next_id": "75",
+&"text": "¡Bienvenido al reto de Latencia y Ruta Óptima!",
+&"type": "dialogue"
+},
+"75": {
+&"character": "Sistema",
+&"id": "75",
+&"next_id": "76",
+&"text": "Objetivo: Conecta los equipos al servidor de la forma más rápida posible.",
+&"type": "dialogue"
+},
+"76": {
+&"character": "Sistema",
+&"id": "76",
+&"next_id": "77",
+&"text": "Regla: La latencia total del camino no debe superar el umbral de 8ms. Cada enlace y nodo congestionado suma costo.",
+&"type": "dialogue"
+},
+"77": {
+&"character": "Sistema",
+&"id": "77",
+&"next_id": "78",
+&"text": "Meta del nivel: Evita los routers congestionados (con alta latencia) y diseña la ruta óptima de menor costo físico.",
+&"type": "dialogue"
+},
+"78": {
+&"id": "78",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"79": {
+&"id": "79",
+&"next_id": "80",
+&"type": ""
+},
 "8": {
 &"character": "Sistema",
 &"id": "8",
 &"next_id": "9",
 &"text": "Objetivo: arma una secuencia de instrucciones para mover al robot hasta la meta.",
+&"type": "dialogue"
+},
+"80": {
+&"id": "80",
+&"next_id": "81",
+&"type": "title"
+},
+"81": {
+&"character": "Sistema",
+&"id": "81",
+&"next_id": "82",
+&"text": "¡Bienvenido al reto de Seguridad y Cortafuegos!",
+&"type": "dialogue"
+},
+"82": {
+&"character": "Sistema",
+&"id": "82",
+&"next_id": "83",
+&"text": "Objetivo: Conecta el PC de ventas autorizado al servidor central de la empresa.",
+&"type": "dialogue"
+},
+"83": {
+&"character": "Sistema",
+&"id": "83",
+&"next_id": "84",
+&"text": "Regla: Un PC atacante/no autorizado está en la red. ¡NO debe tener ninguna ruta física que llegue al servidor!",
+&"type": "dialogue"
+},
+"84": {
+&"character": "Sistema",
+&"id": "84",
+&"next_id": "85",
+&"text": "Meta del nivel: Utiliza el Firewall para filtrar y bloquear el tráfico no deseado de subredes no autorizadas.",
+&"type": "dialogue"
+},
+"85": {
+&"id": "85",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"86": {
+&"id": "86",
+&"next_id": "87",
+&"type": ""
+},
+"87": {
+&"id": "87",
+&"next_id": "88",
+&"type": "title"
+},
+"88": {
+&"character": "Sistema",
+&"id": "88",
+&"next_id": "89",
+&"text": "¡Bienvenido al reto de Redundancia y Tolerancia a Fallos!",
+&"type": "dialogue"
+},
+"89": {
+&"character": "Sistema",
+&"id": "89",
+&"next_id": "90",
+&"text": "Objetivo: Diseña una red empresarial de alta disponibilidad.",
 &"type": "dialogue"
 },
 "9": {
@@ -445,6 +596,39 @@ lines = {
 &"next_id": "10",
 &"text": "Meta del nivel: llegar al punto final usando los controles en el orden correcto.",
 &"type": "dialogue"
+},
+"90": {
+&"character": "Sistema",
+&"id": "90",
+&"next_id": "91",
+&"text": "Regla: La red debe estar interconectada de tal forma que si CUALQUIER cable físico se corta, todos los PCs sigan teniendo servicio.",
+&"type": "dialogue"
+},
+"91": {
+&"character": "Sistema",
+&"id": "91",
+&"next_id": "92",
+&"text": "Meta del nivel: Crea una topología en anillo o malla redundante utilizando rutas de respaldo ante fallos.",
+&"type": "dialogue"
+},
+"92": {
+&"id": "92",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"93": {
+&"id": "93",
+&"next_id": "94",
+&"type": ""
+},
+"94": {
+&"id": "94",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
 }
 }
 raw_text = "~ plantilla
@@ -508,9 +692,37 @@ Sistema: Meta del nivel: completar todas las columnas sin errores y sin datos pe
 => END
 
 ~ redes_nivel_4_1
-pene: ¡Bienvenido al nivel de redes!
+Sistema: ¡Bienvenido al nivel de redes!
 Sistema: Objetivo: conecta todas las PCs con el servidor principal.
 Sistema: Meta del nivel: usar routers cuando convenga para ahorrar cables y mantener toda la red comunicada.
+=> END
+
+~ redes_nivel_4_2
+Sistema: ¡Bienvenido al reto de Segmentación de Redes!
+Sistema: Objetivo: Habilita el servicio de red para todos los equipos.
+Sistema: Regla: Las PCs de diferentes subredes (A y B) no se pueden conectar directamente entre sí o al servidor de la otra subred.
+Sistema: Meta del nivel: Utiliza el Router para enrutar el tráfico de subredes distintas y mantener toda la red comunicada.
+=> END
+
+~ redes_nivel_4_3
+Sistema: ¡Bienvenido al reto de Latencia y Ruta Óptima!
+Sistema: Objetivo: Conecta los equipos al servidor de la forma más rápida posible.
+Sistema: Regla: La latencia total del camino no debe superar el umbral de 8ms. Cada enlace y nodo congestionado suma costo.
+Sistema: Meta del nivel: Evita los routers congestionados (con alta latencia) y diseña la ruta óptima de menor costo físico.
+=> END
+
+~ redes_nivel_4_4
+Sistema: ¡Bienvenido al reto de Seguridad y Cortafuegos!
+Sistema: Objetivo: Conecta el PC de ventas autorizado al servidor central de la empresa.
+Sistema: Regla: Un PC atacante/no autorizado está en la red. ¡NO debe tener ninguna ruta física que llegue al servidor!
+Sistema: Meta del nivel: Utiliza el Firewall para filtrar y bloquear el tráfico no deseado de subredes no autorizadas.
+=> END
+
+~ redes_nivel_4_5
+Sistema: ¡Bienvenido al reto de Redundancia y Tolerancia a Fallos!
+Sistema: Objetivo: Diseña una red empresarial de alta disponibilidad.
+Sistema: Regla: La red debe estar interconectada de tal forma que si CUALQUIER cable físico se corta, todos los PCs sigan teniendo servicio.
+Sistema: Meta del nivel: Crea una topología en anillo o malla redundante utilizando rutas de respaldo ante fallos.
 => END
 "
 metadata/dialogue_manager_version = "3.10.3"

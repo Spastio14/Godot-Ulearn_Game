@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d3m035x4g8kfl"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="LabelCables" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 160.0
+offset_bottom = 43.0
+text = "Cables: 0 / 5"
+
+[node name="LabelSugerencia" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 500.0
+offset_bottom = 83.0
+autowrap_mode = 3
+
+[node name="BtnReiniciar" type="Button" parent="."]
+offset_left = 1104.0
+offset_top = 30.0
+offset_right = 1244.0
+offset_bottom = 70.0
+text = "Reiniciar Nivel"
+
+[node name="LabelEstado" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 90.0
+offset_right = 900.0
+offset_bottom = 114.0

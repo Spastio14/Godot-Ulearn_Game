@@ -59,7 +59,35 @@ Sistema: Meta del nivel: completar todas las columnas sin errores y sin datos pe
 => END
 
 ~ redes_nivel_4_1
-pene: ¡Bienvenido al nivel de redes!
+Sistema: ¡Bienvenido al nivel de redes!
 Sistema: Objetivo: conecta todas las PCs con el servidor principal.
 Sistema: Meta del nivel: usar routers cuando convenga para ahorrar cables y mantener toda la red comunicada.
+=> END
+
+~ redes_nivel_4_2
+Sistema: ¡Bienvenido al reto de Segmentación de Redes!
+Sistema: Objetivo: Habilita el servicio de red para todos los equipos.
+Sistema: Regla: Las PCs de diferentes subredes (A y B) no se pueden conectar directamente entre sí o al servidor de la otra subred.
+Sistema: Meta del nivel: Utiliza el Router para enrutar el tráfico de subredes distintas y mantener toda la red comunicada.
+=> END
+
+~ redes_nivel_4_3
+Sistema: ¡Bienvenido al reto de Latencia y Ruta Óptima!
+Sistema: Objetivo: Conecta los equipos al servidor de la forma más rápida posible.
+Sistema: Regla: La latencia total del camino no debe superar el umbral de 8ms. Cada enlace y nodo congestionado suma costo.
+Sistema: Meta del nivel: Evita los routers congestionados (con alta latencia) y diseña la ruta óptima de menor costo físico.
+=> END
+
+~ redes_nivel_4_4
+Sistema: ¡Bienvenido al reto de Seguridad y Cortafuegos!
+Sistema: Objetivo: Conecta el PC de ventas autorizado al servidor central de la empresa.
+Sistema: Regla: Un PC atacante/no autorizado está en la red. ¡NO debe tener ninguna ruta física que llegue al servidor!
+Sistema: Meta del nivel: Utiliza el Firewall para filtrar y bloquear el tráfico no deseado de subredes no autorizadas.
+=> END
+
+~ redes_nivel_4_5
+Sistema: ¡Bienvenido al reto de Redundancia y Tolerancia a Fallos!
+Sistema: Objetivo: Diseña una red empresarial de alta disponibilidad.
+Sistema: Regla: La red debe estar interconectada de tal forma que si CUALQUIER cable físico se corta, todos los PCs sigan teniendo servicio.
+Sistema: Meta del nivel: Crea una topología en anillo o malla redundante utilizando rutas de respaldo ante fallos.
 => END

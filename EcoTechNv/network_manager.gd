@@ -25,10 +25,10 @@ var cable_scene = preload("res://EcoTechNv/cable.tscn")
 var conexiones: Array[Dictionary] = []
 var seleccion_actual: Area2D = null
 
-@onready var label_cables: Label = $UI/LabelCables
-@onready var label_sugerencia: Label = $UI/LabelSugerencia
-@onready var btn_reiniciar: Button = $UI/BtnReiniciar
-@onready var label_estado: Label = $UI/LabelEstado if has_node("UI/LabelEstado") else null
+var label_cables: Label
+var label_sugerencia: Label
+var btn_reiniciar: Button
+var label_estado: Label
 
 @export var dialogo_intro: Resource
 @export var titulo_dialogo_intro: String = "redes_nivel_4_1"
@@ -36,9 +36,23 @@ var seleccion_actual: Area2D = null
 var cable_fantasma: Line2D
 
 func _ready() -> void:
+	var ui_node = get_node_or_null("UI")
+	if ui_node == null:
+		var ui_scene = load("res://EcoTechNv/network_ui.tscn")
+		if ui_scene:
+			ui_node = ui_scene.instantiate()
+			ui_node.name = "UI"
+			add_child(ui_node)
+	
+	if ui_node:
+		label_cables = ui_node.get_node_or_null("LabelCables")
+		label_sugerencia = ui_node.get_node_or_null("LabelSugerencia")
+		btn_reiniciar = ui_node.get_node_or_null("BtnReiniciar")
+		label_estado = ui_node.get_node_or_null("LabelEstado")
+
 	actualizar_ui()
 	LevelDialogueIntro.mostrar(self, dialogo_intro, titulo_dialogo_intro)
-	if btn_reiniciar:
+	if btn_reiniciar and not btn_reiniciar.pressed.is_connected(_on_btn_reiniciar_pressed):
 		btn_reiniciar.pressed.connect(_on_btn_reiniciar_pressed)
 	cable_fantasma = Line2D.new()
 	cable_fantasma.width = 4.0
@@ -82,7 +96,7 @@ func crear_conexion(a: Area2D, b: Area2D) -> void:
 	actualizar_ui()
 	validar_red()
 
-func _conexion_permitida(a_node: Node2D, b_node: Node2D) -> bool:
+func _conexion_permitida(a_node, b_node) -> bool:
 	if level_mode == LevelMode.NETWORK_SEGMENTATION:
 		if not a_node.permite_segmento(b_node) or not b_node.permite_segmento(a_node):
 			emit_connection_refusal("Conexión entre segmentos no permitida.")
@@ -136,6 +150,9 @@ func validar_red() -> void:
 	if servers.is_empty() or pcs.is_empty():
 		return
 	for pc in pcs:
+		# En modo Firewall, los PCs no autorizados no deben recibir servicio
+		if level_mode == LevelMode.FIREWALL_SECURITY and not pc.authorized:
+			continue
 		var conectado := false
 		for server in servers:
 			if hay_camino(pc, server):
@@ -150,13 +167,33 @@ func validar_red() -> void:
 		if label_sugerencia:
 			label_sugerencia.text = extra_check["message"]
 		return
-	var msg := "¡VICTORIA! " + extra_check["message"]
+	var msg: String = "¡VICTORIA! " + str(extra_check["message"])
 	if label_sugerencia:
 		label_sugerencia.text = msg
 	emit_signal("network_state_changed", true, msg)
 	await get_tree().create_timer(1.2).timeout
 	GameManager.nivel_actual += 1
 	GameManager.guardar_progreso()
+	
+	# Transición automática al siguiente nivel
+	var current_scene_path = get_tree().current_scene.scene_file_path
+	var next_scene_path = "res://Meu_UI/menu_ui.tscn"
+	
+	if "nivel_4_" in current_scene_path:
+		var scene_name = current_scene_path.get_file().get_basename()
+		var parts = scene_name.split("_")
+		if parts.size() >= 4:
+			var current_num = int(parts[2])
+			var current_index = int(parts[3])
+			
+			var next_level_num = current_num + 1
+			var next_level_index = current_index + 1
+			
+			var possible_next_path = "res://EcoTechNv/nivel_4_" + str(next_level_num) + "_" + str(next_level_index) + ".tscn"
+			if ResourceLoader.exists(possible_next_path):
+				next_scene_path = possible_next_path
+	
+	get_tree().change_scene_to_file(next_scene_path)
 
 func _validaciones_avanzadas(pcs: Array, servers: Array, nodos: Array) -> Dictionary:
 	match level_mode:
@@ -254,7 +291,7 @@ func _calcular_latencia_total(pcs: Array, servers: Array) -> int:
 	for pc in pcs:
 		var mejor := INF
 		for s in servers:
-			mejor = mini(mejor, _dijkstra(pc, s))
+			mejor = min(mejor, _dijkstra(pc, s))
 		total += int(mejor)
 	return total
 

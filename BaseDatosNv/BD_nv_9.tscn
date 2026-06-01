@@ -1,33 +1,37 @@
 [gd_scene format=3 uid="uid://v2y0gopdqtrw"]
 
 [ext_resource type="Script" uid="uid://8l8f1n324r8" path="res://BaseDatosNv/bd_nv_9.gd" id="1_bd9"]
+[ext_resource type="Texture2D" uid="uid://bq5sdnk0nqm0n" path="res://asstes/img/nose/fondo.png" id="2_fskq2"]
 [ext_resource type="PackedScene" uid="uid://cjreierj6d7hk" path="res://BaseDatosNv/tabla.tscn" id="2_msx14"]
-[ext_resource type="Texture2D" uid="uid://keqy5t3ican2" path="res://asstes/img/eaf222655ffde7147a826c7b4dd081a6.jpg" id="2_sp1ro"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wsta0"]
-texture = ExtResource("2_sp1ro")
-texture_margin_left = 30.0
-texture_margin_top = 35.0
-texture_margin_right = 30.0
-texture_margin_bottom = 35.0
-expand_margin_top = 5.0
-expand_margin_bottom = 5.0
+[ext_resource type="Texture2D" uid="uid://psrojhr707mb" path="res://asstes/img/nose/tab.png" id="3_oxba7"]
+[ext_resource type="PackedScene" uid="uid://c7jxr5k5p0u5m" path="res://BaseDatosNv/tabla_us.tscn" id="5_f4lt7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Usuarios"]
-bg_color = Color(0.3, 0.6, 1, 0.2)
+bg_color = Color(0.3019608, 0.6, 1, 0)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(0.3, 0.6, 1, 1)
+border_color = Color(0.3019608, 0.6, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Empleados"]
-bg_color = Color(1, 0.6, 0.3, 0.2)
+bg_color = Color(1, 0.6, 0.3019608, 0)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(1, 0.6, 0.3, 1)
+border_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nv3n3"]
+texture = ExtResource("3_oxba7")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+expand_margin_left = 95.0
+expand_margin_top = 23.0
+expand_margin_right = 95.0
+expand_margin_bottom = 23.0
 
 [node name="BD_nv_9" type="Control" unique_id=213404278]
 layout_mode = 3
@@ -38,35 +42,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bd9")
 
-[node name="FondoDatos" type="PanelContainer" parent="." unique_id=1379957195]
-layout_mode = 0
-offset_left = 6.999999
-offset_top = 451.0
-offset_right = 1224.0
-offset_bottom = 612.0
-scale = Vector2(1.0400002, 1)
-theme_override_styles/panel = SubResource("StyleBoxTexture_wsta0")
-
-[node name="ScrollDatos" type="ScrollContainer" parent="FondoDatos" unique_id=1655634589]
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="ContenedorDatos" type="HFlowContainer" parent="FondoDatos/ScrollDatos" unique_id=1844391385]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 1
+[node name="Fondo" type="Sprite2D" parent="." unique_id=1853210835]
+position = Vector2(640, 355)
+scale = Vector2(0.69739586, 0.6999999)
+texture = ExtResource("2_fskq2")
 
 [node name="ContenedorTablas" type="HBoxContainer" parent="." unique_id=1213461129]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 2.0
-offset_top = 5.0
-offset_right = -2.0
-offset_bottom = 431.0
+offset_left = 22.0
+offset_top = 11.0
+offset_right = 351.0
+offset_bottom = 362.0
 grow_horizontal = 2
-theme_override_constants/separation = 20
+scale = Vector2(0.75, 0.75)
+theme_override_constants/separation = 73
 
 [node name="TablaUsuariosContenedor" type="PanelContainer" parent="ContenedorTablas" unique_id=897794292]
 layout_mode = 2
@@ -86,7 +77,7 @@ horizontal_alignment = 1
 [node name="Columnas" type="HBoxContainer" parent="ContenedorTablas/TablaUsuariosContenedor/VBoxContainer" unique_id=245738802]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 80
 
 [node name="TablaNombreUsr" parent="ContenedorTablas/TablaUsuariosContenedor/VBoxContainer/Columnas" unique_id=350694206 instance=ExtResource("2_msx14")]
 layout_mode = 2
@@ -124,32 +115,47 @@ horizontal_alignment = 1
 [node name="Columnas" type="HBoxContainer" parent="ContenedorTablas/TablaEmpleadosContenedor/VBoxContainer" unique_id=1483960997]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 80
 
-[node name="TablaNombreEmp" parent="ContenedorTablas/TablaEmpleadosContenedor/VBoxContainer/Columnas" unique_id=1577784441 instance=ExtResource("2_msx14")]
+[node name="TablaNombreEmp" parent="ContenedorTablas/TablaEmpleadosContenedor/VBoxContainer/Columnas" unique_id=1602952372 instance=ExtResource("5_f4lt7")]
 layout_mode = 2
-size_flags_horizontal = 3
 nombre_tabla = "Nombre"
 tipos_validos = Array[String](["emp_nombre"])
 
-[node name="TablaCargoEmp" parent="ContenedorTablas/TablaEmpleadosContenedor/VBoxContainer/Columnas" unique_id=551968445 instance=ExtResource("2_msx14")]
+[node name="TablaCargoEmp" parent="ContenedorTablas/TablaEmpleadosContenedor/VBoxContainer/Columnas" unique_id=1018778926 instance=ExtResource("5_f4lt7")]
 layout_mode = 2
-size_flags_horizontal = 3
 nombre_tabla = "Cargo"
 tipos_validos = Array[String](["emp_cargo"])
 
-[node name="TablaSalarioEmp" parent="ContenedorTablas/TablaEmpleadosContenedor/VBoxContainer/Columnas" unique_id=729223559 instance=ExtResource("2_msx14")]
+[node name="TablaSalarioEmp" parent="ContenedorTablas/TablaEmpleadosContenedor/VBoxContainer/Columnas" unique_id=760992805 instance=ExtResource("5_f4lt7")]
 layout_mode = 2
-size_flags_horizontal = 3
 nombre_tabla = "Salario"
 tipos_validos = Array[String](["emp_salario"])
 
 [node name="BtnValidar" type="Button" parent="." unique_id=832623485]
 layout_mode = 0
-offset_left = 500.0
-offset_top = 645.0
-offset_right = 800.0
-offset_bottom = 713.0
+offset_left = 21.0
+offset_top = 557.0
+offset_right = 206.0
+offset_bottom = 625.0
 text = "VALIDAR"
+
+[node name="FondoDatos" type="PanelContainer" parent="." unique_id=1255615464]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 427.0
+offset_right = 1251.0
+offset_bottom = 688.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_nv3n3")
+
+[node name="ScrollDatos" type="ScrollContainer" parent="FondoDatos" unique_id=859238688]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ContenedorDatos" type="HFlowContainer" parent="FondoDatos/ScrollDatos" unique_id=409531854]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
 
 [connection signal="pressed" from="BtnValidar" to="." method="_on_btn_validar_pressed"]

@@ -1,19 +1,22 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bfek7yh032wc"]
 
-[ext_resource type="Script" path="res://BaseDatosNv/bd_nv_8.gd" id="1_bd8"]
+[ext_resource type="Script" uid="uid://bjhlgdxifva4e" path="res://BaseDatosNv/bd_nv_8.gd" id="1_bd8"]
+[ext_resource type="Texture2D" uid="uid://bq5sdnk0nqm0n" path="res://asstes/img/nose/fondo.png" id="2_jw28d"]
 [ext_resource type="PackedScene" uid="uid://cjreierj6d7hk" path="res://BaseDatosNv/tabla.tscn" id="2_msx14"]
-[ext_resource type="Texture2D" uid="uid://keqy5t3ican2" path="res://asstes/img/eaf222655ffde7147a826c7b4dd081a6.jpg" id="2_sp1ro"]
+[ext_resource type="Texture2D" uid="uid://psrojhr707mb" path="res://asstes/img/nose/tab.png" id="3_tvang"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wsta0"]
-texture = ExtResource("2_sp1ro")
-texture_margin_left = 30.0
-texture_margin_top = 36.0
-texture_margin_right = 30.0
-texture_margin_bottom = 36.0
-expand_margin_top = 5.0
-expand_margin_bottom = 5.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jw28d"]
+texture = ExtResource("3_tvang")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+expand_margin_left = 60.0
+expand_margin_top = 23.0
+expand_margin_right = 60.0
+expand_margin_bottom = 23.0
 
-[node name="BD_nv_8" type="Control"]
+[node name="BD_nv_8" type="Control" unique_id=1386019744]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,50 +25,56 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bd8")
 
-[node name="FondoDatos" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_left = 500.0
-offset_top = 37.0
-offset_right = 1257.0
-offset_bottom = 330.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_wsta0")
+[node name="Fondo" type="Sprite2D" parent="." unique_id=790437237]
+position = Vector2(640, 355)
+scale = Vector2(0.69739586, 0.6999999)
+texture = ExtResource("2_jw28d")
 
-[node name="ScrollDatos" type="ScrollContainer" parent="FondoDatos"]
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="ContenedorDatos" type="HFlowContainer" parent="FondoDatos/ScrollDatos"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 1
-
-[node name="ContenedorTablas" type="HBoxContainer" parent="."]
+[node name="ContenedorTablas" type="HBoxContainer" parent="." unique_id=645834593]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 31.0
-offset_top = 24.0
-offset_right = -845.0
-offset_bottom = 324.0
+offset_left = 32.0
+offset_top = 22.0
+offset_right = -743.0
+offset_bottom = 322.0
 grow_horizontal = 2
+theme_override_constants/separation = 105
 
-[node name="TablaDBA" parent="ContenedorTablas" instance=ExtResource("2_msx14")]
+[node name="TablaDBA" parent="ContenedorTablas" unique_id=237433003 instance=ExtResource("2_msx14")]
 layout_mode = 2
 nombre_tabla = "DBA (Admin)"
 tipos_validos = Array[String](["dba"])
 
-[node name="TablaUsuario" parent="ContenedorTablas" instance=ExtResource("2_msx14")]
+[node name="TablaUsuario" parent="ContenedorTablas" unique_id=948044153 instance=ExtResource("2_msx14")]
 layout_mode = 2
 nombre_tabla = "Usuario Básico"
 tipos_validos = Array[String](["usuario"])
 
-[node name="BtnValidar" type="Button" parent="."]
+[node name="BtnValidar" type="Button" parent="." unique_id=669095494]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 355.0
-offset_right = 376.0
-offset_bottom = 469.0
+offset_left = 25.0
+offset_top = 531.0
+offset_right = 361.0
+offset_bottom = 645.0
 text = "VALIDAR"
+
+[node name="FondoDatos" type="PanelContainer" parent="." unique_id=1724506387]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 378.0
+offset_right = 1272.0
+offset_bottom = 712.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_jw28d")
+
+[node name="ScrollDatos" type="ScrollContainer" parent="FondoDatos" unique_id=959263284]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ContenedorDatos" type="HFlowContainer" parent="FondoDatos/ScrollDatos" unique_id=2028793056]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
 
 [connection signal="pressed" from="BtnValidar" to="." method="_on_btn_validar_pressed"]
