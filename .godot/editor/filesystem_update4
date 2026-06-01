@@ -32,3 +32,7 @@ res://Meu_UI/Menu_UI.gd
 res://BaseDatosNv/bd_nv_7.gd
 res://EcoTechNv/network_manager.gd
 res://Scripts/GameManager.gd
+res://Circuito_Log_Compu/Circuit_1.gd
+res://Circuito_Log_Compu/Circuit_2.gd
+res://Circuito_Log_Compu/Circuit_nv_6.gd
+res://Robot_compu/Compu_nv_1.gd

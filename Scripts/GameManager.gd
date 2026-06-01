@@ -15,8 +15,8 @@ const PENALIZACION_PISTA: float = 2.0
 const PENALIZACION_ACCION_INCORRECTA: float = 4.0
 
 var usuario: String = "nose"
-var nivel_actual: int = 9
-var fase_actual: int = 3
+var nivel_actual: int = 1
+var fase_actual: int = 1
 var servidor: String = "http://10.239.148.115:8000/backend/"
 
 var niveles_config: Dictionary = {
@@ -183,19 +183,19 @@ func registrar_pista_usada(cantidad: int = 1) -> void:
 func calculate_level_score(metricas: Dictionary) -> Dictionary:
 	var numero_nivel := int(metricas.get("numero_nivel", nivel_en_seguimiento))
 	var config: Dictionary = niveles_config.get(numero_nivel, {})
-	var tiempo_objetivo := max(1.0, float(config.get("tiempo_objetivo", 90.0)))
-	var duracion := max(0.0, float(metricas.get("duracion", 0.0)))
-	var eficiencia := clamp(tiempo_objetivo / max(tiempo_objetivo, duracion), 0.0, 1.0)
-	var penalizacion_tiempo := (1.0 - eficiencia) * 25.0
-	var penalizacion_errores := float(metricas.get("errores", 0)) * PENALIZACION_ERROR
+	var tiempo_objetivo: float = maxf(1.0, float(config.get("tiempo_objetivo", 90.0)))
+	var duracion: float = maxf(0.0, float(metricas.get("duracion", 0.0)))
+	var eficiencia: float = clampf(tiempo_objetivo / maxf(tiempo_objetivo, duracion), 0.0, 1.0)
+	var penalizacion_tiempo: float = (1.0 - eficiencia) * 25.0
+	var penalizacion_errores: float = float(metricas.get("errores", 0)) * PENALIZACION_ERROR
 	penalizacion_errores += float(metricas.get("acciones_incorrectas", 0)) * PENALIZACION_ACCION_INCORRECTA
 	penalizacion_errores += float(metricas.get("fallos_validacion", 0)) * PENALIZACION_VALIDACION
 	penalizacion_errores += float(metricas.get("pistas_usadas", 0)) * PENALIZACION_PISTA
-	var penalizacion_reintentos := float(metricas.get("intentos_fallidos", 0)) * PENALIZACION_INTENTO
+	var penalizacion_reintentos: float = float(metricas.get("intentos_fallidos", 0)) * PENALIZACION_INTENTO
 	penalizacion_reintentos += float(metricas.get("reinicios", 0)) * PENALIZACION_REINICIO
-	var puntaje := clamp(PUNTAJE_MAXIMO - penalizacion_tiempo - penalizacion_errores - penalizacion_reintentos, 0.0, PUNTAJE_MAXIMO)
-	var total_intentos := max(1, int(metricas.get("intentos_fallidos", 0)) + 1)
-	var tasa_exito := clamp(1.0 / float(total_intentos), 0.0, 1.0)
+	var puntaje: float = clampf(PUNTAJE_MAXIMO - penalizacion_tiempo - penalizacion_errores - penalizacion_reintentos, 0.0, PUNTAJE_MAXIMO)
+	var total_intentos: int = maxi(1, int(metricas.get("intentos_fallidos", 0)) + 1)
+	var tasa_exito: float = clampf(1.0 / float(total_intentos), 0.0, 1.0)
 	return {
 		"porcentaje": snapped(puntaje, 0.01),
 		"puntaje_general": snapped(puntaje, 0.01),
@@ -210,19 +210,19 @@ func calculate_phase_score(numero_fase: int) -> Dictionary:
 		var nivel: Dictionary = datos_rendimiento["niveles"][clave]
 		if int(nivel.get("fase", 0)) == numero_fase:
 			niveles_fase.append(nivel)
-	var total_niveles_fase := _contar_niveles_config_por_fase(numero_fase)
-	var total_score := 0.0
-	var total_errores := 0
-	var total_tiempo := 0.0
-	var completados := 0
+	var total_niveles_fase: int = _contar_niveles_config_por_fase(numero_fase)
+	var total_score: float = 0.0
+	var total_errores: int = 0
+	var total_tiempo: float = 0.0
+	var completados: int = 0
 	for nivel in niveles_fase:
 		if bool(nivel.get("completado", false)):
 			completados += 1
 		total_score += float(nivel.get("porcentaje", 0.0))
 		total_errores += int(nivel.get("errores", 0))
 		total_tiempo += float(nivel.get("duracion", 0.0))
-	var promedio := 0.0 if niveles_fase.is_empty() else total_score / float(niveles_fase.size())
-	var completion := 0.0 if total_niveles_fase == 0 else (float(completados) / float(total_niveles_fase)) * 100.0
+	var promedio: float = 0.0 if niveles_fase.is_empty() else total_score / float(niveles_fase.size())
+	var completion: float = 0.0 if total_niveles_fase == 0 else (float(completados) / float(total_niveles_fase)) * 100.0
 	return {
 		"fase": numero_fase,
 		"niveles_completados": completados,
@@ -237,15 +237,15 @@ func calculate_global_score() -> Dictionary:
 	var niveles: Array = datos_rendimiento["niveles"].values()
 	var fases: Array[int] = []
 	for config in niveles_config.values():
-		var fase := int(config.get("fase", 0))
+		var fase: int = int(config.get("fase", 0))
 		if fase > 0 and fase not in fases:
 			fases.append(fase)
 	fases.sort()
-	var total_score := 0.0
-	var total_errores := 0
-	var total_tiempo := 0.0
-	var total_intentos := 0
-	var completados := 0
+	var total_score: float = 0.0
+	var total_errores: int = 0
+	var total_tiempo: float = 0.0
+	var total_intentos: int = 0
+	var completados: int = 0
 	for nivel in niveles:
 		if bool(nivel.get("completado", false)):
 			completados += 1
@@ -253,19 +253,19 @@ func calculate_global_score() -> Dictionary:
 		total_errores += int(nivel.get("errores", 0))
 		total_tiempo += float(nivel.get("duracion", 0.0))
 		total_intentos += int(nivel.get("intentos_fallidos", 0)) + 1
-	var promedio_niveles := 0.0 if niveles.is_empty() else total_score / float(niveles.size())
-	var suma_fases := 0.0
-	var fases_completadas := 0
+	var promedio_niveles: float = 0.0 if niveles.is_empty() else total_score / float(niveles.size())
+	var suma_fases: float = 0.0
+	var fases_completadas: int = 0
 	for fase in fases:
-		var resumen_fase := calculate_phase_score(fase)
+		var resumen_fase: Dictionary = calculate_phase_score(fase)
 		datos_rendimiento["fases"][str(fase)] = resumen_fase
 		if int(resumen_fase.get("niveles_completados", 0)) > 0:
 			suma_fases += float(resumen_fase.get("puntaje_promedio", 0.0))
 		if float(resumen_fase.get("porcentaje_completado", 0.0)) >= 100.0:
 			fases_completadas += 1
-	var promedio_fases := 0.0 if fases.is_empty() else suma_fases / float(max(1, fases.size()))
-	var porcentaje_final := snapped((promedio_niveles * 0.7) + (promedio_fases * 0.3), 0.01)
-	var global := {
+	var promedio_fases: float = 0.0 if fases.is_empty() else suma_fases / float(maxi(1, fases.size()))
+	var porcentaje_final: float = snapped((promedio_niveles * 0.7) + (promedio_fases * 0.3), 0.01)
+	var global: Dictionary = {
 		"tiempo_total": snapped(total_tiempo, 0.01),
 		"errores_totales": total_errores,
 		"intentos_totales": total_intentos,
@@ -367,7 +367,7 @@ func _asegurar_seguimiento_actual() -> void:
 		start_level_tracking(nivel_actual)
 
 func _guardar_resultado_nivel(resultado: Dictionary) -> void:
-	var clave := str(resultado.get("numero_nivel", nivel_en_seguimiento))
+	var clave: String = str(resultado.get("numero_nivel", nivel_en_seguimiento))
 	datos_rendimiento["niveles"][clave] = resultado.duplicate(true)
 	calculate_global_score()
 
@@ -384,7 +384,7 @@ func _guardar_progreso_remoto() -> void:
 	http_request.request_completed.connect(func(_result: int, _response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:
 		http_request.queue_free()
 	)
-	var datos_a_enviar := {
+	var datos_a_enviar: Dictionary = {
 		"usuario": usuario,
 		"player_id": usuario,
 		"nivel": nivel_actual,
@@ -392,16 +392,16 @@ func _guardar_progreso_remoto() -> void:
 		"fase_actual": fase_actual,
 		"rendimiento": datos_rendimiento
 	}
-	var cuerpo_json := JSON.stringify(datos_a_enviar)
-	var cabeceras := ["Content-Type: application/json"]
-	var error := http_request.request(servidor + "guardar_progreso.php", cabeceras, HTTPClient.METHOD_POST, cuerpo_json)
+	var cuerpo_json: String = JSON.stringify(datos_a_enviar)
+	var cabeceras: PackedStringArray = ["Content-Type: application/json"]
+	var error: Error = http_request.request(servidor + "guardar_progreso.php", cabeceras, HTTPClient.METHOD_POST, cuerpo_json)
 	if error != OK:
 		push_warning("No se pudo guardar el progreso remoto. Código: %s" % error)
 		http_request.queue_free()
 
 func _on_progreso_recibido(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray, http_request: HTTPRequest) -> void:
 	http_request.queue_free()
-	var texto := body.get_string_from_utf8()
+	var texto: String = body.get_string_from_utf8()
 	print("Respuesta cruda del servidor: ", texto)
 	print("Código de respuesta HTTP: ", response_code)
 	if response_code != 200 or texto.strip_edges().is_empty():
