@@ -98,6 +98,7 @@ func validar():
 		GameManager.completar_nivel()
 		# Aquí podrías mostrar una pantalla de victoria
 	else:
+		GameManager.registrar_fallo_validacion()
 		if hay_errores:
 			print("¡Incorrecto! Hay datos en las tablas equivocadas. Corrígelos.")
 		elif faltan_datos:

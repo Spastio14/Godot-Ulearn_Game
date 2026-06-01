@@ -14,9 +14,7 @@ func _ready():
 
 func cargar_siguiente_nivel():
 	await get_tree().create_timer(0.5).timeout
-	GameManager.nivel_actual += 1
-	GameManager.guardar_progreso()
-	get_tree().change_scene_to_file("res://Robot_compu/Compu_nv_3.tscn")
+	GameManager.completar_nivel("res://Robot_compu/Compu_nv_3.tscn")
 	print("Cargando siguiente nivel")
 
 func _cambiar_nivel():

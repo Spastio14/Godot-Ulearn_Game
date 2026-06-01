@@ -31,8 +31,7 @@ func _desbloquear_meta():
 
 func _completar_nivel():
 	await get_tree().create_timer(0.5).timeout
-	GameManager.nivel_actual += 1
-	GameManager.guardar_progreso()
+	GameManager.completar_nivel()
 	call_deferred("_cambiar_nivel")
 
 func agregar_instruccion(inst):
@@ -43,4 +42,4 @@ func ejecutar():
 	instrucciones.clear()
 
 func _cambiar_nivel():
-	get_tree().change_scene_to_file("res://Circuito_Log_Compu/Circuit_nv_5.tscn")
+	get_tree().change_scene_to_file("res://Circuito_Log_Compu/Circuit_nv_4.tscn")

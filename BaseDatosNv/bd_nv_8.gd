@@ -83,10 +83,10 @@ func validar():
 	if dba_correcto and usuario_correcto and not hay_errores and not faltan_datos:
 		print("Nivel completado")
 		await get_tree().create_timer(0.5).timeout
-		GameManager.nivel_actual += 1
-		GameManager.guardar_progreso()
+		GameManager.completar_nivel()
 		call_deferred("_cargar_siguiente")
 	else:
+		GameManager.registrar_fallo_validacion()
 		if hay_errores:
 			print("Incorrecto - Hay permisos equivocados")
 		elif faltan_datos:

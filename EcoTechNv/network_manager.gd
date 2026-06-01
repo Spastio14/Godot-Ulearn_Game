@@ -34,6 +34,7 @@ var label_estado: Label
 @export var titulo_dialogo_intro: String = "redes_nivel_4_1"
 
 var cable_fantasma: Line2D
+var nivel_terminado: bool = false
 
 func _ready() -> void:
 	var ui_node = get_node_or_null("UI")
@@ -68,6 +69,7 @@ func _process(_delta: float) -> void:
 		cable_fantasma.visible = false
 
 func _on_btn_reiniciar_pressed() -> void:
+	GameManager.registrar_reinicio()
 	get_tree().reload_current_scene()
 
 func seleccionar_puerto(port: Area2D) -> void:
@@ -121,6 +123,7 @@ func _estado_nodos() -> String:
 	return " | ".join(parts)
 
 func emit_connection_refusal(reason: String) -> void:
+	GameManager.registrar_accion_incorrecta()
 	if label_sugerencia:
 		label_sugerencia.text = "Advertencia: " + reason
 	emit_signal("connection_refused", reason)
@@ -144,6 +147,8 @@ func eliminar_conexiones_de_puerto(port: Area2D) -> void:
 		validar_red()
 
 func validar_red() -> void:
+	if nivel_terminado:
+		return
 	var nodos = obtener_nodos()
 	var servers = _obtener_por_tipo(nodos, "server")
 	var pcs = _obtener_por_tipo(nodos, "pc")
@@ -159,41 +164,34 @@ func validar_red() -> void:
 				conectado = true
 				break
 		if not conectado:
+			GameManager.registrar_fallo_validacion()
 			emit_signal("network_state_changed", false, "Todavía hay equipos sin servicio.")
 			return
 	var extra_check := _validaciones_avanzadas(pcs, servers, nodos)
 	if not extra_check["ok"]:
+		GameManager.registrar_fallo_validacion()
 		emit_signal("network_state_changed", false, extra_check["message"])
 		if label_sugerencia:
 			label_sugerencia.text = extra_check["message"]
 		return
+	nivel_terminado = true
 	var msg: String = "¡VICTORIA! " + str(extra_check["message"])
 	if label_sugerencia:
 		label_sugerencia.text = msg
 	emit_signal("network_state_changed", true, msg)
 	await get_tree().create_timer(1.2).timeout
-	GameManager.nivel_actual += 1
-	GameManager.guardar_progreso()
+	var resultado_rendimiento := GameManager.completar_nivel()
 	
-	# Transición automática al siguiente nivel
-	var current_scene_path = get_tree().current_scene.scene_file_path
-	var next_scene_path = "res://Meu_UI/menu_ui.tscn"
-	
-	if "nivel_4_" in current_scene_path:
-		var scene_name = current_scene_path.get_file().get_basename()
-		var parts = scene_name.split("_")
-		if parts.size() >= 4:
-			var current_num = int(parts[2])
-			var current_index = int(parts[3])
-			
-			var next_level_num = current_num + 1
-			var next_level_index = current_index + 1
-			
-			var possible_next_path = "res://EcoTechNv/nivel_4_" + str(next_level_num) + "_" + str(next_level_index) + ".tscn"
-			if ResourceLoader.exists(possible_next_path):
-				next_scene_path = possible_next_path
-	
-	get_tree().change_scene_to_file(next_scene_path)
+	# Transición automática al siguiente nivel registrada en el catálogo central.
+	if resultado_rendimiento.is_empty():
+		GameManager.mostrar_resultados_finales()
+		return
+	var numero_completado := int(resultado_rendimiento.get("numero_nivel", 0))
+	var next_scene_path := GameManager.obtener_siguiente_ruta_nivel(numero_completado)
+	if next_scene_path.is_empty():
+		GameManager.mostrar_resultados_finales()
+	else:
+		get_tree().change_scene_to_file(next_scene_path)
 
 func _validaciones_avanzadas(pcs: Array, servers: Array, nodos: Array) -> Dictionary:
 	match level_mode:
