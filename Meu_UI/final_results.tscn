@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://b185fhrq0vog6"]
 
-[ext_resource type="Script" path="res://Meu_UI/FinalResults.gd" id="1_final_results"]
+[ext_resource type="Script" uid="uid://dq760xt8505ro" path="res://Meu_UI/FinalResults.gd" id="1_final_results"]
 
-[node name="FinalResults" type="Control"]
+[node name="FinalResults" type="Control" unique_id=1002710726]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_final_results")
 
-[node name="Fondo" type="ColorRect" parent="."]
+[node name="Fondo" type="ColorRect" parent="." unique_id=336034800]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,9 +20,9 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.04, 0.055, 0.08, 1)
 
-[node name="PanelPrincipal" type="PanelContainer" parent="."]
+[node name="PanelPrincipal" type="PanelContainer" parent="." unique_id=191113612]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.05
 anchor_right = 0.95
@@ -30,85 +30,85 @@ anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Margen" type="MarginContainer" parent="PanelPrincipal"]
+[node name="Margen" type="MarginContainer" parent="PanelPrincipal" unique_id=1389132144]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 18
 
-[node name="Contenido" type="VBoxContainer" parent="PanelPrincipal/Margen"]
+[node name="Contenido" type="VBoxContainer" parent="PanelPrincipal/Margen" unique_id=279579937]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="EtiquetaTitulo" type="Label" parent="PanelPrincipal/Margen/Contenido"]
+[node name="EtiquetaTitulo" type="Label" parent="PanelPrincipal/Margen/Contenido" unique_id=128529177]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Resultados finales"
 horizontal_alignment = 1
 
-[node name="Scroll" type="ScrollContainer" parent="PanelPrincipal/Margen/Contenido"]
+[node name="Scroll" type="ScrollContainer" parent="PanelPrincipal/Margen/Contenido" unique_id=1562324212]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 2
 
-[node name="Secciones" type="VBoxContainer" parent="PanelPrincipal/Margen/Contenido/Scroll"]
+[node name="Secciones" type="VBoxContainer" parent="PanelPrincipal/Margen/Contenido/Scroll" unique_id=1034229148]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 18
 
-[node name="ResumenJugador" type="VBoxContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones"]
+[node name="ResumenJugador" type="VBoxContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones" unique_id=1053494788]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Titulo" type="Label" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/ResumenJugador"]
+[node name="Titulo" type="Label" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/ResumenJugador" unique_id=1680469784]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Resumen del jugador"
 
-[node name="GridResumen" type="GridContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/ResumenJugador"]
+[node name="GridResumen" type="GridContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/ResumenJugador" unique_id=760272856]
 layout_mode = 2
 columns = 2
 
-[node name="TablaFases" type="VBoxContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones"]
+[node name="TablaFases" type="VBoxContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones" unique_id=753049858]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Titulo" type="Label" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/TablaFases"]
+[node name="Titulo" type="Label" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/TablaFases" unique_id=1968329839]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Rendimiento por fase"
 
-[node name="GridFases" type="GridContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/TablaFases"]
+[node name="GridFases" type="GridContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/TablaFases" unique_id=1837113314]
 layout_mode = 2
 columns = 6
 
-[node name="TablaNiveles" type="VBoxContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones"]
+[node name="TablaNiveles" type="VBoxContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones" unique_id=292841670]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Titulo" type="Label" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/TablaNiveles"]
+[node name="Titulo" type="Label" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/TablaNiveles" unique_id=903311329]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Detalle por nivel"
 
-[node name="GridNiveles" type="GridContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/TablaNiveles"]
+[node name="GridNiveles" type="GridContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/TablaNiveles" unique_id=511163328]
 layout_mode = 2
 columns = 6
 
-[node name="ResultadosGlobales" type="VBoxContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones"]
+[node name="ResultadosGlobales" type="VBoxContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones" unique_id=2008943006]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Titulo" type="Label" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/ResultadosGlobales"]
+[node name="Titulo" type="Label" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/ResultadosGlobales" unique_id=1907616333]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Resultados globales"
 
-[node name="GridGlobal" type="GridContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/ResultadosGlobales"]
+[node name="GridGlobal" type="GridContainer" parent="PanelPrincipal/Margen/Contenido/Scroll/Secciones/ResultadosGlobales" unique_id=519153689]
 layout_mode = 2
 columns = 2
 
-[node name="BotonMenu" type="Button" parent="PanelPrincipal/Margen/Contenido"]
+[node name="BotonMenu" type="Button" parent="PanelPrincipal/Margen/Contenido" unique_id=1415200429]
 layout_mode = 2
 text = "Volver al menú principal"

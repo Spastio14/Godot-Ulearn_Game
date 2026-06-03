@@ -14,7 +14,8 @@ const PENALIZACION_VALIDACION: float = 5.0
 const PENALIZACION_PISTA: float = 2.0
 const PENALIZACION_ACCION_INCORRECTA: float = 4.0
 
-var usuario: String = "nose"
+var usuario: String = "caca"
+var carrera_id: String = "computacion"
 var nivel_actual: int = 1
 var fase_actual: int = 1
 var servidor: String = "http://10.239.148.115:8000/backend/"
@@ -49,6 +50,7 @@ var seguimiento_activo: bool = false
 var nivel_en_seguimiento: int = 0
 var metricas_nivel_actual: Dictionary = {}
 var ultima_escena_detectada: String = ""
+var ignorar_respuestas_remotas: bool = false
 
 func _ready() -> void:
 	cargar_guardado_local()
@@ -299,6 +301,35 @@ func mostrar_resultados_finales() -> void:
 	guardar_progreso()
 	get_tree().change_scene_to_file(RUTA_RESULTADOS_FINALES)
 
+func configurar_usuario(nombre_usuario: String, nueva_carrera_id: String = "") -> void:
+	var nombre_limpio := nombre_usuario.strip_edges()
+	if nombre_limpio.is_empty():
+		return
+	usuario = nombre_limpio
+	if not nueva_carrera_id.strip_edges().is_empty():
+		carrera_id = nueva_carrera_id.strip_edges()
+	datos_rendimiento["usuario"] = usuario
+	guardar_progreso()
+
+func reiniciar_progreso() -> void:
+	ignorar_respuestas_remotas = true
+	nivel_actual = 1
+	fase_actual = int(niveles_config.get(nivel_actual, {}).get("fase", 1))
+	seguimiento_activo = false
+	nivel_en_seguimiento = 0
+	metricas_nivel_actual = {}
+	datos_rendimiento = {
+		"usuario": usuario,
+		"fase_actual": fase_actual,
+		"nivel_actual": nivel_actual,
+		"niveles": {},
+		"fases": {},
+		"global": {}
+	}
+	calculate_global_score()
+	estadisticas_actualizadas.emit(datos_rendimiento["global"].duplicate(true))
+	guardar_progreso()
+
 func guardar_progreso() -> void:
 	datos_rendimiento["usuario"] = usuario
 	datos_rendimiento["fase_actual"] = fase_actual
@@ -308,6 +339,7 @@ func guardar_progreso() -> void:
 
 func cargar_progreso() -> void:
 	cargar_guardado_local()
+	estadisticas_actualizadas.emit(calculate_global_score())
 	var http_request := HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(_on_progreso_recibido.bind(http_request))
@@ -385,13 +417,12 @@ func _guardar_progreso_remoto() -> void:
 		http_request.queue_free()
 	)
 	var datos_a_enviar: Dictionary = {
-		"usuario": usuario,
-		"player_id": usuario,
-		"nivel": nivel_actual,
-		"nivel_actual": nivel_actual,
-		"fase_actual": fase_actual,
-		"rendimiento": datos_rendimiento
-	}
+	"usuario": usuario,
+	"carrera_id": carrera_id,
+	"nivel_actual": nivel_actual,
+	"fase_actual": fase_actual,
+	"rendimiento": datos_rendimiento
+}
 	var cuerpo_json: String = JSON.stringify(datos_a_enviar)
 	var cabeceras: PackedStringArray = ["Content-Type: application/json"]
 	var error: Error = http_request.request(servidor + "guardar_progreso.php", cabeceras, HTTPClient.METHOD_POST, cuerpo_json)
@@ -401,6 +432,8 @@ func _guardar_progreso_remoto() -> void:
 
 func _on_progreso_recibido(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray, http_request: HTTPRequest) -> void:
 	http_request.queue_free()
+	if ignorar_respuestas_remotas:
+		return
 	var texto: String = body.get_string_from_utf8()
 	print("Respuesta cruda del servidor: ", texto)
 	print("Código de respuesta HTTP: ", response_code)
@@ -409,11 +442,11 @@ func _on_progreso_recibido(_result: int, response_code: int, _headers: PackedStr
 	var datos_recibidos = JSON.parse_string(texto)
 	if datos_recibidos is Dictionary:
 		_fusionar_guardado(datos_recibidos)
+		estadisticas_actualizadas.emit(calculate_global_score())
 		print("Progreso cargado. Nivel actual: ", nivel_actual)
 
 func _fusionar_guardado(datos: Dictionary) -> void:
-	if datos.has("usuario"):
-		usuario = str(datos["usuario"])
+	var usuario_principal := usuario
 	if datos.has("nivel_actual"):
 		nivel_actual = int(datos["nivel_actual"])
 	elif datos.has("nivel"):
@@ -422,6 +455,7 @@ func _fusionar_guardado(datos: Dictionary) -> void:
 		fase_actual = int(datos["fase_actual"])
 	if datos.has("rendimiento") and datos["rendimiento"] is Dictionary:
 		_fusionar_guardado(datos["rendimiento"])
+	usuario = usuario_principal
 	if datos.has("niveles") and datos["niveles"] is Dictionary:
 		for clave in datos["niveles"].keys():
 			datos_rendimiento["niveles"][str(clave)] = datos["niveles"][clave]

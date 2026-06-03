@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://byvh2xs6mspi1"]
 
 [ext_resource type="Script" uid="uid://gjmrt0mi8n2i" path="res://Meu_UI/Menu_UI.gd" id="1_e2tv8"]
-[ext_resource type="Texture2D" uid="uid://cqruc55dutd10" path="res://asstes/Mapa_fondos/Sprites/Backgrounds/Default/background_color_desert.png" id="1_oo2uh"]
 [ext_resource type="FontFile" uid="uid://bcrsqn6n8lwwn" path="res://Fonts/pixeldown.ttf" id="2_e2tv8"]
+[ext_resource type="Texture2D" uid="uid://bghxs5we2lj6g" path="res://asstes/img/nose/Diseño sin título/menu.jpeg" id="2_tgrk3"]
 
 [node name="Menu_UI" type="Control" unique_id=1238634129]
 layout_mode = 3
@@ -26,9 +26,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 84.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_oo2uh")
+texture = ExtResource("2_tgrk3")
 expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=874759625]
@@ -46,7 +48,7 @@ alignment = 1
 [node name="Button" type="Button" parent="VBoxContainer" unique_id=193471578]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_e2tv8")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 45
 text = "Jugar"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
