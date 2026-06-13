@@ -14,11 +14,14 @@ const PENALIZACION_VALIDACION: float = 5.0
 const PENALIZACION_PISTA: float = 2.0
 const PENALIZACION_ACCION_INCORRECTA: float = 4.0
 
-var usuario: String = "caca"
+const SUPABASE_URL: String = "https://serbkvicxxkhasufhcim.supabase.co"
+const SUPABASE_KEY: String = "sb_publishable_pqZwOcmSN-YLBl8-rIe74w_upz5b4OR"
+
+var usuario: String = "Usuario"
+var user_id: String = ""
 var carrera_id: String = "computacion"
 var nivel_actual: int = 1
 var fase_actual: int = 1
-var servidor: String = "http://10.239.148.115:8000/backend/"
 
 var niveles_config: Dictionary = {
 	1: {"id": "robot_1", "nombre": "Robot - Secuencia básica", "fase": 1, "ruta": "res://Robot_compu/Compu_nv_1.tscn", "tiempo_objetivo": 45.0},
@@ -53,6 +56,7 @@ var ultima_escena_detectada: String = ""
 var ignorar_respuestas_remotas: bool = false
 
 func _ready() -> void:
+	_obtener_usuario_desde_web()
 	cargar_guardado_local()
 	get_tree().node_added.connect(_on_node_added)
 
@@ -78,20 +82,30 @@ func _iniciar_seguimiento_por_escena_actual() -> void:
 	if numero_nivel > 0:
 		start_level_tracking(numero_nivel)
 
+func _obtener_usuario_desde_web() -> void:
+	if OS.has_feature("web"):
+		var session_json = JavaScriptBridge.eval("localStorage.getItem('ulearn_session')")
+		if session_json and session_json != \"undefined\" and session_json != \"null\":
+			var datos = JSON.parse_string(session_json)
+			if datos is Dictionary:
+				usuario = datos.get(\"name\", \"Usuario\")
+				user_id = datos.get(\"id\", \"\")
+				print(\"Usuario detectado desde localStorage: \", usuario, \" (\", user_id, \")\")
+
 func obtener_nivel_por_ruta(ruta: String) -> int:
 	for numero in niveles_config.keys():
 		var config: Dictionary = niveles_config[numero]
-		if str(config.get("ruta", "")) == ruta:
+		if str(config.get(\"ruta\", \"\")) == ruta:
 			return int(numero)
-		for ruta_adicional in config.get("rutas_adicionales", []):
+		for ruta_adicional in config.get(\"rutas_adicionales\", []):
 			if str(ruta_adicional) == ruta:
 				return int(numero)
 	return 0
 
 func obtener_ruta_nivel(numero_nivel: int) -> String:
 	if niveles_config.has(numero_nivel):
-		return str(niveles_config[numero_nivel].get("ruta", ""))
-	return ""
+		return str(niveles_config[numero_nivel].get(\"ruta\", \"\"))
+	return \"\"
 
 func obtener_siguiente_ruta_nivel(numero_nivel: int) -> String:
 	return obtener_ruta_nivel(numero_nivel + 1)
@@ -101,32 +115,33 @@ func obtener_total_niveles() -> int:
 
 func start_level_tracking(numero_nivel: int = nivel_actual) -> void:
 	if not niveles_config.has(numero_nivel):
-		push_warning("No existe configuración de rendimiento para el nivel %d." % numero_nivel)
+		push_warning(\"No existe configuración de rendimiento para el nivel %d.\" % numero_nivel)
 		return
 	if seguimiento_activo and nivel_en_seguimiento == numero_nivel:
 		return
 	var config: Dictionary = niveles_config[numero_nivel]
 	nivel_en_seguimiento = numero_nivel
-	fase_actual = int(config.get("fase", fase_actual))
+	fase_actual = int(config.get(\"fase\", fase_actual))
 	metricas_nivel_actual = {
-		"numero_nivel": numero_nivel,
-		"nivel_id": str(config.get("id", "nivel_%d" % numero_nivel)),
-		"nombre_nivel": str(config.get("nombre", "Nivel %d" % numero_nivel)),
-		"fase": fase_actual,
-		"inicio_unix": Time.get_unix_time_from_system(),
-		"fin_unix": 0.0,
-		"duracion": 0.0,
-		"intentos_fallidos": 0,
-		"acciones_incorrectas": 0,
-		"reinicios": 0,
-		"fallos_validacion": 0,
-		"pistas_usadas": 0,
-		"errores": 0,
-		"completado": false,
-		"porcentaje": 0.0,
-		"eficiencia": 0.0,
-		"tasa_exito": 0.0,
-		"puntaje_general": 0.0
+		\"numero_nivel\": numero_nivel,
+		\"nivel_id\": str(config.get(\"id\", \"nivel_%d\" % numero_nivel)),
+		\"nombre_nivel\": str(config.get(\"nombre\", \"Nivel %d\" % numero_nivel)),
+		\"fase\": fase_actual,
+		\"inicio_unix\": Time.get_unix_time_from_system(),
+		\"fin_unix\": 0.0,
+		\"duracion\": 0.0,
+		\"intentos_fallidos\": 0,
+		\"acciones_incorrectas\": 0,
+		\"reinicios\": 0,
+		\"fallos_validacion\": 0,
+		\"pistas_usadas\": 0,
+		\"errores\": 0,
+		\"aciertos\": 0,
+		\"completado\": false,
+		\"porcentaje\": 0.0,
+		\"eficiencia\": 0.0,
+		\"tasa_exito\": 0.0,
+		\"puntaje_general\": 0.0
 	}
 	seguimiento_activo = true
 	seguimiento_nivel_iniciado.emit(metricas_nivel_actual.duplicate(true))
@@ -136,81 +151,104 @@ func finish_level_tracking(completado: bool = true) -> Dictionary:
 		start_level_tracking(nivel_actual)
 	if metricas_nivel_actual.is_empty():
 		return {}
-	metricas_nivel_actual["fin_unix"] = Time.get_unix_time_from_system()
-	metricas_nivel_actual["duracion"] = max(0.0, float(metricas_nivel_actual["fin_unix"]) - float(metricas_nivel_actual["inicio_unix"]))
-	metricas_nivel_actual["completado"] = completado
+	metricas_nivel_actual[\"fin_unix\"] = Time.get_unix_time_from_system()
+	metricas_nivel_actual[\"duracion\"] = max(0.0, float(metricas_nivel_actual[\"fin_unix\"]) - float(metricas_nivel_actual[\"inicio_unix\"]))
+	metricas_nivel_actual[\"completado\"] = completado
 	var resultado := calculate_level_score(metricas_nivel_actual)
 	for clave in resultado.keys():
 		metricas_nivel_actual[clave] = resultado[clave]
 	_guardar_resultado_nivel(metricas_nivel_actual)
+	
 	if completado:
-		nivel_actual = max(nivel_actual, int(metricas_nivel_actual.get("numero_nivel", nivel_actual)) + 1)
-		fase_actual = int(niveles_config.get(min(nivel_actual, obtener_total_niveles()), {}).get("fase", fase_actual))
+		mostrar_mensaje_felicitacion()
+		nivel_actual = max(nivel_actual, int(metricas_nivel_actual.get(\"numero_nivel\", nivel_actual)) + 1)
+		fase_actual = int(niveles_config.get(min(nivel_actual, obtener_total_niveles()), {}).get(\"fase\", fase_actual))
+	
 	seguimiento_activo = false
 	seguimiento_nivel_finalizado.emit(metricas_nivel_actual.duplicate(true))
 	estadisticas_actualizadas.emit(calculate_global_score())
 	guardar_progreso()
 	return metricas_nivel_actual.duplicate(true)
 
-func register_error(cantidad: int = 1, tipo: String = "error") -> void:
+func mostrar_mensaje_felicitacion() -> void:
+	var canvas_layer = CanvasLayer.new()
+	canvas_layer.layer = 100
+	get_tree().root.add_child(canvas_layer)
+	
+	var label = Label.new()
+	label.text = \"¡Bien hecho, \" + usuario + \"!\"
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	label.add_theme_font_size_override(\"font_size\", 40)
+	canvas_layer.add_child(label)
+	
+	var timer = get_tree().create_timer(3.0)
+	timer.timeout.connect(func(): canvas_layer.queue_free())
+
+func registrar_acierto(cantidad: int = 1) -> void:
 	_asegurar_seguimiento_actual()
-	metricas_nivel_actual["errores"] = int(metricas_nivel_actual.get("errores", 0)) + cantidad
+	metricas_nivel_actual[\"aciertos\"] = int(metricas_nivel_actual.get(\"aciertos\", 0)) + cantidad
+
+func register_error(cantidad: int = 1, tipo: String = \"error\") -> void:
+	_asegurar_seguimiento_actual()
+	metricas_nivel_actual[\"errores\"] = int(metricas_nivel_actual.get(\"errores\", 0)) + cantidad
 	match tipo:
-		"accion_incorrecta":
-			metricas_nivel_actual["acciones_incorrectas"] = int(metricas_nivel_actual.get("acciones_incorrectas", 0)) + cantidad
-		"validacion":
-			metricas_nivel_actual["fallos_validacion"] = int(metricas_nivel_actual.get("fallos_validacion", 0)) + cantidad
-		"pista":
-			metricas_nivel_actual["pistas_usadas"] = int(metricas_nivel_actual.get("pistas_usadas", 0)) + cantidad
+		\"accion_incorrecta\":
+			metricas_nivel_actual[\"acciones_incorrectas\"] = int(metricas_nivel_actual.get(\"acciones_incorrectas\", 0)) + cantidad
+		\"validacion\":
+			metricas_nivel_actual[\"fallos_validacion\"] = int(metricas_nivel_actual.get(\"fallos_validacion\", 0)) + cantidad
+		\"pista\":
+			metricas_nivel_actual[\"pistas_usadas\"] = int(metricas_nivel_actual.get(\"pistas_usadas\", 0)) + cantidad
 
 func register_retry(cantidad: int = 1) -> void:
 	_asegurar_seguimiento_actual()
-	metricas_nivel_actual["intentos_fallidos"] = int(metricas_nivel_actual.get("intentos_fallidos", 0)) + cantidad
+	metricas_nivel_actual[\"intentos_fallidos\"] = int(metricas_nivel_actual.get(\"intentos_fallidos\", 0)) + cantidad
 
 func registrar_reinicio(cantidad: int = 1) -> void:
 	_asegurar_seguimiento_actual()
-	metricas_nivel_actual["reinicios"] = int(metricas_nivel_actual.get("reinicios", 0)) + cantidad
+	metricas_nivel_actual[\"reinicios\"] = int(metricas_nivel_actual.get(\"reinicios\", 0)) + cantidad
 	register_retry(cantidad)
 
 func registrar_fallo_validacion(cantidad: int = 1) -> void:
-	register_error(cantidad, "validacion")
+	register_error(cantidad, \"validacion\")
 	register_retry(cantidad)
 
 func registrar_accion_incorrecta(cantidad: int = 1) -> void:
-	register_error(cantidad, "accion_incorrecta")
+	register_error(cantidad, \"accion_incorrecta\")
 
 func registrar_pista_usada(cantidad: int = 1) -> void:
-	register_error(cantidad, "pista")
+	register_error(cantidad, \"pista\")
 
 func calculate_level_score(metricas: Dictionary) -> Dictionary:
-	var numero_nivel := int(metricas.get("numero_nivel", nivel_en_seguimiento))
+	var numero_nivel := int(metricas.get(\"numero_nivel\", nivel_en_seguimiento))
 	var config: Dictionary = niveles_config.get(numero_nivel, {})
-	var tiempo_objetivo: float = maxf(1.0, float(config.get("tiempo_objetivo", 90.0)))
-	var duracion: float = maxf(0.0, float(metricas.get("duracion", 0.0)))
+	var tiempo_objetivo: float = maxf(1.0, float(config.get(\"tiempo_objetivo\", 90.0)))
+	var duracion: float = maxf(0.0, float(metricas.get(\"duracion\", 0.0)))
 	var eficiencia: float = clampf(tiempo_objetivo / maxf(tiempo_objetivo, duracion), 0.0, 1.0)
 	var penalizacion_tiempo: float = (1.0 - eficiencia) * 25.0
-	var penalizacion_errores: float = float(metricas.get("errores", 0)) * PENALIZACION_ERROR
-	penalizacion_errores += float(metricas.get("acciones_incorrectas", 0)) * PENALIZACION_ACCION_INCORRECTA
-	penalizacion_errores += float(metricas.get("fallos_validacion", 0)) * PENALIZACION_VALIDACION
-	penalizacion_errores += float(metricas.get("pistas_usadas", 0)) * PENALIZACION_PISTA
-	var penalizacion_reintentos: float = float(metricas.get("intentos_fallidos", 0)) * PENALIZACION_INTENTO
-	penalizacion_reintentos += float(metricas.get("reinicios", 0)) * PENALIZACION_REINICIO
+	var penalizacion_errores: float = float(metricas.get(\"errores\", 0)) * PENALIZACION_ERROR
+	penalizacion_errores += float(metricas.get(\"acciones_incorrectas\", 0)) * PENALIZACION_ACCION_INCORRECTA
+	penalizacion_errores += float(metricas.get(\"fallos_validacion\", 0)) * PENALIZACION_VALIDACION
+	penalizacion_errores += float(metricas.get(\"pistas_usadas\", 0)) * PENALIZACION_PISTA
+	var penalizacion_reintentos: float = float(metricas.get(\"intentos_fallidos\", 0)) * PENALIZACION_INTENTO
+	penalizacion_reintentos += float(metricas.get(\"reinicios\", 0)) * PENALIZACION_REINICIO
 	var puntaje: float = clampf(PUNTAJE_MAXIMO - penalizacion_tiempo - penalizacion_errores - penalizacion_reintentos, 0.0, PUNTAJE_MAXIMO)
-	var total_intentos: int = maxi(1, int(metricas.get("intentos_fallidos", 0)) + 1)
+	var total_intentos: int = maxi(1, int(metricas.get(\"intentos_fallidos\", 0)) + 1)
 	var tasa_exito: float = clampf(1.0 / float(total_intentos), 0.0, 1.0)
 	return {
-		"porcentaje": snapped(puntaje, 0.01),
-		"puntaje_general": snapped(puntaje, 0.01),
-		"eficiencia": snapped(eficiencia * 100.0, 0.01),
-		"tasa_exito": snapped(tasa_exito * 100.0, 0.01),
-		"clasificacion": obtener_clasificacion_porcentaje(puntaje)
+		\"porcentaje\": snapped(puntaje, 0.01),
+		\"puntaje_general\": snapped(puntaje, 0.01),
+		\"eficiencia\": snapped(eficiencia * 100.0, 0.01),
+		\"tasa_exito\": snapped(tasa_exito * 100.0, 0.01),
+		\"clasificacion\": obtener_clasificacion_porcentaje(puntaje)
 	}
 
 func calculate_phase_score(numero_fase: int) -> Dictionary:
 	var niveles_fase: Array = []
-	for clave in datos_rendimiento["niveles"].keys():
-		var nivel: Dictionary = datos_rendimiento["niveles"][clave]
-		if int(nivel.get("fase", 0)) == numero_fase:
+	for clave in datos_rendimiento[\"niveles\"].keys():
+		var nivel: Dictionary = datos_rendimiento[\"niveles\"][clave]
+		if int(nivel.get(\"fase\", 0)) == numero_fase:
 			niveles_fase.append(nivel)
 	var total_niveles_fase: int = _contar_niveles_config_por_fase(numero_fase)
 	var total_score: float = 0.0
@@ -218,28 +256,28 @@ func calculate_phase_score(numero_fase: int) -> Dictionary:
 	var total_tiempo: float = 0.0
 	var completados: int = 0
 	for nivel in niveles_fase:
-		if bool(nivel.get("completado", false)):
+		if bool(nivel.get(\"completado\", false)):
 			completados += 1
-		total_score += float(nivel.get("porcentaje", 0.0))
-		total_errores += int(nivel.get("errores", 0))
-		total_tiempo += float(nivel.get("duracion", 0.0))
+		total_score += float(nivel.get(\"porcentaje\", 0.0))
+		total_errores += int(nivel.get(\"errores\", 0))
+		total_tiempo += float(nivel.get(\"duracion\", 0.0))
 	var promedio: float = 0.0 if niveles_fase.is_empty() else total_score / float(niveles_fase.size())
 	var completion: float = 0.0 if total_niveles_fase == 0 else (float(completados) / float(total_niveles_fase)) * 100.0
 	return {
-		"fase": numero_fase,
-		"niveles_completados": completados,
-		"niveles_totales": total_niveles_fase,
-		"puntaje_promedio": snapped(promedio, 0.01),
-		"errores_totales": total_errores,
-		"tiempo_total": snapped(total_tiempo, 0.01),
-		"porcentaje_completado": snapped(completion, 0.01)
+		\"fase\": numero_fase,
+		\"niveles_completados\": completados,
+		\"niveles_totales\": total_niveles_fase,
+		\"puntaje_promedio\": snapped(promedio, 0.01),
+		\"errores_totales\": total_errores,
+		\"tiempo_total\": snapped(total_tiempo, 0.01),
+		\"porcentaje_completado\": snapped(completion, 0.01)
 	}
 
 func calculate_global_score() -> Dictionary:
-	var niveles: Array = datos_rendimiento["niveles"].values()
+	var niveles: Array = datos_rendimiento[\"niveles\"].values()
 	var fases: Array[int] = []
 	for config in niveles_config.values():
-		var fase: int = int(config.get("fase", 0))
+		var fase: int = int(config.get(\"fase\", 0))
 		if fase > 0 and fase not in fases:
 			fases.append(fase)
 	fases.sort()
@@ -249,42 +287,42 @@ func calculate_global_score() -> Dictionary:
 	var total_intentos: int = 0
 	var completados: int = 0
 	for nivel in niveles:
-		if bool(nivel.get("completado", false)):
+		if bool(nivel.get(\"completado\", false)):
 			completados += 1
-		total_score += float(nivel.get("porcentaje", 0.0))
-		total_errores += int(nivel.get("errores", 0))
-		total_tiempo += float(nivel.get("duracion", 0.0))
-		total_intentos += int(nivel.get("intentos_fallidos", 0)) + 1
+		total_score += float(nivel.get(\"porcentaje\", 0.0))
+		total_errores += int(nivel.get(\"errores\", 0))
+		total_tiempo += float(nivel.get(\"duracion\", 0.0))
+		total_intentos += int(nivel.get(\"intentos_fallidos\", 0)) + 1
 	var promedio_niveles: float = 0.0 if niveles.is_empty() else total_score / float(niveles.size())
 	var suma_fases: float = 0.0
 	var fases_completadas: int = 0
 	for fase in fases:
 		var resumen_fase: Dictionary = calculate_phase_score(fase)
-		datos_rendimiento["fases"][str(fase)] = resumen_fase
-		if int(resumen_fase.get("niveles_completados", 0)) > 0:
-			suma_fases += float(resumen_fase.get("puntaje_promedio", 0.0))
-		if float(resumen_fase.get("porcentaje_completado", 0.0)) >= 100.0:
+		datos_rendimiento[\"fases\"][str(fase)] = resumen_fase
+		if int(resumen_fase.get(\"niveles_completados\", 0)) > 0:
+			suma_fases += float(resumen_fase.get(\"puntaje_promedio\", 0.0))
+		if float(resumen_fase.get(\"porcentaje_completado\", 0.0)) >= 100.0:
 			fases_completadas += 1
 	var promedio_fases: float = 0.0 if fases.is_empty() else suma_fases / float(maxi(1, fases.size()))
 	var porcentaje_final: float = snapped((promedio_niveles * 0.7) + (promedio_fases * 0.3), 0.01)
 	var global: Dictionary = {
-		"tiempo_total": snapped(total_tiempo, 0.01),
-		"errores_totales": total_errores,
-		"intentos_totales": total_intentos,
-		"niveles_completados": completados,
-		"niveles_totales": obtener_total_niveles(),
-		"fases_completadas": fases_completadas,
-		"fases_totales": fases.size(),
-		"puntaje_promedio_niveles": snapped(promedio_niveles, 0.01),
-		"puntaje_promedio_fases": snapped(promedio_fases, 0.01),
-		"porcentaje_final": porcentaje_final,
-		"rango_final": obtener_rango_final(porcentaje_final)
+		\"tiempo_total\": snapped(total_tiempo, 0.01),
+		\"errores_totales\": total_errores,
+		\"intentos_totales\": total_intentos,
+		\"niveles_completados\": completados,
+		\"niveles_totales\": obtener_total_niveles(),
+		\"fases_completadas\": fases_completadas,
+		\"fases_totales\": fases.size(),
+		\"puntaje_promedio_niveles\": snapped(promedio_niveles, 0.01),
+		\"puntaje_promedio_fases\": snapped(promedio_fases, 0.01),
+		\"porcentaje_final\": porcentaje_final,
+		\"rango_final\": obtener_rango_final(porcentaje_final)
 	}
-	datos_rendimiento["global"] = global
+	datos_rendimiento[\"global\"] = global
 	return global
 
-func completar_nivel(ruta_siguiente: String = "") -> Dictionary:
-	if not seguimiento_activo and bool(metricas_nivel_actual.get("completado", false)):
+func completar_nivel(ruta_siguiente: String = \"\") -> Dictionary:
+	if not seguimiento_activo and bool(metricas_nivel_actual.get(\"completado\", false)):
 		return metricas_nivel_actual.duplicate(true)
 	var resultado := finish_level_tracking(true)
 	if resultado.is_empty():
@@ -301,52 +339,66 @@ func mostrar_resultados_finales() -> void:
 	guardar_progreso()
 	get_tree().change_scene_to_file(RUTA_RESULTADOS_FINALES)
 
-func configurar_usuario(nombre_usuario: String, nueva_carrera_id: String = "") -> void:
+func configurar_usuario(nombre_usuario: String, nueva_carrera_id: String = \"\") -> void:
 	var nombre_limpio := nombre_usuario.strip_edges()
 	if nombre_limpio.is_empty():
 		return
 	usuario = nombre_limpio
 	if not nueva_carrera_id.strip_edges().is_empty():
 		carrera_id = nueva_carrera_id.strip_edges()
-	datos_rendimiento["usuario"] = usuario
+	datos_rendimiento[\"usuario\"] = usuario
 	guardar_progreso()
 
 func reiniciar_progreso() -> void:
 	ignorar_respuestas_remotas = true
 	nivel_actual = 1
-	fase_actual = int(niveles_config.get(nivel_actual, {}).get("fase", 1))
+	fase_actual = int(niveles_config.get(nivel_actual, {}).get(\"fase\", 1))
 	seguimiento_activo = false
 	nivel_en_seguimiento = 0
 	metricas_nivel_actual = {}
 	datos_rendimiento = {
-		"usuario": usuario,
-		"fase_actual": fase_actual,
-		"nivel_actual": nivel_actual,
-		"niveles": {},
-		"fases": {},
-		"global": {}
+		\"usuario\": usuario,
+		\"fase_actual\": fase_actual,
+		\"nivel_actual\": nivel_actual,
+		\"niveles\": {},
+		\"fases\": {},
+		\"global\": {}
 	}
 	calculate_global_score()
-	estadisticas_actualizadas.emit(datos_rendimiento["global"].duplicate(true))
+	estadisticas_actualizadas.emit(datos_rendimiento[\"global\"].duplicate(true))
 	guardar_progreso()
 
 func guardar_progreso() -> void:
-	datos_rendimiento["usuario"] = usuario
-	datos_rendimiento["fase_actual"] = fase_actual
-	datos_rendimiento["nivel_actual"] = nivel_actual
+	datos_rendimiento[\"usuario\" ] = usuario
+	datos_rendimiento[\"fase_actual\"] = fase_actual
+	datos_rendimiento[\"nivel_actual\"] = nivel_actual
 	_guardar_archivo_local()
 	_guardar_progreso_remoto()
 
 func cargar_progreso() -> void:
 	cargar_guardado_local()
 	estadisticas_actualizadas.emit(calculate_global_score())
+	
+	_obtener_usuario_desde_web()
+	
 	var http_request := HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(_on_progreso_recibido.bind(http_request))
-	var url := servidor + "obtener_progreso.php?usuario=" + usuario.uri_encode()
-	var error := http_request.request(url)
+	
+	var url = SUPABASE_URL + \"/rest/v1/game_performance?select=nivel_actual,fase_actual,raw_rendimiento&order=created_at.desc&limit=1\"
+	if not user_id.is_empty():
+		url += \"&user_id=eq.\" + user_id
+	else:
+		url += \"&username=eq.\" + usuario.uri_encode()
+		
+	var cabeceras: PackedStringArray = [
+		\"apikey: \" + SUPABASE_KEY,
+		\"Authorization: Bearer \" + SUPABASE_KEY
+	]
+	
+	var error := http_request.request(url, cabeceras, HTTPClient.METHOD_GET)
 	if error != OK:
-		push_warning("No se pudo solicitar el progreso remoto. Código: %s" % error)
+		push_warning(\"No se pudo solicitar el progreso remoto de Supabase. Código: %s\" % error)
 		http_request.queue_free()
 
 func cargar_guardado_local() -> void:
@@ -366,68 +418,95 @@ func obtener_resumen_resultados() -> Dictionary:
 
 func obtener_clasificacion_porcentaje(porcentaje: float) -> String:
 	if porcentaje >= 95.0:
-		return "Ejecución perfecta"
+		return \"Ejecución perfecta\"
 	if porcentaje >= 90.0:
-		return "Errores menores"
+		return \"Errores menores\"
 	if porcentaje >= 80.0:
-		return "Rendimiento aceptable"
+		return \"Rendimiento aceptable\"
 	if porcentaje >= 70.0:
-		return "Múltiples errores"
+		return \"Múltiples errores\"
 	if porcentaje >= 60.0:
-		return "Errores excesivos"
-	return "Rendimiento bajo"
+		return \"Errores excesivos\"
+	return \"Rendimiento bajo\"
 
 func obtener_rango_final(porcentaje: float) -> String:
 	if porcentaje >= 95.0:
-		return "Experto"
+		return \"Experto\"
 	if porcentaje >= 85.0:
-		return "Avanzado"
+		return \"Avanzado\"
 	if porcentaje >= 70.0:
-		return "Intermedio"
+		return \"Intermedio\"
 	if porcentaje >= 60.0:
-		return "Principiante"
-	return "Necesita mejorar"
+		return \"Principiante\"
+	return \"Necesita mejorar\"
 
 func formatear_tiempo(segundos: float) -> String:
 	var total := int(round(segundos))
 	var minutos := total / 60
 	var seg := total % 60
-	return "%02d:%02d" % [minutos, seg]
+	return \"%02d:%02d\" % [minutos, seg]
 
 func _asegurar_seguimiento_actual() -> void:
 	if not seguimiento_activo:
 		start_level_tracking(nivel_actual)
 
 func _guardar_resultado_nivel(resultado: Dictionary) -> void:
-	var clave: String = str(resultado.get("numero_nivel", nivel_en_seguimiento))
-	datos_rendimiento["niveles"][clave] = resultado.duplicate(true)
+	var clave: String = str(resultado.get(\"numero_nivel\", nivel_en_seguimiento))
+	datos_rendimiento[\"niveles\"][clave] = resultado.duplicate(true)
 	calculate_global_score()
 
 func _guardar_archivo_local() -> void:
 	var archivo := FileAccess.open(RUTA_GUARDADO_LOCAL, FileAccess.WRITE)
 	if archivo == null:
-		push_warning("No se pudo abrir el archivo de guardado local de rendimiento.")
+		push_warning(\"No se pudo abrir el archivo de guardado local de rendimiento.\")
 		return
-	archivo.store_string(JSON.stringify(datos_rendimiento, "\t"))
+	archivo.store_string(JSON.stringify(datos_rendimiento, \"\\t\"))
 
 func _guardar_progreso_remoto() -> void:
 	var http_request := HTTPRequest.new()
 	add_child(http_request)
-	http_request.request_completed.connect(func(_result: int, _response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:
+	http_request.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+		if response_code >= 200 and response_code < 300:
+			print(\"Progreso guardado exitosamente en Supabase.\")
+		else:
+			push_warning(\"Error al guardar progreso en Supabase. Código: %d\" % response_code)
+			print(\"Respuesta: \", body.get_string_from_utf8())
 		http_request.queue_free()
 	)
-	var datos_a_enviar: Dictionary = {
-	"usuario": usuario,
-	"carrera_id": carrera_id,
-	"nivel_actual": nivel_actual,
-	"fase_actual": fase_actual,
-	"rendimiento": datos_rendimiento
-}
-	var cuerpo_json: String = JSON.stringify(datos_a_enviar)
-	var cabeceras: PackedStringArray = ["Content-Type: application/json"]
-	var error: Error = http_request.request(servidor + "guardar_progreso.php", cabeceras, HTTPClient.METHOD_POST, cuerpo_json)
+
+	var global = calculate_global_score()
+	var payload: Dictionary = {
+		\"username\": usuario,
+		\"carrera_id\": carrera_id,
+		\"nivel_actual\": nivel_actual,
+		\"fase_actual\": fase_actual,
+		\"tiempo_total\": global.get(\"tiempo_total\", 0.0),
+		\"errores_totales\": global.get(\"errores_totales\", 0),
+		\"intentos_totales\": global.get(\"intentos_totales\", 0),
+		\"niveles_completados\": global.get(\"niveles_completados\", 0),
+		\"fases_completadas\": global.get(\"fases_completadas\", 0),
+		\"puntaje_promedio_niveles\": global.get(\"puntaje_promedio_niveles\", 0.0),
+		\"puntaje_promedio_fases\": global.get(\"puntaje_promedio_fases\", 0.0),
+		\"porcentaje_final\": global.get(\"porcentaje_final\", 0.0),
+		\"rango_final\": global.get(\"rango_final\", \"N/A\"),
+		\"raw_rendimiento\": datos_rendimiento
+	}
+	
+	if not user_id.is_empty():
+		payload[\"user_id\"] = user_id
+
+	var cuerpo_json: String = JSON.stringify(payload)
+	var cabeceras: PackedStringArray = [
+		\"Content-Type: application/json\",
+		\"apikey: \" + SUPABASE_KEY,
+		\"Authorization: Bearer \" + SUPABASE_KEY,
+		\"Prefer: return=minimal\"
+	]
+	
+	var url = SUPABASE_URL + \"/rest/v1/game_performance\"
+	var error: Error = http_request.request(url, cabeceras, HTTPClient.METHOD_POST, cuerpo_json)
 	if error != OK:
-		push_warning("No se pudo guardar el progreso remoto. Código: %s" % error)
+		push_warning(\"No se pudo iniciar la petición a Supabase. Código: %s\" % error)
 		http_request.queue_free()
 
 func _on_progreso_recibido(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray, http_request: HTTPRequest) -> void:
@@ -435,43 +514,50 @@ func _on_progreso_recibido(_result: int, response_code: int, _headers: PackedStr
 	if ignorar_respuestas_remotas:
 		return
 	var texto: String = body.get_string_from_utf8()
-	print("Respuesta cruda del servidor: ", texto)
-	print("Código de respuesta HTTP: ", response_code)
-	if response_code != 200 or texto.strip_edges().is_empty():
+	if response_code != 200 or texto.strip_edges().is_empty() or texto == \"[]\":
 		return
-	var datos_recibidos = JSON.parse_string(texto)
-	if datos_recibidos is Dictionary:
-		_fusionar_guardado(datos_recibidos)
-		estadisticas_actualizadas.emit(calculate_global_score())
-		print("Progreso cargado. Nivel actual: ", nivel_actual)
+		
+	var array_datos = JSON.parse_string(texto)
+	if array_datos is Array and array_datos.size() > 0:
+		var datos_recibidos = array_datos[0]
+		if datos_recibidos is Dictionary:
+			_fusionar_guardado(datos_recibidos)
+			estadisticas_actualizadas.emit(calculate_global_score())
+			print(\"Progreso cargado desde Supabase. Nivel actual: \", nivel_actual)
 
 func _fusionar_guardado(datos: Dictionary) -> void:
 	var usuario_principal := usuario
-	if datos.has("nivel_actual"):
-		nivel_actual = int(datos["nivel_actual"])
-	elif datos.has("nivel"):
-		nivel_actual = int(datos["nivel"])
-	if datos.has("fase_actual"):
-		fase_actual = int(datos["fase_actual"])
-	if datos.has("rendimiento") and datos["rendimiento"] is Dictionary:
-		_fusionar_guardado(datos["rendimiento"])
+	if datos.has(\"nivel_actual\"):
+		nivel_actual = int(datos[\"nivel_actual\"])
+	elif datos.has(\"nivel\"):
+		nivel_actual = int(datos[\"nivel\"])
+	if datos.has(\"fase_actual\"):
+		fase_actual = int(datos[\"fase_actual\"])
+	if datos.has(\"raw_rendimiento\") and datos[\"raw_rendimiento\"] is Dictionary:
+		_fusionar_guardado(datos[\"raw_rendimiento\"])
+	elif datos.has(\"rendimiento\") and datos[\"rendimiento\" ] is Dictionary:
+		_fusionar_guardado(datos[\"rendimiento\"])
+	
 	usuario = usuario_principal
-	if datos.has("niveles") and datos["niveles"] is Dictionary:
-		for clave in datos["niveles"].keys():
-			datos_rendimiento["niveles"][str(clave)] = datos["niveles"][clave]
-	if datos.has("fases") and datos["fases"] is Dictionary:
-		for clave in datos["fases"].keys():
-			datos_rendimiento["fases"][str(clave)] = datos["fases"][clave]
-	if datos.has("global") and datos["global"] is Dictionary:
-		datos_rendimiento["global"] = datos["global"]
-	datos_rendimiento["usuario"] = usuario
-	datos_rendimiento["nivel_actual"] = nivel_actual
-	datos_rendimiento["fase_actual"] = fase_actual
+	if datos.has(\"niveles\") and datos[\"niveles\"] is Dictionary:
+		for clave in datos[\"niveles\"].keys():
+			datos_rendimiento[\"niveles\"][str(clave)] = datos[\"niveles\"][clave]
+	if datos.has(\"fases\") and datos[\"fases\"] is Dictionary:
+		for clave in datos[\"fases\"].keys():
+			datos_rendimiento[\"fases\"][str(clave)] = datos[\"fases\"][clave]
+	if datos.has(\"global\") and datos[\"global\"] is Dictionary:
+		datos_rendimiento[\"global\"] = datos[\"global\"]
+	datos_rendimiento[\"usuario\"] = usuario
+	datos_rendimiento[\"nivel_actual\"] = nivel_actual
+	datos_rendimiento[\"fase_actual\"] = fase_actual
 	calculate_global_score()
 
 func _contar_niveles_config_por_fase(numero_fase: int) -> int:
 	var total := 0
 	for config in niveles_config.values():
-		if int(config.get("fase", 0)) == numero_fase:
+		if int(config.get(\"fase\", 0)) == numero_fase:
 			total += 1
 	return total
+
+func get_usuario_logueado() -> String:
+	return usuario
