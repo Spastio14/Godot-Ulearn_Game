@@ -2,8 +2,8 @@ res://addons/dialogue_manager/example_balloon/example_balloon.tscn::f1c219b3631e
 res://addons/dialogue_manager/example_balloon/small_example_balloon.tscn::ad39f864cd724c0ab85c37ccb1b3962b::1776272220::res://.godot/exported/133200997/export-25872080cd204f02261b5746b425708f-small_example_balloon.scn
 res://addons/dialogue_manager/dialogue_label.tscn::5087c11b45dfaf8effc779674dfe11e8::1776272220::res://.godot/exported/133200997/export-e41b7d5321416240678013b406b79557-dialogue_label.scn
 res://addons/dialogue_manager/test_scene.tscn::5946a9a55ceff988ba46e7f734ff0538::1776272221::res://.godot/exported/133200997/export-74a175fe1e216df3bdf79c5c27a2ac2c-test_scene.scn
-res://Meu_UI/menu_ui.tscn::1baadd1aebc29d31dd0e0505a65fba58::1780461395::res://.godot/exported/133200997/export-9826dcd26b78af42445b9858857fc3bd-menu_ui.scn
-res://Robot_compu/UI/control_robot.tscn::d75dea5d77b2506080f56a3f122cb623::1780287544::res://.godot/exported/133200997/export-4c41d6356eded763215f0e95908251fa-control_robot.scn
+res://Meu_UI/menu_ui.tscn::ec7839ac7c87323d6d53c63dc9f36199::1780464434::res://.godot/exported/133200997/export-9826dcd26b78af42445b9858857fc3bd-menu_ui.scn
+res://Robot_compu/UI/control_robot.tscn::b37fc9c3ebc2ae24ca1ec6740b87b34d::1781041132::res://.godot/exported/133200997/export-4c41d6356eded763215f0e95908251fa-control_robot.scn
 res://Robot_compu/Bloque_Cerrado.tscn::ebdcffe75aabf1c733077f0a0e9e324c::1776655919::res://.godot/exported/133200997/export-31f522706f27499ad4be646f36bfeed6-Bloque_Cerrado.scn
 res://Robot_compu/Compu_nv_1.tscn::52c02e1d37eaa0d186a44665d450df2a::1780287527::res://.godot/exported/133200997/export-53c8e29a3c14bcfc4978a5f18906fdd3-Compu_nv_1.scn
 res://Robot_compu/Compu_nv_2.tscn::94024d665e1857288167f60f8c1a9657::1776658780::res://.godot/exported/133200997/export-ff1d42af37462a450713c734110ef96a-Compu_nv_2.scn
@@ -38,4 +38,4 @@ res://EcoTechNv/nivel_4_2_11.tscn::4e4b7da1530ebec48c5d5317d9ca9363::1780285299:
 res://EcoTechNv/nivel_4_3_12.tscn::a5cebfb0845f77520bbac3393d7ae559::1780285311::res://.godot/exported/133200997/export-f8cae3829686f85d08e04f7f0247aff3-nivel_4_3_12.scn
 res://EcoTechNv/nivel_4_4_13.tscn::b7fe9ca09363ca12e749d93fe0e6dac0::1780285319::res://.godot/exported/133200997/export-f71730beae58680e5f82aece7f577575-nivel_4_4_13.scn
 res://EcoTechNv/nivel_4_5_14.tscn::3f649299e03a389a87a4b3f3d147d01d::1780285329::res://.godot/exported/133200997/export-5041f277907afbfa91da6c40f96d92ed-nivel_4_5_14.scn
-res://Meu_UI/final_results.tscn::54d0262356c6d4821fb07f7adcc19437::1780351029::res://.godot/exported/133200997/export-89a8931948b764a88e940a5466b08004-final_results.scn
+res://Meu_UI/final_results.tscn::54d0262356c6d4821fb07f7adcc19437::1780463973::res://.godot/exported/133200997/export-89a8931948b764a88e940a5466b08004-final_results.scn
