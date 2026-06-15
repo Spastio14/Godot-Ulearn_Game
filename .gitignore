@@ -1,0 +1,4 @@
+# Godot 4+ ignore rules
+.godot/
+*.translation
+export_presets.cfg
