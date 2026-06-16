@@ -175,47 +175,113 @@ func mostrar_mensaje_felicitacion(resultado: Dictionary) -> void:
 	canvas_layer.layer = 100
 	get_tree().root.add_child(canvas_layer)
 
-	var color_rect = ColorRect.new()
-	color_rect.color = Color(0, 0, 0, 0.5)
-	color_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	canvas_layer.add_child(color_rect)
+	# Fondo oscurecido con animación de entrada
+	var overlay = ColorRect.new()
+	overlay.color = Color(0, 0, 0, 0)
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	canvas_layer.add_child(overlay)
+
+	# Contenedor principal estilo alerta
+	var panel_container = PanelContainer.new()
+	panel_container.custom_minimum_size = Vector2(450, 320)
+	
+	# Centrado absoluto
+	panel_container.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	
+	# El pivot debe estar en el centro exacto (mitad del custom_minimum_size) para que el escalado sea simétrico
+	panel_container.pivot_offset = Vector2(225, 160) 
+	
+	panel_container.scale = Vector2(0.7, 0.7)
+	panel_container.modulate.a = 0
+	canvas_layer.add_child(panel_container)
+
+	# Estilo visual de la caja
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color(0.1, 0.1, 0.15, 0.95)
+	style.border_width_left = 4
+	style.border_width_top = 4
+	style.border_width_right = 4
+	style.border_width_bottom = 4
+	style.border_color = Color(0.25, 0.5, 1.0) # Azul brillante
+	style.corner_radius_top_left = 15
+	style.corner_radius_top_right = 15
+	style.corner_radius_bottom_left = 15
+	style.corner_radius_bottom_right = 15
+	style.shadow_color = Color(0, 0, 0, 0.4)
+	style.shadow_size = 15
+	style.shadow_offset = Vector2(0, 8)
+	panel_container.add_theme_stylebox_override("panel", style)
+
+	var margin = MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 30)
+	margin.add_theme_constant_override("margin_top", 30)
+	margin.add_theme_constant_override("margin_right", 30)
+	margin.add_theme_constant_override("margin_bottom", 30)
+	panel_container.add_child(margin)
 
 	var vbox = VBoxContainer.new()
-	vbox.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	canvas_layer.add_child(vbox)
+	vbox.add_theme_constant_override("separation", 15)
+	margin.add_child(vbox)
+
+	# Intentar cargar fuente personalizada
+	var font_pixel = load("res://Fonts/pixeldown.ttf")
 
 	var label_main = Label.new()
 	label_main.text = "¡NIVEL COMPLETADO!"
 	label_main.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label_main.add_theme_font_size_override("font_size", 50)
+	label_main.autowrap_mode = TextServer.AUTOWRAP_WORD
+	label_main.add_theme_font_size_override("font_size", 36)
+	label_main.add_theme_color_override("font_color", Color(0.3, 0.75, 1.0))
+	if font_pixel: label_main.add_theme_font_override("font", font_pixel)
 	vbox.add_child(label_main)
 
 	var label_user = Label.new()
-	label_user.text = "Buen trabajo, " + usuario
+	label_user.text = "BUEN TRABAJO, " + usuario.to_upper()
 	label_user.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label_user.add_theme_font_size_override("font_size", 24)
+	label_user.autowrap_mode = TextServer.AUTOWRAP_WORD
+	label_user.add_theme_font_size_override("font_size", 22)
+	if font_pixel: label_user.add_theme_font_override("font", font_pixel)
 	vbox.add_child(label_user)
+
+	var sep = HSeparator.new()
+	vbox.add_child(sep)
 
 	var label_score = Label.new()
 	label_score.text = "Puntaje: " + str(resultado.get("porcentaje", 0)) + " / 100"
 	label_score.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label_score.add_theme_font_size_override("font_size", 36)
-	label_score.modulate = Color.GOLD
+	label_score.add_theme_font_size_override("font_size", 32)
+	label_score.modulate = Color(1.0, 0.85, 0.2) # Dorado
+	if font_pixel: label_score.add_theme_font_override("font", font_pixel)
 	vbox.add_child(label_score)
 
 	var label_extra = Label.new()
 	label_extra.text = "Eficiencia: %d%% | Tasa de éxito: %d%%" % [resultado.get("eficiencia", 0), resultado.get("tasa_exito", 0)]
 	label_extra.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label_extra.add_theme_font_size_override("font_size", 16)
+	label_extra.modulate = Color(0.8, 0.8, 0.8)
+	if font_pixel: label_extra.add_theme_font_override("font", font_pixel)
 	vbox.add_child(label_extra)
 
 	var label_rank = Label.new()
 	label_rank.text = resultado.get("clasificacion", "")
 	label_rank.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label_rank.add_theme_font_size_override("font_size", 28)
+	label_rank.add_theme_font_size_override("font_size", 26)
+	label_rank.modulate = Color(0.4, 1.0, 0.4) # Verde claro
+	if font_pixel: label_rank.add_theme_font_override("font", font_pixel)
 	vbox.add_child(label_rank)
 
-	var timer = get_tree().create_timer(4.0)
-	timer.timeout.connect(func(): canvas_layer.queue_free())
+	# Animación de entrada con Tween
+	var tween = get_tree().create_tween().set_parallel(true)
+	tween.tween_property(overlay, "color", Color(0, 0, 0, 0.7), 0.4)
+	tween.tween_property(panel_container, "scale", Vector2(1, 1), 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(panel_container, "modulate:a", 1.0, 0.3)
+	
+	# Temporizador para cerrar con animación
+	get_tree().create_timer(4.5).timeout.connect(func():
+		var tween_out = get_tree().create_tween().set_parallel(true)
+		tween_out.tween_property(canvas_layer, "modulate:a", 0.0, 0.6)
+		tween_out.finished.connect(func(): canvas_layer.queue_free())
+	)
 
 func registrar_acierto(cantidad: int = 1) -> void:
 	_asegurar_seguimiento_actual()
@@ -416,19 +482,34 @@ func cargar_progreso() -> void:
 	add_child(http_request)
 	http_request.request_completed.connect(_on_progreso_recibido.bind(http_request))
 	
-	# Consultamos directamente a Supabase
-	var url = SUPABASE_URL + "/rest/v1/game_performance?username=eq." + usuario.uri_encode() + "&order=id.desc&limit=1"
+	# Consultamos a través del backend PHP
+	var url = _obtener_url_backend("obtener_progreso.php") + "?usuario=" + usuario.uri_encode()
 
 	var cabeceras: PackedStringArray = [
-		"Content-Type: application/json",
-		"apikey: " + SUPABASE_KEY,
-		"Authorization: Bearer " + SUPABASE_KEY
+		"Content-Type: application/json"
 	]
 
 	var error := http_request.request(url, cabeceras, HTTPClient.METHOD_GET)
 	if error != OK:
-		push_warning("No se pudo solicitar el progreso remoto de Supabase. Código: %s" % error)
+		push_warning("No se pudo solicitar el progreso desde el backend. Código: %s" % error)
 		http_request.queue_free()
+
+func _obtener_url_backend(script: String) -> String:
+	var base_url = ""
+	if OS.has_feature("web"):
+		var origin = JavaScriptBridge.eval("window.location.origin")
+		if origin and origin != "undefined" and origin != "null":
+			base_url = origin
+	
+	# Si no detectamos origen (o estamos en local/editor), usamos un fallback razonable
+	if base_url == "":
+		base_url = "http://localhost:8000" # Ajustar según el servidor local
+	
+	# Asegurar que no haya dobles barras
+	if not base_url.ends_with("/"):
+		base_url += "/"
+	
+	return base_url + "backend/" + script
 
 func cargar_guardado_local() -> void:
 	if not FileAccess.file_exists(RUTA_GUARDADO_LOCAL):
@@ -496,15 +577,15 @@ func _guardar_progreso_remoto() -> void:
 	add_child(http_request)
 	http_request.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 		if response_code >= 200 and response_code < 300:
-			print("Progreso guardado exitosamente en Supabase.")
+			print("Progreso guardado exitosamente a través del backend PHP.")
 		else:
-			push_warning("Error al guardar progreso en Supabase. Código: %d" % response_code)
+			push_warning("Error al guardar progreso en el backend. Código: %d" % response_code)
 			print("Respuesta: ", body.get_string_from_utf8())
 		http_request.queue_free()
 		)
 
 	var global = calculate_global_score()
-	# Adaptar payload para que coincida con la tabla game_performance de Supabase
+	# Payload compatible con backend PHP (que luego lo manda a Supabase)
 	var payload: Dictionary = {
 			"username": usuario,
 			"carrera_id": carrera_id,
@@ -527,16 +608,13 @@ func _guardar_progreso_remoto() -> void:
 
 	var cuerpo_json: String = JSON.stringify(payload)
 	var cabeceras: PackedStringArray = [
-		"Content-Type: application/json",
-		"apikey: " + SUPABASE_KEY,
-		"Authorization: Bearer " + SUPABASE_KEY,
-		"Prefer: return=minimal"
+		"Content-Type: application/json"
 	]
 
-	var url = SUPABASE_URL + "/rest/v1/game_performance"
+	var url = _obtener_url_backend("guardar_progreso.php")
 	var error: Error = http_request.request(url, cabeceras, HTTPClient.METHOD_POST, cuerpo_json)
 	if error != OK:
-		push_warning("No se pudo iniciar la petición a Supabase. Código: %s" % error)
+		push_warning("No se pudo iniciar la petición al backend. Código: %s" % error)
 		http_request.queue_free()
 
 func _on_progreso_recibido(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray, http_request: HTTPRequest) -> void:
