@@ -503,7 +503,7 @@ func _obtener_url_backend(script: String) -> String:
 	
 	# Si no detectamos origen (o estamos en local/editor), usamos un fallback razonable
 	if base_url == "":
-		base_url = "http://localhost:8000" # Ajustar según el servidor local
+		base_url = "http://localhost/ulearn/"
 	
 	# Asegurar que no haya dobles barras
 	if not base_url.ends_with("/"):
