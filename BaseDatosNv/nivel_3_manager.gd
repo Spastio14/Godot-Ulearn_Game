@@ -95,8 +95,7 @@ func validar():
 	if usuarios_completo and contacto_completo and not hay_errores and not faltan_datos:
 		print("¡Nivel completado! Todos los datos están en sus tablas correspondientes.")
 		nivel_terminado = true
-		GameManager.completar_nivel()
-		# Aquí podrías mostrar una pantalla de victoria
+		await GameManager.completar_nivel()
 	else:
 		GameManager.registrar_fallo_validacion()
 		if hay_errores:

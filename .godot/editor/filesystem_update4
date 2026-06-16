@@ -1,2 +1,5 @@
+res://BaseDatosNv/bd_nv_9.gd
+res://Circuito_Log_Compu/Circuit_1.gd
+res://EcoTechNv/network_manager.gd
+res://Robot_compu/Compu_nv_1.gd
 res://Scripts/GameManager.gd
-res://Meu_UI/menu_ui.tscn

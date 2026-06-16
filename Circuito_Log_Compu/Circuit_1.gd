@@ -25,9 +25,4 @@ func _ready():
 func _on_win():
 	print("Nivel completado")
 	await get_tree().create_timer(0.5).timeout
-	GameManager.completar_nivel()
-	call_deferred("_cargar_siguiente")
-
-
-func _cargar_siguiente():
-	get_tree().change_scene_to_file("res://Circuito_Log_Compu/Circuit_nv_5.tscn")
+	await GameManager.completar_nivel()

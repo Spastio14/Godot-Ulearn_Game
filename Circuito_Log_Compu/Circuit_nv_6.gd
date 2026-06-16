@@ -47,9 +47,4 @@ func _ready():
 func _on_win():
 	print("Nivel completado")
 	await get_tree().create_timer(0.5).timeout
-	GameManager.completar_nivel()
-	call_deferred("_next")
-
-
-func _next():
-	get_tree().change_scene_to_file("res://BaseDatosNv/BD_nv_7.tscn")
+	await GameManager.completar_nivel()

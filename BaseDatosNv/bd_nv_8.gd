@@ -83,8 +83,7 @@ func validar():
 	if dba_correcto and usuario_correcto and not hay_errores and not faltan_datos:
 		print("Nivel completado")
 		await get_tree().create_timer(0.5).timeout
-		GameManager.completar_nivel()
-		call_deferred("_cargar_siguiente")
+		await GameManager.completar_nivel()
 	else:
 		GameManager.registrar_fallo_validacion()
 		if hay_errores:
@@ -93,9 +92,6 @@ func validar():
 			print("Incorrecto - Faltan asignar permisos")
 		else:
 			print("Incorrecto - Faltan datos necesarios")
-
-func _cargar_siguiente():
-	get_tree().change_scene_to_file("res://BaseDatosNv/BD_nv_9.tscn")
 
 func _on_btn_validar_pressed() -> void:
 	validar()

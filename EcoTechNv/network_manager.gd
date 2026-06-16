@@ -180,18 +180,7 @@ func validar_red() -> void:
 		label_sugerencia.text = msg
 	emit_signal("network_state_changed", true, msg)
 	await get_tree().create_timer(1.2).timeout
-	var resultado_rendimiento := GameManager.completar_nivel()
-	
-	# Transición automática al siguiente nivel registrada en el catálogo central.
-	if resultado_rendimiento.is_empty():
-		GameManager.mostrar_resultados_finales()
-		return
-	var numero_completado := int(resultado_rendimiento.get("numero_nivel", 0))
-	var next_scene_path := GameManager.obtener_siguiente_ruta_nivel(numero_completado)
-	if next_scene_path.is_empty():
-		GameManager.mostrar_resultados_finales()
-	else:
-		get_tree().change_scene_to_file(next_scene_path)
+	await GameManager.completar_nivel()
 
 func _validaciones_avanzadas(pcs: Array, servers: Array, nodos: Array) -> Dictionary:
 	match level_mode:

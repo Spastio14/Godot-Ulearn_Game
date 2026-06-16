@@ -3,6 +3,7 @@ extends Node
 signal seguimiento_nivel_iniciado(datos_nivel: Dictionary)
 signal seguimiento_nivel_finalizado(resultado_nivel: Dictionary)
 signal estadisticas_actualizadas(resumen_global: Dictionary)
+signal felicitacion_finalizada
 
 const RUTA_GUARDADO_LOCAL: String = "user://progreso_rendimiento.json"
 const RUTA_RESULTADOS_FINALES: String = "res://Meu_UI/final_results.tscn"
@@ -48,6 +49,9 @@ var datos_rendimiento: Dictionary = {
 	"fases": {},
 	"global": {}
 }
+
+var felicitaciones_habilitadas: bool = true
+const ESCENA_FELICITACION = preload("res://Meu_UI/FelicitacionUI.tscn")
 
 var seguimiento_activo: bool = false
 var nivel_en_seguimiento: int = 0
@@ -171,117 +175,15 @@ func finish_level_tracking(completado: bool = true) -> Dictionary:
 	return metricas_nivel_actual.duplicate(true)
 
 func mostrar_mensaje_felicitacion(resultado: Dictionary) -> void:
-	var canvas_layer = CanvasLayer.new()
-	canvas_layer.layer = 100
-	get_tree().root.add_child(canvas_layer)
+	if not felicitaciones_habilitadas:
+		felicitacion_finalizada.emit()
+		return
 
-	# Fondo oscurecido con animación de entrada
-	var overlay = ColorRect.new()
-	overlay.color = Color(0, 0, 0, 0)
-	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	canvas_layer.add_child(overlay)
+	var instancia = ESCENA_FELICITACION.instantiate()
+	get_tree().root.add_child(instancia)
+	instancia.configurar(resultado, usuario)
+	instancia.cerrada.connect(func(): felicitacion_finalizada.emit())
 
-	# Contenedor principal estilo alerta
-	var panel_container = PanelContainer.new()
-	panel_container.custom_minimum_size = Vector2(450, 320)
-	
-	# Centrado absoluto
-	panel_container.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	
-	# El pivot debe estar en el centro exacto (mitad del custom_minimum_size) para que el escalado sea simétrico
-	panel_container.pivot_offset = Vector2(225, 160) 
-	
-	panel_container.scale = Vector2(0.7, 0.7)
-	panel_container.modulate.a = 0
-	canvas_layer.add_child(panel_container)
-
-	# Estilo visual de la caja
-	var style = StyleBoxFlat.new()
-	style.bg_color = Color(0.1, 0.1, 0.15, 0.95)
-	style.border_width_left = 4
-	style.border_width_top = 4
-	style.border_width_right = 4
-	style.border_width_bottom = 4
-	style.border_color = Color(0.25, 0.5, 1.0) # Azul brillante
-	style.corner_radius_top_left = 15
-	style.corner_radius_top_right = 15
-	style.corner_radius_bottom_left = 15
-	style.corner_radius_bottom_right = 15
-	style.shadow_color = Color(0, 0, 0, 0.4)
-	style.shadow_size = 15
-	style.shadow_offset = Vector2(0, 8)
-	panel_container.add_theme_stylebox_override("panel", style)
-
-	var margin = MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 30)
-	margin.add_theme_constant_override("margin_top", 30)
-	margin.add_theme_constant_override("margin_right", 30)
-	margin.add_theme_constant_override("margin_bottom", 30)
-	panel_container.add_child(margin)
-
-	var vbox = VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 15)
-	margin.add_child(vbox)
-
-	# Intentar cargar fuente personalizada
-	var font_pixel = load("res://Fonts/pixeldown.ttf")
-
-	var label_main = Label.new()
-	label_main.text = "¡NIVEL COMPLETADO!"
-	label_main.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label_main.autowrap_mode = TextServer.AUTOWRAP_WORD
-	label_main.add_theme_font_size_override("font_size", 36)
-	label_main.add_theme_color_override("font_color", Color(0.3, 0.75, 1.0))
-	if font_pixel: label_main.add_theme_font_override("font", font_pixel)
-	vbox.add_child(label_main)
-
-	var label_user = Label.new()
-	label_user.text = "BUEN TRABAJO, " + usuario.to_upper()
-	label_user.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label_user.autowrap_mode = TextServer.AUTOWRAP_WORD
-	label_user.add_theme_font_size_override("font_size", 22)
-	if font_pixel: label_user.add_theme_font_override("font", font_pixel)
-	vbox.add_child(label_user)
-
-	var sep = HSeparator.new()
-	vbox.add_child(sep)
-
-	var label_score = Label.new()
-	label_score.text = "Puntaje: " + str(resultado.get("porcentaje", 0)) + " / 100"
-	label_score.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label_score.add_theme_font_size_override("font_size", 32)
-	label_score.modulate = Color(1.0, 0.85, 0.2) # Dorado
-	if font_pixel: label_score.add_theme_font_override("font", font_pixel)
-	vbox.add_child(label_score)
-
-	var label_extra = Label.new()
-	label_extra.text = "Eficiencia: %d%% | Tasa de éxito: %d%%" % [resultado.get("eficiencia", 0), resultado.get("tasa_exito", 0)]
-	label_extra.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label_extra.add_theme_font_size_override("font_size", 16)
-	label_extra.modulate = Color(0.8, 0.8, 0.8)
-	if font_pixel: label_extra.add_theme_font_override("font", font_pixel)
-	vbox.add_child(label_extra)
-
-	var label_rank = Label.new()
-	label_rank.text = resultado.get("clasificacion", "")
-	label_rank.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label_rank.add_theme_font_size_override("font_size", 26)
-	label_rank.modulate = Color(0.4, 1.0, 0.4) # Verde claro
-	if font_pixel: label_rank.add_theme_font_override("font", font_pixel)
-	vbox.add_child(label_rank)
-
-	# Animación de entrada con Tween
-	var tween = get_tree().create_tween().set_parallel(true)
-	tween.tween_property(overlay, "color", Color(0, 0, 0, 0.7), 0.4)
-	tween.tween_property(panel_container, "scale", Vector2(1, 1), 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(panel_container, "modulate:a", 1.0, 0.3)
-	
-	# Temporizador para cerrar con animación
-	get_tree().create_timer(4.5).timeout.connect(func():
-		var tween_out = get_tree().create_tween().set_parallel(true)
-		tween_out.tween_property(canvas_layer, "modulate:a", 0.0, 0.6)
-		tween_out.finished.connect(func(): canvas_layer.queue_free())
-	)
 
 func registrar_acierto(cantidad: int = 1) -> void:
 	_asegurar_seguimiento_actual()
@@ -421,11 +323,24 @@ func calculate_global_score() -> Dictionary:
 func completar_nivel(ruta_siguiente: String = "") -> Dictionary:
 	if not seguimiento_activo and bool(metricas_nivel_actual.get("completado", false)):
 		return metricas_nivel_actual.duplicate(true)
+	
 	var resultado := finish_level_tracking(true)
 	if resultado.is_empty():
 		return resultado
-	if not ruta_siguiente.is_empty():
-		get_tree().change_scene_to_file(ruta_siguiente)
+	
+	var ruta = ruta_siguiente
+	if ruta.is_empty():
+		ruta = obtener_ruta_nivel(nivel_actual)
+	
+	if felicitaciones_habilitadas:
+		await felicitacion_finalizada
+	
+	if not ruta.is_empty():
+		get_tree().change_scene_to_file(ruta)
+	else:
+		# Si no hay más niveles, mostrar pantalla de resultados finales
+		mostrar_resultados_finales()
+		
 	return resultado
 
 func completar_nivel_y_cambiar(ruta_siguiente: String) -> void:

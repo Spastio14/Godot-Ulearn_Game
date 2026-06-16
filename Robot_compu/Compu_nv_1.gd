@@ -13,13 +13,8 @@ func _ready():
 
 func cargar_siguiente_nivel():
 	await get_tree().create_timer(0.5).timeout
-	GameManager.completar_nivel()
-	call_deferred("_cambiar_nivel")
-	print("Cargando siguiente nivel")
-	
-
-func _cambiar_nivel():
-	get_tree().change_scene_to_file("res://Robot_compu/Compu_nv_2.tscn")
+	await GameManager.completar_nivel()
+	print("Nivel completado")
 
 func _agregar_instruccion(inst):
 	instrucciones.append(inst)

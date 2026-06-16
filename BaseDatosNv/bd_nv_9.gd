@@ -114,19 +114,13 @@ func validar():
 	if not hay_errores and not faltan_datos:
 		print("Nivel completado")
 		await get_tree().create_timer(0.5).timeout
-		GameManager.completar_nivel()
-		call_deferred("_cargar_siguiente")
+		await GameManager.completar_nivel()
 	else:
 		GameManager.registrar_fallo_validacion()
 		if hay_errores:
 			print("Incorrecto - Hay datos equivocados de tabla o columna")
 		elif faltan_datos:
 			print("Incorrecto - Faltan datos por clasificar")
-
-func _cargar_siguiente():
-	#Puedes redirigir a un menú de victoria o al siguiente nivel si lo creas
-	get_tree().change_scene_to_file("res://EcoTechNv/nivel_4_1_10.tscn")
-	pass
 
 func _on_btn_validar_pressed() -> void:
 	validar()
