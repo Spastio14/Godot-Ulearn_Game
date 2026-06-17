@@ -93,8 +93,14 @@ func _obtener_usuario_desde_web() -> void:
 			var datos = JSON.parse_string(session_json)
 			if datos is Dictionary:
 				usuario = datos.get("name", "Usuario")
-				user_id = datos.get("id", "")
+				user_id = str(datos.get("id", ""))
 				print("Usuario detectado desde localStorage: ", usuario, " (", user_id, ")")
+		
+		# Intentar obtener la carrera/simulación actual
+		var sim_id = JavaScriptBridge.eval("localStorage.getItem('last_simulation_id')")
+		if sim_id and sim_id != "undefined" and sim_id != "null":
+			carrera_id = str(sim_id)
+			print("Carrera/Simulación detectada: ", carrera_id)
 
 func obtener_nivel_por_ruta(ruta: String) -> int:
 	for numero in niveles_config.keys():
@@ -412,13 +418,19 @@ func cargar_progreso() -> void:
 func _obtener_url_backend(script: String) -> String:
 	var base_url = ""
 	if OS.has_feature("web"):
-		var origin = JavaScriptBridge.eval("window.location.origin")
-		if origin and origin != "undefined" and origin != "null":
-			base_url = origin
+		# Intentar obtener la URL base de forma más inteligente para juegos incrustados
+		var href = JavaScriptBridge.eval("window.location.href")
+		if href and href != "undefined" and href != "null":
+			if "/media/" in href:
+				base_url = href.split("/media/")[0]
+			else:
+				var origin = JavaScriptBridge.eval("window.location.origin")
+				if origin and origin != "undefined" and origin != "null":
+					base_url = origin
 	
 	# Si no detectamos origen (o estamos en local/editor), usamos un fallback razonable
-	if base_url == "":
-		base_url = "http://localhost/ulearn/"
+	if base_url == "" or base_url == "null":
+		base_url = "http://localhost:8000/"
 	
 	# Asegurar que no haya dobles barras
 	if not base_url.ends_with("/"):
@@ -490,12 +502,13 @@ func _guardar_archivo_local() -> void:
 func _guardar_progreso_remoto() -> void:
 	var http_request := HTTPRequest.new()
 	add_child(http_request)
-	http_request.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-		if response_code >= 200 and response_code < 300:
-			print("Progreso guardado exitosamente a través del backend PHP.")
+	http_request.request_completed.connect(func(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+		if result == HTTPRequest.RESULT_SUCCESS and response_code >= 200 and response_code < 300:
+			print("Progreso guardado exitosamente a través del backend PHP (SQLite + Supabase).")
 		else:
-			push_warning("Error al guardar progreso en el backend. Código: %d" % response_code)
-			print("Respuesta: ", body.get_string_from_utf8())
+			var error_msg = body.get_string_from_utf8()
+			push_warning("Error al guardar progreso remoto. Result: %d, Code: %d" % [result, response_code])
+			print("Detalle error remoto: ", error_msg)
 		http_request.queue_free()
 		)
 

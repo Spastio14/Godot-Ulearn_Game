@@ -1,5 +1,5 @@
 f098f8d3115d962055284dee314b4f89
-::res://::1781644912
+::res://::1781668473
 .gitignore.txt::TextFile::-1::1781406915::0::1::::<><><>0<>0<><>::
 DOCUMENTACION_PROYECTO_ULEARN.md::TextFile::-1::1781559641::0::1::::<><><>0<>0<><>::
 DOCUMENTACION_SISTEMA_GUARDADO_PROGRESION.md::TextFile::-1::1781406919::0::1::::<><><>0<>0<><>::
@@ -146,15 +146,15 @@ spritesheet_robotsSide.xml::TextFile::-1::1781406919::0::1::::<><><>0<>0<><>::
 spritesheet_robotsTop.xml::TextFile::-1::1781406919::0::1::::<><><>0<>0<><>::
 ::res://asstes/Vector/::1781406919
 ::res://BaseDatosNv/::1781406919
-bd_nv_7.gd::GDScript::2627170607492837424::1781406919::0::1::::<>Control<><>0<>0<><>::
+bd_nv_7.gd::GDScript::2627170607492837424::1781645167::0::1::::<>Control<><>0<>0<><>::
 BD_nv_7.tscn::PackedScene::3074493558352734664::1781406919::0::1::::<><><>0<>0<><>::uid://bdovd7gb3c0oa::::res://BaseDatosNv/bd_nv_7.gd<>uid://cjreierj6d7hk::::res://BaseDatosNv/tabla.tscn<>uid://psrojhr707mb::::res://asstes/img/nose/tab.png<>uid://bq5sdnk0nqm0n::::res://asstes/img/nose/fondo.png
-bd_nv_8.gd::GDScript::3033249715869214870::1781406919::0::1::::<>Control<><>0<>0<><>::
+bd_nv_8.gd::GDScript::3033249715869214870::1781645190::0::1::::<>Control<><>0<>0<><>::
 BD_nv_8.tscn::PackedScene::80773176493545514::1781406919::0::1::::<><><>0<>0<><>::uid://bjhlgdxifva4e::::res://BaseDatosNv/bd_nv_8.gd<>uid://bq5sdnk0nqm0n::::res://asstes/img/nose/fondo.png<>uid://cjreierj6d7hk::::res://BaseDatosNv/tabla.tscn<>uid://psrojhr707mb::::res://asstes/img/nose/tab.png
-bd_nv_9.gd::GDScript::68851587414104079::1781406919::0::1::::<>Control<><>0<>0<><>::
+bd_nv_9.gd::GDScript::68851587414104079::1781645221::0::1::::<>Control<><>0<>0<><>::
 BD_nv_9.tscn::PackedScene::1531206105885866036::1781406919::0::1::::<><><>0<>0<><>::uid://8l8f1n324r8::::res://BaseDatosNv/bd_nv_9.gd<>uid://bq5sdnk0nqm0n::::res://asstes/img/nose/fondo.png<>uid://cjreierj6d7hk::::res://BaseDatosNv/tabla.tscn<>uid://psrojhr707mb::::res://asstes/img/nose/tab.png<>uid://c7jxr5k5p0u5m::::res://BaseDatosNv/tabla_us.tscn
 item_dato.gd::GDScript::8742695812791609196::1781406919::0::1::::<>Panel<><>0<>0<><>::
 item_dato.tscn::PackedScene::2466872433159683353::1781406919::0::1::::<><><>0<>0<><>::uid://dwta6mwkm3ogi::::res://BaseDatosNv/item_dato.gd<>uid://c0o7bnb71tqdn::::res://asstes/img/nose/dat.png
-nivel_3_manager.gd::GDScript::8385281060939888531::1781406919::0::1::::<>Control<><>0<>0<><>::
+nivel_3_manager.gd::GDScript::8385281060939888531::1781645133::0::1::::<>Control<><>0<>0<><>::
 tabla.gd::GDScript::6539269290831199350::1781406919::0::1::::<>Panel<><>0<>0<><>::
 tabla.tscn::PackedScene::5439892773075390816::1781406919::0::1::::<><><>0<>0<><>::uid://c0fw2sfgw7aaw::::res://BaseDatosNv/tabla.gd<>uid://cq6keq0s2y5e8::::res://asstes/img/nose/Agregar un subtítulo.png
 tabla_us.tscn::PackedScene::7038892205452451280::1781406919::0::1::::<><><>0<>0<><>::uid://c0fw2sfgw7aaw::::res://BaseDatosNv/tabla.gd<>uid://dalma0iwudq0f::::res://asstes/img/nose/us.png
@@ -167,11 +167,11 @@ AND_Gate.tscn::PackedScene::7223905588928229939::1781406919::0::1::::<><><>0<>0<
 Cable.gd::GDScript::8397263977839437691::1781406919::0::1::::<>Node2D<><>0<>0<><>::
 Cable.tscn::PackedScene::7777175380464237936::1781406919::0::1::::<><><>0<>0<><>::uid://drvxyf0u88osh::::res://Circuito_Log_Compu/Cable.gd
 CircuitNode.gd::GDScript::2879097985633749500::1781406919::0::1::::<>Node2D<><>0<>0<><>::
-Circuit_1.gd::GDScript::4619183029147244603::1781406919::0::1::::<>Node2D<><>0<>0<><>::
-Circuit_2.gd::GDScript::1611335195740054254::1781406919::0::1::::<>Node2D<><>0<>0<><>::
+Circuit_1.gd::GDScript::4619183029147244603::1781645077::0::1::::<>Node2D<><>0<>0<><>::
+Circuit_2.gd::GDScript::1611335195740054254::1781645094::0::1::::<>Node2D<><>0<>0<><>::
 Circuit_nv_4.tscn::PackedScene::1233293481825388402::1781406919::0::1::::<><><>0<>0<><>::uid://b62tjfxdsfim2::::res://Circuito_Log_Compu/Circuit_1.gd<>uid://b40lhmi2hvnic::::res://Circuito_Log_Compu/Fuente.tscn<>uid://bq5sdnk0nqm0n::::res://asstes/img/nose/fondo.png<>uid://da6kw1c5o05cp::::res://Circuito_Log_Compu/AND_Gate.tscn<>uid://btnfip2f4dt25::::res://Circuito_Log_Compu/PC.tscn
 Circuit_nv_5.tscn::PackedScene::3717286199464044442::1781406919::0::1::::<><><>0<>0<><>::uid://w7spqjln13yo::::res://Circuito_Log_Compu/Circuit_2.gd<>uid://da6kw1c5o05cp::::res://Circuito_Log_Compu/AND_Gate.tscn<>uid://bq5sdnk0nqm0n::::res://asstes/img/nose/fondo.png<>uid://btnfip2f4dt25::::res://Circuito_Log_Compu/PC.tscn<>uid://b40lhmi2hvnic::::res://Circuito_Log_Compu/Fuente.tscn<>uid://d4fs2m7pbdn2w::::res://Circuito_Log_Compu/NOT_Gate.tscn<>uid://cfymp8knnqsl2::::res://Circuito_Log_Compu/OR_Gate.tscn
-Circuit_nv_6.gd::GDScript::3222053657263369214::1781406919::0::1::::<>Node2D<><>0<>0<><>::
+Circuit_nv_6.gd::GDScript::3222053657263369214::1781645114::0::1::::<>Node2D<><>0<>0<><>::
 circuit_nv_6.tscn::PackedScene::907030607702327666::1781406919::0::1::::<><><>0<>0<><>::uid://bl510upn5tbqc::::res://Circuito_Log_Compu/Circuit_nv_6.gd<>uid://bq5sdnk0nqm0n::::res://asstes/img/nose/fondo.png<>uid://b40lhmi2hvnic::::res://Circuito_Log_Compu/Fuente.tscn<>uid://d4fs2m7pbdn2w::::res://Circuito_Log_Compu/NOT_Gate.tscn<>uid://cfymp8knnqsl2::::res://Circuito_Log_Compu/OR_Gate.tscn<>uid://da6kw1c5o05cp::::res://Circuito_Log_Compu/AND_Gate.tscn<>uid://btnfip2f4dt25::::res://Circuito_Log_Compu/PC.tscn
 Fuent.gd::GDScript::86001371509474524::1781406919::0::1::::<>Area2D<><>0<>0<><>::
 Fuente.gd::GDScript::4848978565259954762::1781406919::0::1::::<>Node2D<><>0<>0<><>::
@@ -187,7 +187,7 @@ introducciones_niveles.dialogue::Resource::4426329367675719718::1781406919::1781
 ::res://EcoTechNv/::1781406919
 cable.gd::GDScript::9156935970660429543::1781406919::0::1::::<>Node2D<><>0<>0<><>::
 cable.tscn::PackedScene::6564594931721759123::1781406919::0::1::::<><><>0<>0<><>::uid://d3pxnru7c7wot::::res://EcoTechNv/cable.gd
-network_manager.gd::GDScript::6519277407672252322::1781406919::0::1::::<>Node2D<><>0<>0<><>::
+network_manager.gd::GDScript::6519277407672252322::1781645121::0::1::::<>Node2D<><>0<>0<><>::
 network_node.gd::GDScript::726627429875749060::1781406919::0::1::::<>Node2D<><>0<>0<><>::
 network_port.gd::GDScript::3380818775572309507::1781406919::0::1::::<>Area2D<><>0<>0<><>::
 network_ui.tscn::PackedScene::9150891745599385893::1781406919::0::1::::<><><>0<>0<><>::
@@ -203,7 +203,7 @@ router.tscn::PackedScene::400203474416919129::1781406919::0::1::::<><><>0<>0<><>
 server.tscn::PackedScene::4059700493989504488::1781406919::0::1::::<><><>0<>0<><>::uid://kl8pho2kb0cu::::res://EcoTechNv/network_node.gd<>uid://bam8l07i2xtbi::::res://EcoTechNv/port.tscn<>uid://bd8aadmymq6kv::::res://asstes/img/nose/Diseño sin título/3.png
 ::res://Fonts/::1781559675
 pixeldown.ttf::FontFile::2563015002688163609::1781406919::1781559675::1::::<><><>0<>0<>a8540ac4fec2e64f03436cbba516dfe7<>res://.godot/imported/pixeldown.ttf-d4b80a13a161babf5eb0f03f9a341c65.fontdata::
-::res://Meu_UI/::1781644878
+::res://Meu_UI/::1781644916
 FelicitacionUI.gd::GDScript::7096728900659309189::1781644865::0::1::::<>CanvasLayer<><>0<>0<><>::
 FelicitacionUI.tscn::PackedScene::974186324568059156::1781644878::0::1::::<><><>0<>0<><>::res://Meu_UI/FelicitacionUI.gd<>res://Fonts/pixeldown.ttf
 FinalResults.gd::GDScript::8350271747969931088::1781406919::0::1::::<>Control<><>0<>0<><>::
@@ -221,11 +221,11 @@ Ulearn.manifest.json::JSON::-1::1781406919::0::1::::<><><>0<>0<><>::
 Ulearn.png::CompressedTexture2D::3325379143437755531::1781406919::1781559675::1::::<><><>0<>0<>5d5bb0499af7c70984d1cec381f594d2<>res://.godot/imported/Ulearn.png-49af23bf9413ce133bb0a5bde38e607d.ctex::
 ::res://Robot_compu/::1781406919
 Bloque_Cerrado.tscn::PackedScene::7816310411304475441::1781406919::0::1::::<><><>0<>0<><>::uid://drd1cw8p8o8rf::::res://asstes/Mapa_fondos/Sprites/Tiles/Default/lock_yellow.png
-Compu_nv_1.gd::GDScript::3748574729023600731::1781406919::0::1::::<>Node2D<><>0<>0<><>::
+Compu_nv_1.gd::GDScript::3748574729023600731::1781645036::0::1::::<>Node2D<><>0<>0<><>::
 Compu_nv_1.tscn::PackedScene::6896187769865569400::1781406919::0::1::::<><><>0<>0<><>::uid://btn3qix1e5rdb::::res://Robot_compu/Compu_nv_1.gd<>uid://rertqakm7eyh::::res://Robot_compu/Robot_player.tscn<>uid://bm7n1mpcbdqss::::res://Robot_compu/Meta.tscn<>uid://dli12ncymryv3::::res://Blocks_Map/Tierra_Map.png<>uid://ceqbsyxp8e0j3::::res://Blocks_Map/DecoMap.png<>uid://cnv7mf22rxnsl::::res://asstes/Mapa_fondos/Sprites/Tiles/Default/bush.png<>uid://bg3eur1wxmbfo::::res://Robot_compu/UI/control_robot.tscn
-Compu_nv_2.gd::GDScript::7213045157176919616::1781406919::0::1::::<>Node2D<><>0<>0<><>::
+Compu_nv_2.gd::GDScript::7213045157176919616::1781645041::0::1::::<>Node2D<><>0<>0<><>::
 Compu_nv_2.tscn::PackedScene::7394415948107157070::1781406919::0::1::::<><><>0<>0<><>::uid://bm7n1mpcbdqss::::res://Robot_compu/Meta.tscn<>uid://da1b2gxiwjvlo::::res://Robot_compu/Compu_nv_2.gd<>uid://rertqakm7eyh::::res://Robot_compu/Robot_player.tscn<>uid://dli12ncymryv3::::res://Blocks_Map/Tierra_Map.png<>uid://ceqbsyxp8e0j3::::res://Blocks_Map/DecoMap.png<>uid://ubfp2wi6622w::::res://asstes/Mapa_fondos/Sprites/Tiles/Default/terrain_grass_cloud_right.png<>uid://b64ylijb12fch::::res://asstes/Mapa_fondos/Sprites/Tiles/Default/bridge_logs.png<>uid://cnv7mf22rxnsl::::res://asstes/Mapa_fondos/Sprites/Tiles/Default/bush.png<>uid://bg3eur1wxmbfo::::res://Robot_compu/UI/control_robot.tscn
-Compu_nv_3.gd::GDScript::1305481249826119934::1781406919::0::1::::<>Node2D<><>0<>0<><>::
+Compu_nv_3.gd::GDScript::1305481249826119934::1781645069::0::1::::<>Node2D<><>0<>0<><>::
 Compu_nv_3.tscn::PackedScene::7667964820958115318::1781406919::0::1::::<><><>0<>0<><>::uid://sunc51t3lwi5::::res://Robot_compu/Compu_nv_3.gd<>uid://rertqakm7eyh::::res://Robot_compu/Robot_player.tscn<>uid://bm7n1mpcbdqss::::res://Robot_compu/Meta.tscn<>uid://bg3eur1wxmbfo::::res://Robot_compu/UI/control_robot.tscn<>uid://d3f3thymfiwq4::::res://Robot_compu/Llave.tscn<>uid://dli12ncymryv3::::res://Blocks_Map/Tierra_Map.png<>uid://ceqbsyxp8e0j3::::res://Blocks_Map/DecoMap.png<>uid://cnv7mf22rxnsl::::res://asstes/Mapa_fondos/Sprites/Tiles/Default/bush.png<>uid://djmjqxaqyrxcj::::res://Robot_compu/Bloque_Cerrado.tscn
 Llave.gd::GDScript::3622831285183527694::1781406919::0::1::::<>Area2D<><>0<>0<><>::
 Llave.tscn::PackedScene::9136605972887167013::1781406919::0::1::::<><><>0<>0<><>::uid://bru6rcjhq4ybe::::res://Robot_compu/Llave.gd<>uid://dkeayucgikycq::::res://asstes/Mapa_fondos/Sprites/Tiles/Default/key_yellow.png
@@ -237,5 +237,5 @@ Robot_player.tscn::PackedScene::1202534812669268295::1781406919::0::1::::<><><>0
 Control_robot.gd::GDScript::1960691244824743951::1781406919::0::1::::<>Control<><>0<>0<><>::
 control_robot.tscn::PackedScene::2865635840576788172::1781559641::0::1::::<><><>0<>0<><>::uid://bcrsqn6n8lwwn::::res://Fonts/pixeldown.ttf<>uid://261ke5a0cq20::::res://Robot_compu/UI/Control_robot.gd
 ::res://Scripts/::1781586904
-GameManager.gd::GDScript::3305963939629525239::1781644899::0::1::::<>Node<><>0<>0<><>::
+GameManager.gd::GDScript::3305963939629525239::1781668411::0::1::::<>Node<><>0<>0<><>::
 LevelDialogueIntro.gd::GDScript::1061131911071263179::1781406919::0::1::::LevelDialogueIntro<>Node<><>0<>0<><>::

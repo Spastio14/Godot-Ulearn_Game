@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://felicitacionui"]
+[gd_scene format=3 uid="uid://n45yavy3laq3"]
 
-[ext_resource type="Script" path="res://Meu_UI/FelicitacionUI.gd" id="1_script"]
-[ext_resource type="FontFile" uid="uid://pixeldown_ttf" path="res://Fonts/pixeldown.ttf" id="2_font"]
+[ext_resource type="Script" uid="uid://c8dyc85unwsq4" path="res://Meu_UI/FelicitacionUI.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://bcrsqn6n8lwwn" path="res://Fonts/pixeldown.ttf" id="2_font"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.1, 0.1, 0.15, 0.95)
@@ -9,20 +9,20 @@ border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(0.25, 0.5, 1.0, 1)
+border_color = Color(0.25, 0.5, 1, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
-corner_radius_bottom_left = 15
 corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 shadow_color = Color(0, 0, 0, 0.4)
 shadow_size = 15
 shadow_offset = Vector2(0, 8)
 
-[node name="FelicitacionUI" type="CanvasLayer"]
+[node name="FelicitacionUI" type="CanvasLayer" unique_id=400886714]
 layer = 100
 script = ExtResource("1_script")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=296908166]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,7 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=613626217]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7)
 
-[node name="ButtonClose" type="Button" parent="Control"]
+[node name="ButtonClose" type="Button" parent="Control" unique_id=629391494]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +48,7 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="PanelContainer" type="PanelContainer" parent="Control"]
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1589159282]
 custom_minimum_size = Vector2(450, 320)
 layout_mode = 1
 anchors_preset = 8
@@ -65,18 +65,18 @@ grow_vertical = 2
 pivot_offset = Vector2(225, 160)
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=820219164]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer" unique_id=690128247]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="LabelMain" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LabelMain" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1318371466]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.75, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
@@ -85,7 +85,7 @@ text = "¡NIVEL COMPLETADO!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="LabelUser" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LabelUser" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=2087146461]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 22
@@ -93,10 +93,10 @@ text = "BUEN TRABAJO, USUARIO"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1684495700]
 layout_mode = 2
 
-[node name="LabelScore" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LabelScore" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1952769892]
 modulate = Color(1, 0.85, 0.2, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
@@ -104,7 +104,7 @@ theme_override_font_sizes/font_size = 32
 text = "Puntaje: 0 / 100"
 horizontal_alignment = 1
 
-[node name="LabelExtra" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LabelExtra" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1731073921]
 modulate = Color(0.8, 0.8, 0.8, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
@@ -112,7 +112,7 @@ theme_override_font_sizes/font_size = 16
 text = "Eficiencia: 0% | Tasa de éxito: 0%"
 horizontal_alignment = 1
 
-[node name="LabelRank" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LabelRank" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1030264402]
 modulate = Color(0.4, 1, 0.4, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
