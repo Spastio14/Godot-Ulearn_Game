@@ -101,6 +101,12 @@ func _obtener_usuario_desde_web() -> void:
 		if sim_id and sim_id != "undefined" and sim_id != "null":
 			carrera_id = str(sim_id)
 			print("Carrera/Simulación detectada: ", carrera_id)
+	else:
+		# Modo de prueba local en el editor
+		if user_id.is_empty():
+			user_id = "usuario-test-local-1234"
+			usuario = "Usuario_Test_Local"
+			print("Modo local: Usuario de prueba asignado automáticamente (", user_id, ")")
 
 func obtener_nivel_por_ruta(ruta: String) -> int:
 	for numero in niveles_config.keys():
@@ -344,7 +350,6 @@ func completar_nivel(ruta_siguiente: String = "") -> Dictionary:
 	if not ruta.is_empty():
 		get_tree().change_scene_to_file(ruta)
 	else:
-		# Si no hay más niveles, mostrar pantalla de resultados finales
 		mostrar_resultados_finales()
 		
 	return resultado
@@ -403,8 +408,8 @@ func cargar_progreso() -> void:
 	add_child(http_request)
 	http_request.request_completed.connect(_on_progreso_recibido.bind(http_request))
 	
-	# Consultamos a través del backend PHP
-	var url = _obtener_url_backend("obtener_progreso.php") + "?usuario=" + usuario.uri_encode()
+	# Consultamos a través del backend Node.js
+	var url = _obtener_url_backend("obtener_progreso") + "?usuario=" + usuario.uri_encode()
 
 	var cabeceras: PackedStringArray = [
 		"Content-Type: application/json"
@@ -415,28 +420,17 @@ func cargar_progreso() -> void:
 		push_warning("No se pudo solicitar el progreso desde el backend. Código: %s" % error)
 		http_request.queue_free()
 
-func _obtener_url_backend(script: String) -> String:
-	var base_url = ""
+func _obtener_url_backend(endpoint: String) -> String:
+	var base_url = "http://localhost:8000/"
+	
 	if OS.has_feature("web"):
-		# Intentar obtener la URL base de forma más inteligente para juegos incrustados
-		var href = JavaScriptBridge.eval("window.location.href")
-		if href and href != "undefined" and href != "null":
-			if "/media/" in href:
-				base_url = href.split("/media/")[0]
-			else:
-				var origin = JavaScriptBridge.eval("window.location.origin")
-				if origin and origin != "undefined" and origin != "null":
-					base_url = origin
-	
-	# Si no detectamos origen (o estamos en local/editor), usamos un fallback razonable
-	if base_url == "" or base_url == "null":
-		base_url = "http://localhost:8000/"
-	
-	# Asegurar que no haya dobles barras
-	if not base_url.ends_with("/"):
-		base_url += "/"
-	
-	return base_url + "backend/" + script
+		var origin = JavaScriptBridge.eval("window.location.origin")
+		if origin and origin != "undefined" and origin != "null" and not "localhost" in origin:
+			base_url = origin
+			if not base_url.ends_with("/"):
+				base_url += "/"
+
+	return base_url + "backend/" + endpoint
 
 func cargar_guardado_local() -> void:
 	if not FileAccess.file_exists(RUTA_GUARDADO_LOCAL):
@@ -504,7 +498,7 @@ func _guardar_progreso_remoto() -> void:
 	add_child(http_request)
 	http_request.request_completed.connect(func(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 		if result == HTTPRequest.RESULT_SUCCESS and response_code >= 200 and response_code < 300:
-			print("Progreso guardado exitosamente a través del backend PHP (SQLite + Supabase).")
+			print("Progreso guardado exitosamente a través del backend Node.js (SQLite).")
 		else:
 			var error_msg = body.get_string_from_utf8()
 			push_warning("Error al guardar progreso remoto. Result: %d, Code: %d" % [result, response_code])
@@ -513,12 +507,16 @@ func _guardar_progreso_remoto() -> void:
 		)
 
 	var global = calculate_global_score()
-	# Payload compatible con backend PHP (que luego lo manda a Supabase)
+	var points_earned = metricas_nivel_actual.get("puntaje_general", 0.0)
 	var payload: Dictionary = {
+			"usuario": usuario,
 			"username": usuario,
 			"carrera_id": carrera_id,
+			"career_id": carrera_id,
 			"nivel_actual": nivel_actual,
+			"level_id": metricas_nivel_actual.get("nivel_id", "nivel_" + str(nivel_actual)),
 			"fase_actual": fase_actual,
+			"points": points_earned,
 			"tiempo_total": global.get("tiempo_total", 0.0),
 			"errores_totales": global.get("errores_totales", 0),
 			"intentos_totales": global.get("intentos_totales", 0),
@@ -533,13 +531,18 @@ func _guardar_progreso_remoto() -> void:
 	
 	if not user_id.is_empty():
 		payload["user_id"] = user_id
+		payload["id_user"] = user_id
 
+	var url = _obtener_url_backend("guardar_progreso")
+	print("--- INTENTANDO GUARDAR REMOTAMENTE ---")
+	print("URL: ", url)
+	print("Payload: ", JSON.stringify(payload))
+	
 	var cuerpo_json: String = JSON.stringify(payload)
 	var cabeceras: PackedStringArray = [
 		"Content-Type: application/json"
 	]
 
-	var url = _obtener_url_backend("guardar_progreso.php")
 	var error: Error = http_request.request(url, cabeceras, HTTPClient.METHOD_POST, cuerpo_json)
 	if error != OK:
 		push_warning("No se pudo iniciar la petición al backend. Código: %s" % error)

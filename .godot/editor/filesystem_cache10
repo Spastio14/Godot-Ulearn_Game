@@ -1,9 +1,9 @@
 f098f8d3115d962055284dee314b4f89
-::res://::1781668473
+::res://::1781756996
 .gitignore.txt::TextFile::-1::1781406915::0::1::::<><><>0<>0<><>::
 DOCUMENTACION_PROYECTO_ULEARN.md::TextFile::-1::1781559641::0::1::::<><><>0<>0<><>::
 DOCUMENTACION_SISTEMA_GUARDADO_PROGRESION.md::TextFile::-1::1781406919::0::1::::<><><>0<>0<><>::
-export_presets.cfg::TextFile::-1::1781559641::0::1::::<><><>0<>0<><>::
+export_presets.cfg::TextFile::-1::1781671775::0::1::::<><><>0<>0<><>::
 GUIA_EXPOSICION_ULEARN.md::TextFile::-1::1781559641::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D::7494531941135277866::1781406919::1781559675::1::::<><><>0<>0<>166ed0d04d5d62767af07cb903306ed1<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://addons/::1781406919
@@ -203,9 +203,9 @@ router.tscn::PackedScene::400203474416919129::1781406919::0::1::::<><><>0<>0<><>
 server.tscn::PackedScene::4059700493989504488::1781406919::0::1::::<><><>0<>0<><>::uid://kl8pho2kb0cu::::res://EcoTechNv/network_node.gd<>uid://bam8l07i2xtbi::::res://EcoTechNv/port.tscn<>uid://bd8aadmymq6kv::::res://asstes/img/nose/Diseño sin título/3.png
 ::res://Fonts/::1781559675
 pixeldown.ttf::FontFile::2563015002688163609::1781406919::1781559675::1::::<><><>0<>0<>a8540ac4fec2e64f03436cbba516dfe7<>res://.godot/imported/pixeldown.ttf-d4b80a13a161babf5eb0f03f9a341c65.fontdata::
-::res://Meu_UI/::1781644916
+::res://Meu_UI/::1781668510
 FelicitacionUI.gd::GDScript::7096728900659309189::1781644865::0::1::::<>CanvasLayer<><>0<>0<><>::
-FelicitacionUI.tscn::PackedScene::974186324568059156::1781644878::0::1::::<><><>0<>0<><>::res://Meu_UI/FelicitacionUI.gd<>res://Fonts/pixeldown.ttf
+FelicitacionUI.tscn::PackedScene::974186324568059156::1781668510::0::1::::<><><>0<>0<><>::uid://c8dyc85unwsq4::::res://Meu_UI/FelicitacionUI.gd<>uid://bcrsqn6n8lwwn::::res://Fonts/pixeldown.ttf
 FinalResults.gd::GDScript::8350271747969931088::1781406919::0::1::::<>Control<><>0<>0<><>::
 final_results.tscn::PackedScene::4281285917604777115::1781406919::0::1::::<><><>0<>0<><>::uid://dq760xt8505ro::::res://Meu_UI/FinalResults.gd
 Menu_UI.gd::GDScript::440472461145304986::1781406919::0::1::::<>Control<><>0<>0<><>::
@@ -237,5 +237,5 @@ Robot_player.tscn::PackedScene::1202534812669268295::1781406919::0::1::::<><><>0
 Control_robot.gd::GDScript::1960691244824743951::1781406919::0::1::::<>Control<><>0<>0<><>::
 control_robot.tscn::PackedScene::2865635840576788172::1781559641::0::1::::<><><>0<>0<><>::uid://bcrsqn6n8lwwn::::res://Fonts/pixeldown.ttf<>uid://261ke5a0cq20::::res://Robot_compu/UI/Control_robot.gd
 ::res://Scripts/::1781586904
-GameManager.gd::GDScript::3305963939629525239::1781668411::0::1::::<>Node<><>0<>0<><>::
+GameManager.gd::GDScript::3305963939629525239::1781671678::0::1::::<>Node<><>0<>0<><>::
 LevelDialogueIntro.gd::GDScript::1061131911071263179::1781406919::0::1::::LevelDialogueIntro<>Node<><>0<>0<><>::
